@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/my_project.iml" filepath="$PROJECT_DIR$/.idea/my_project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/fair_gc.iml" filepath="$PROJECT_DIR$/.idea/fair_gc.iml" />
     </modules>
   </component>
 </project>
