@@ -6,7 +6,7 @@
 </h1>
 
 <div align="center">
-  my_project
+  To Be Fair: A fair Benchmark of Group-Contribution and Machine-Learning based Property Models
   <br />
   <a href="#about"><strong>Explore the screenshots »</strong></a>
   <br />
