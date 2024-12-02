@@ -1,0 +1,174 @@
+##########################################################################################################
+#                                                                                                        #
+#    Script for fitting group-contribution property models using support vector regression (SVR)         #
+#    The groups used are based on the Marrero-Gani presented in:                                         #
+#    https://doi.org/10.1016/j.fluid.2012.02.010                                                         #
+#                                                                                                        #
+#                                                                                                        #
+#    Authors: Adem R.N. Aouichaoui                                                                       #
+#    2024/12/03                                                                                          #
+#                                                                                                        #
+##########################################################################################################
+
+##########################################################################################################
+# import packages
+##########################################################################################################
+import argparse
+import pandas as pd
+import numpy as np
+import os
+from sklearn.preprocessing import StandardScaler
+import optuna
+from optuna.samplers import TPESampler
+
+from src.data import remove_zero_one_sum_rows
+
+from src.splits import find_nonzero_columns, split_indices
+from src.evaluation import calculate_metrics
+
+
+##########################################################################################################
+# parsing arguments
+##########################################################################################################
+parser = argparse.ArgumentParser()
+parser.add_argument('--property', type=str, help='tag of the property of interest')
+parser.add_argument('--trials', type=int, help='number of trials')
+parser.add_argument('--path_2_data', type=str, help='path to the data')
+parser.add_argument('--path_2_result', type=str, help='path for storing the results')
+parser.add_argument('--path_2_model', type=str, help='path for storing the model')
+
+args = parser.parse_args()
+
+property_tag = args.property
+no_trials = 10 #args.trials
+path_2_data = 'data'#args.path_2_data
+path_2_result = 'results'#args.path_2_result
+path_2_model = 'models'#args.path_2_model
+
+
+path_2_data = path_2_data+'/processed/'+property_tag+'/'+property_tag+'_processed.xlsx'
+path_2_result = path_2_result+'/svr/'+property_tag+'/'+property_tag+'_result.xlsx'
+##########################################################################################################
+# Data Loading & Preprocessing
+##########################################################################################################
+# read the data
+df = pd.read_excel(path_2_data)
+# construct list of columns indices
+columns = [str(i) for i in range(1, 425)]
+# remove zero columns
+df = remove_zero_one_sum_rows(df, columns)
+# construct group ids
+grp_idx = [str(i) for i in range(1, 425)]
+# retrieve indices of available groups
+idx_avail = find_nonzero_columns(df, ['SMILES', property_tag, 'label', 'No'])
+# split the indices into 1st, 2nd and 3rd order groups
+idx_mg1, idx_mg2, idx_mg3 = split_indices(idx_avail)
+# extract the number of available groups in each order
+n_mg1 = len(idx_mg1)
+n_mg2 = len(idx_mg2)
+n_mg3 = len(idx_mg3)
+n_pars = n_mg1+n_mg2+n_mg3
+# split the data
+df_train = df[df['label']=='train']
+df_val = df[df['label']=='val']
+df_test = df[df['label']=='test']
+# extract feature vectors and targets for training
+X_train = df_train.loc[:,idx_avail].to_numpy()
+y_train = {'true': df_train[property_tag].to_numpy()}
+# extract feature vectors and targets for validation
+X_val = df_val.loc[:,idx_avail].to_numpy()
+y_val = {'true':df_val[property_tag].to_numpy()}
+# extract feature vectors and targets for testing
+X_test = df_test.loc[:,idx_avail].to_numpy()
+y_test = {'true':df_test[property_tag].to_numpy()}
+# # scaling the target
+scaler = StandardScaler()
+y_train['scaled'] = scaler.fit_transform(y_train['true'])
+y_val['scaled'] = scaler.transform(y_val['true'])
+y_test['scaled'] = scaler.transform(y_test['true'])
+
+##########################################################################################################
+# GC-SVR modelling
+##########################################################################################################
+
+
+
+# construct dataframe to save the results
+df_result = df.copy()
+y_true = np.hstack((y_train['true'], y_val['true'], y_test['true']))
+y_step_pred = np.hstack((y_train['step_pred'], y_val['step_pred'], y_test['step_pred']))
+y_sim_pred = np.hstack((y_train['sim_pred'], y_val['sim_pred'], y_test['sim_pred']))
+split_index = df_result.columns.get_loc('label') + 1
+df_result.insert(split_index, 'step_pred', y_step_pred)
+df_result.insert(split_index + 1, 'sim_pred', y_sim_pred)
+
+# calculate the metrics
+metrics = {
+    'step': {
+        'train' : {},
+        'val': {},
+        'test': {},
+        'all': {}
+    },
+    'sim': {
+        'train': {},
+        'val': {},
+        'test': {},
+        'all': {}
+    }
+}
+
+metrics['step']['train'] = calculate_metrics(y_train['true'], y_train['step_pred'], n_pars)
+metrics['sim']['train'] = calculate_metrics(y_train['true'], y_train['sim_pred'], n_pars)
+
+metrics['step']['val'] = calculate_metrics(y_val['true'], y_val['step_pred'], n_pars)
+metrics['sim']['val'] = calculate_metrics(y_val['true'], y_val['sim_pred'], n_pars)
+
+metrics['step']['test'] = calculate_metrics(y_test['true'], y_test['step_pred'], n_pars)
+metrics['sim']['test'] = calculate_metrics(y_test['true'], y_test['sim_pred'], n_pars)
+
+metrics['step']['all'] = calculate_metrics(y_true, y_step_pred, n_pars)
+metrics['sim']['all'] = calculate_metrics(y_true, y_sim_pred, n_pars)
+
+
+flat_data = {
+    f"{key1}_{key2}": values
+    for key1, sub_dict in metrics.items()
+    for key2, values in sub_dict.items()
+}
+
+# Convert the flattened dictionary to a DataFrame
+df_metrics = pd.DataFrame(flat_data).T.reset_index()
+df_metrics.columns = ['label', 'r2', 'rmse', 'mse', 'mare', 'mae']
+
+print(df_metrics)
+
+
+# Check if the directory exists, if not, create it
+os.makedirs(os.path.dirname(path_2_result), exist_ok=True)
+
+# Check if the file exists, if not, create it with 'metrics' and 'prediction' sheets
+if not os.path.exists(path_2_result):
+    with pd.ExcelWriter(path_2_result, mode='w', engine='openpyxl') as writer:
+        df_metrics.to_excel(writer, sheet_name='metrics')
+        df_result.to_excel(writer, sheet_name='prediction')
+else:
+    # If the file already exists, append the sheets
+    with pd.ExcelWriter(path_2_result, mode='a', engine='openpyxl', if_sheet_exists='replace') as writer:
+        df_metrics.to_excel(writer, sheet_name='metrics')
+        df_result.to_excel(writer, sheet_name='prediction')
+
+
+# save the model parameters
+pos = [int(i)-1 for i in idx_avail]
+nan_arr= np.full(424+n_const, np.nan)
+nan_arr[pos] = theta['step'][n_const:]
+coefs_lm = np.insert(nan_arr, 0, theta['step'][:n_const])
+
+nan_arr= np.full(424, np.nan)
+nan_arr[pos] = theta['sim'][n_const:]
+coefs_lms = np.insert(nan_arr, 0, theta['sim'][:n_const])
+
+os.makedirs(os.path.dirname(path_2_model+'/classical/'+property_tag+'/'), exist_ok=True)
+np.save(path_2_model+'/classical/'+property_tag+'/'+property_tag+'_step_coefs',coefs_lm, allow_pickle=False)
+np.save(path_2_model+'/classical/'+property_tag+'/'+property_tag+'_sim_coefs',coefs_lms, allow_pickle=False)

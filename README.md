@@ -52,23 +52,22 @@
 ## About
 
 <table><tr><td>
+In every ML-based property prediction paper, classical Group-contribution (GC) models
+have been a constant target for scrutiny due to the workflow associated with their development.
+A main point that is constantly highlighted is the fact that their ability to extrapolate
+remains untested considering that all available data were used for model calibration, leaving none for validation.
+While some have advocated that this approach is not necessarily wrong since classical GC models are parametric
+and thus the risk of overfitting is small, their ability to extrapolate to data beyond the training set is still
+not verified. 
 
-> **[?]**
-> Provide general information about your project here.
-> What problem does it (intend to) solve?
-> What is the purpose of your project?
-> Why did you undertake it?
-> You don't have to answer all the questions -- just the ones relevant to your project.
-
+In this work, we develop a framework for fair development and comparison of GC-based ML
+models for a wide range of properties.
 <details>
 <summary>Screenshots</summary>
 <br>
 
-> **[?]**
-> Please provide your screenshots here.
-
-|                               Home Page                               |                               Login Page                               |
-| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
+|                          Classical Approach                           |                             Fair Approach                              |
+|:---------------------------------------------------------------------:|:----------------------------------------------------------------------:|
 | <img src="docs/images/screenshot.png" title="Home Page" width="100%"> | <img src="docs/images/screenshot.png" title="Login Page" width="100%"> |
 
 </details>

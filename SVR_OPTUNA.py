@@ -9,6 +9,7 @@ from sklearn.svm import SVR
 from sklearn.metrics import mean_squared_error,r2_score, mean_absolute_error, root_mean_squared_error
 import optuna
 from optuna.samplers import TPESampler
+from src.optims import create_hyperparameter_optimizer
 
 
 # import the data
@@ -42,30 +43,27 @@ y_val = scaler.transform(y_val)
 y_test = scaler.transform(y_test)
 
 
+param_ranges = {
+    'kernel': ['linear', 'rbf', 'poly'],
+    'C': {'low': 1e-1, 'high': 1e3, 'log': True},
+    'gamma': {'low': 1e-4, 'high': 1e0, 'log': True},
+    'epsilon': {'low': 0, 'high': 0.3, 'log': False}
+}
 
+study = create_hyperparameter_optimizer(
+    model_class=SVR,
+    param_ranges=param_ranges,
+    X_train=X_train,
+    y_train=y_train,
+    X_val=X_val,
+    y_val=y_val,
+    scoring_func=mean_absolute_error,
+    n_trials=50
+)
 
-def objective(trial):
-    # Define the hyperparameters to optimize
-    kernel = trial.suggest_categorical('kernel', ['linear', 'rbf', 'poly'])
-    C = trial.suggest_float('C', 1e-1, 1e3, log=True)
-    gamma = trial.suggest_float('gamma', 1e-4, 1e0, log=True)
-    epsilon = trial.suggest_float('epsilon', 0, 0.3) #used to be 0.1
-
-    # Create and train model
-    model = SVR(kernel=kernel, C=C, gamma=gamma, epsilon=epsilon)
-    model.fit(X_train, y_train.ravel())
-
-    # Calculate score
-    #score = r2_score(y_val, model.predict(X_val))
-    #score = mean_absolute_error(y_val, model.predict(X_val))
-    score = mean_absolute_error(y_val, model.predict(X_val))
-    return score
-
-
-# Create study object and optimize
-sampler = TPESampler(seed=10, multivariate=True)
-study = optuna.create_study(direction='minimize', sampler=sampler)
-study.optimize(objective, n_trials=500)
+# Get best parameters
+#best_params = study.best_params
+#print("Best parameters:", best_params)
 
 print("Best parameters:", study.best_params)
 print("Best score:", study.best_value)
