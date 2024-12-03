@@ -23,6 +23,7 @@ from src.model import create_pipeline
 import json
 import numpy as np
 import  random
+import optunahub
 
 
 def hypopt_parse_arguments():
@@ -136,14 +137,16 @@ def get_class_from_path(class_path: str):
 
 def create_sampler(sampler_config: Dict[str, Any], seed: int = None):
     """Create sampler instance from configuration."""
-    sampler_class = get_class_from_path(sampler_config['class'])
-
-    # Get params and update seed if provided
-    params = sampler_config.get('params', {}).copy()  # Make a copy to avoid modifying original
-    if seed is not None:
-        params['seed'] = seed
-
-    return sampler_class(**params)
+    if sampler_config['class'] == "auto":
+        # Handle AutoSampler directly
+        return optunahub.load_module("samplers/auto_sampler").AutoSampler()
+    else:
+        # Regular Optuna samplers
+        sampler_class = get_class_from_path(sampler_config['class'])
+        params = sampler_config.get('params', {}).copy()
+        if seed is not None:
+            params['seed'] = seed
+        return sampler_class(**params)
 
 def create_param_suggest_fn(param_config: Dict[str, Any]):
     """Create appropriate suggest function based on parameter type."""
@@ -224,6 +227,9 @@ def create_hyperparameter_optimizer(
     # set study name
     study_name = study_name or property_name + '_' + model_name
 
+    # set storage name
+    storage = storage or 'sqlite:///'+property_name+'_'+model_name+'_optuna.db'
+
     # Create parameter suggestion functions
     param_suggest_fns = {
         param_name: create_param_suggest_fn(param_config)
@@ -251,8 +257,6 @@ def create_hyperparameter_optimizer(
     # Setup and run optimization
     study = optuna.create_study(direction=direction, sampler=sampler, study_name=study_name, storage=storage,
                                 load_if_exists=load_if_exists)
-
-
 
     # Calculate remaining trials
     existing_trials = len(study.trials)

@@ -21,6 +21,11 @@ from sklearn.preprocessing import StandardScaler
 from src.optims import hypopt_parse_arguments, create_hyperparameter_optimizer, save_results
 from src.model import predict_new_data
 from src.evaluation import calculate_metrics
+import warnings
+from optuna.exceptions import ExperimentalWarning
+
+# Suppress experimental warnings from Optuna
+warnings.filterwarnings('ignore', category=ExperimentalWarning)
 
 # load arguments
 args = hypopt_parse_arguments()

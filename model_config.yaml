@@ -11,11 +11,13 @@ metric:
     direction: maximize  # override default direction
 # samplers for optuna
 sampler:
+  auto:
+    class: "auto"
+    params: {}
   tpe:
     class: optuna.samplers.TPESampler
     params:
       seed: 42
-
   random:
     class: optuna.samplers.RandomSampler
     params:
@@ -49,24 +51,162 @@ models:
         low: 1e-3
         high: 1.0
         log: true
-  rf:
-    class: sklearn.ensemble.RandomForestRegressor
+
+  dt:
+    class: sklearn.tree.DecisionTreeRegressor
     param_ranges:
-      n_estimators:
-        type: int
-        low: 10
-        high: 500
-        log: true
       max_depth:
         type: int
-        low: 3
-        high: 30
+        low: 1
+        high: 35
         log: false
       min_samples_split:
         type: int
         low: 2
         high: 20
         log: false
+      min_samples_leaf:
+        type: int
+        low: 1
+        high: 10
+        log: false
+      max_features:
+        type: categorical
+        values: [ 'sqrt', 'log2' ]
+      criterion:
+        type: categorical
+        values: [ 'squared_error', 'friedman_mse', 'absolute_error' ]
+      splitter:
+        type: categorical
+        values: [ 'best', 'random' ]
+#      min_impurity_decrease:
+#        type: float
+#        low: 0.0
+#        high: 0.1
+#      min_weight_fraction_leaf:
+#        type: float
+#        low: 0.0
+#        high: 0.5
+
+  rf:
+    class: sklearn.ensemble.RandomForestRegressor
+    param_ranges:
+      n_estimators:
+        type: int
+        low: 100
+        high: 1000
+        log: false
+      max_depth:
+        type: int
+        low: 5
+        high: 50
+        log: false
+      min_samples_split:
+        type: int
+        low: 2
+        high: 50
+        log: true
+      min_samples_leaf:
+        type: int
+        low: 1
+        high: 15
+        log: true
+      max_features:
+        type: categorical
+        values: ['sqrt', 'log2', null]
+      bootstrap:
+        type: categorical
+        values: [true, false]
+      criterion:
+        type: categorical
+        values: ['squared_error', 'absolute_error']
+
+  gb:
+    class: sklearn.ensemble.GradientBoostingRegressor
+    param_ranges:
+      n_estimators:
+        type: int
+        low: 100
+        high: 1500
+        log: false
+      learning_rate:
+        type: float
+        low: 0.01
+        high: 0.1
+        log: true
+      max_depth:
+        type: int
+        low: 3
+        high: 12
+        log: false
+      min_samples_split:
+        type: int
+        low: 2
+        high: 20
+        log: false
+      min_samples_leaf:
+        type: int
+        low: 1
+        high: 10
+        log: false
+      subsample:
+        type: float
+        low: 0.6
+        high: 1.0
+        log: false
+      max_features:
+        type: categorical
+        values: [ 'sqrt', 'log2', null ]
+
+  xgb:
+    class: xgboost.XGBRegressor
+    param_ranges:
+      n_estimators:
+        type: int
+        low: 100
+        high: 1500
+        log: false
+      max_depth:
+        type: int
+        low: 3
+        high: 12
+        log: false
+      learning_rate:
+        type: float
+        low: 0.01
+        high: 0.1
+        log: true
+      subsample:
+        type: float
+        low: 0.7
+        high: 1.0
+        log: false
+      colsample_bytree:
+        type: float
+        low: 0.5
+        high: 1.0
+        log: false
+      min_child_weight:
+        type: int
+        low: 1
+        high: 5
+        log: false
+      gamma:
+        type: float
+        low: 1e-5
+        high: 0.5
+        log: true
+      reg_alpha:
+        type: float
+        low: 1e-5
+        high: 0.5
+        log: true
+      reg_lambda:
+        type: float
+        low: 1e-5
+        high: 0.5
+        log: true
+
 
 default_settings:
   direction: minimize
