@@ -21,6 +21,8 @@ import joblib
 from datetime import datetime
 from src.model import create_pipeline
 import json
+import numpy as np
+import  random
 
 
 def hypopt_parse_arguments():
@@ -91,7 +93,28 @@ def hypopt_parse_arguments():
     )
 
     parser.add_argument(
-        '--random_state',
+        '--study_name',
+        type=str,
+        default=None,
+        help='Name of the study for persistence'
+    )
+
+    parser.add_argument(
+        '--storage',
+        type=str,
+        default=None,
+        help='Database URL for study storage (e.g., sqlite:///optuna.db)'
+    )
+
+    parser.add_argument(
+        '--no_load_if_exists',
+        action='store_false',
+        dest='load_if_exists',
+        help='Do not load existing study if it exists'
+    )
+
+    parser.add_argument(
+        '--seed',
         type=int,
         default=42,
         help='Random state for reproducibility'
@@ -110,10 +133,17 @@ def get_class_from_path(class_path: str):
     module = importlib.import_module(module_path)
     return getattr(module, class_name)
 
-def create_sampler(sampler_config: Dict[str, Any]):
+
+def create_sampler(sampler_config: Dict[str, Any], seed: int = None):
     """Create sampler instance from configuration."""
     sampler_class = get_class_from_path(sampler_config['class'])
-    return sampler_class(**sampler_config.get('params', {}))
+
+    # Get params and update seed if provided
+    params = sampler_config.get('params', {}).copy()  # Make a copy to avoid modifying original
+    if seed is not None:
+        params['seed'] = seed
+
+    return sampler_class(**params)
 
 def create_param_suggest_fn(param_config: Dict[str, Any]):
     """Create appropriate suggest function based on parameter type."""
@@ -139,11 +169,17 @@ def create_param_suggest_fn(param_config: Dict[str, Any]):
 def create_hyperparameter_optimizer(
         config_path: str,
         model_name: str,
+        property_name: str,
         X_train, y_train,
         X_val, y_val,
         metric_name: str = None,
         sampler_name: str = None,
         n_trials: int = None,
+        study_name: str = None,
+        storage: str = None,
+        load_if_exists: bool = True,
+        n_jobs: int = -1,
+        seed: int = None,
 ):
     """
     Create and run hyperparameter optimization using configuration file
@@ -155,12 +191,12 @@ def create_hyperparameter_optimizer(
         y_train: Training labels
         X_val: Validation features
         y_val: Validation labels
-        scoring_name: Name of scoring function from config (if None, uses default)
+        metric_name: Name of scoring function from config (if None, uses default)
         sampler_name: Name of sampler from config (if None, uses default)
         n_trials: Number of optimization trials (if None, uses default)
     """
     # set no jobs to max
-    n_jobs: int = -1
+
     # Load configuration
     config = load_config(config_path)
 
@@ -176,7 +212,7 @@ def create_hyperparameter_optimizer(
     # Setup sampler
     sampler_name = sampler_name or defaults['sampler']
     sampler_config = config['sampler'][sampler_name]
-    sampler = create_sampler(sampler_config)
+    sampler = create_sampler(sampler_config, seed=seed)
 
     # Get number of trials
     n_trials = n_trials or defaults['n_trials']
@@ -184,6 +220,9 @@ def create_hyperparameter_optimizer(
     # Get model configuration
     model_config = config['models'][model_name]
     model_class = get_class_from_path(model_config['class'])
+
+    # set study name
+    study_name = study_name or property_name + '_' + model_name
 
     # Create parameter suggestion functions
     param_suggest_fns = {
@@ -204,8 +243,30 @@ def create_hyperparameter_optimizer(
 
         return metric_func(y_val, model.predict(X_val))
 
+    # Set random seed for reproducibility
+    if seed is not None:
+        np.random.seed(seed)
+        random.seed(seed)
+
     # Setup and run optimization
-    study = optuna.create_study(direction=direction, sampler=sampler)
+    study = optuna.create_study(direction=direction, sampler=sampler, study_name=study_name, storage=storage,
+                                load_if_exists=load_if_exists)
+
+
+
+    # Calculate remaining trials
+    existing_trials = len(study.trials)
+    if n_trials is not None:
+        remaining_trials = n_trials - existing_trials
+        n_trials = max(0, remaining_trials)
+
+    print(f"Continuing from existing study with {existing_trials} trials")
+    if n_trials > 0:
+        print(f"Will run {n_trials} trials")
+    else:
+        print(f"the desired number of iterations have already been done, consider increasing n_trials")
+
+    # run optimization
     study.optimize(objective, n_trials=n_trials, n_jobs=n_jobs)
 
     # Create and fit best model
@@ -244,7 +305,7 @@ def get_parameter_ranges(study):
 
     return param_ranges
 
-def save_results(study, fitted_model, fitted_scaler, config_path, model_name,
+def save_results(study, fitted_model, fitted_scaler, config_path, model_name, seed,
                  metric_name, model_dir='models/', result_dir='results/'):
     """Save the optimization results, model, and metadata"""
     # Create directory if it doesn't exist
@@ -280,6 +341,7 @@ def save_results(study, fitted_model, fitted_scaler, config_path, model_name,
         'model_path': model_path,
         'results_path': results_path,
         'trials_path': trials_path,
+        'seed': seed,
     }
 
     # Save results to JSON

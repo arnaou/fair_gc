@@ -14,17 +14,17 @@ sampler:
   tpe:
     class: optuna.samplers.TPESampler
     params:
-      seed: 10
+      seed: 42
 
   random:
     class: optuna.samplers.RandomSampler
     params:
-      seed: 10
+      seed: null
 
   cmaes:
     class: optuna.samplers.CmaEsSampler
     params:
-      seed: 10
+      seed: null
 
 # model hyperparameters
 models:

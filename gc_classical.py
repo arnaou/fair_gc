@@ -42,8 +42,10 @@ path_2_result = args.path_2_result
 path_2_model = args.path_2_model
 
 
-path_2_data = path_2_data+'/processed/'+property_tag+'/'+property_tag+'_processed.xlsx'
-path_2_result = path_2_result+'/classical/'+property_tag+'/'+property_tag+'_result.xlsx'
+path_2_data = path_2_data+'processed/'+property_tag+'/'+property_tag+'_processed.xlsx'
+path_2_result = path_2_result+ property_tag+'/classical/'+property_tag+'_result.xlsx'
+path_2_model = path_2_model+property_tag+'/classical/'+property_tag
+
 ##########################################################################################################
 # Data Loading & Preprocessing
 ##########################################################################################################
@@ -218,5 +220,8 @@ nan_arr[pos] = theta['sim'][n_const:]
 coefs_lms = np.insert(nan_arr, 0, theta['sim'][:n_const])
 
 os.makedirs(os.path.dirname(path_2_model+'/classical/'+property_tag+'/'), exist_ok=True)
-np.save(path_2_model+'/classical/'+property_tag+'/'+property_tag+'_step_coefs',coefs_lm, allow_pickle=False)
-np.save(path_2_model+'/classical/'+property_tag+'/'+property_tag+'_sim_coefs',coefs_lms, allow_pickle=False)
+np.save(path_2_model+'_step_coefs',coefs_lm, allow_pickle=False)
+np.save(path_2_model+'_sim_coefs',coefs_lms, allow_pickle=False)
+
+
+# --property 'Vc' --path_2_data 'data/' --path_2_result 'results/' --path_2_model 'models/'
