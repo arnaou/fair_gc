@@ -33,11 +33,11 @@ models:
     param_ranges:
       kernel:
         type: categorical
-        values: ['linear', 'rbf', 'poly']
+        values: ['linear', 'rbf', 'poly', 'sigmoid']
       C:
         type: float
-        low: 1e-1
-        high: 1e3
+        low: 1e-3
+        high: 1e2
         log: true
       gamma:
         type: float
@@ -46,9 +46,9 @@ models:
         log: true
       epsilon:
         type: float
-        low: 0.0
-        high: 0.3
-        log: false
+        low: 1e-3
+        high: 1.0
+        log: true
   rf:
     class: sklearn.ensemble.RandomForestRegressor
     param_ranges:
