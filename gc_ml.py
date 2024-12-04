@@ -90,7 +90,7 @@ study, best_model = create_hyperparameter_optimizer(
     n_trials=args.n_trials,
     storage = args.storage,
     load_if_exists=args.load_if_exists,
-    n_jobs = -1,
+    n_jobs = args.n_jobs,
     seed = args.seed,
 )
 

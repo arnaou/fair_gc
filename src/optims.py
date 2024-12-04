@@ -69,6 +69,13 @@ def hypopt_parse_arguments():
     )
 
     parser.add_argument(
+        '--n_jobs',
+        type=int,
+        default=-1,
+        help='Number of cores used (uses max if not configured)'
+    )
+
+    parser.add_argument(
         '--sampler',
         type=str,
         default='tpe',
