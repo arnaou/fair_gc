@@ -163,7 +163,7 @@ cython_debug/
 # folder
 #data/
 .github/
-trash/
-results/
-models/
-optuna.db
+trash
+results
+models
+optuna_dbs
