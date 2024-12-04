@@ -23,9 +23,11 @@ from src.model import predict_new_data
 from src.evaluation import calculate_metrics
 import warnings
 from optuna.exceptions import ExperimentalWarning
+from sklearn.exceptions import ConvergenceWarning
 
 # Suppress experimental warnings from Optuna
 warnings.filterwarnings('ignore', category=ExperimentalWarning)
+warnings.filterwarnings('ignore', category=ConvergenceWarning)
 
 # load arguments
 args = hypopt_parse_arguments()

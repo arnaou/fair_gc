@@ -24,6 +24,7 @@ import json
 import numpy as np
 import  random
 import optunahub
+from src.model import create_model
 
 
 def hypopt_parse_arguments():
@@ -244,7 +245,7 @@ def create_hyperparameter_optimizer(
         }
 
         # Create and train model
-        model = model_class(**params)
+        model = create_model(model_class, params, seed=seed) # model_class(**params)
         model.fit(X_train, y_train.ravel())
 
         return metric_func(y_val, model.predict(X_val))
@@ -274,7 +275,7 @@ def create_hyperparameter_optimizer(
     study.optimize(objective, n_trials=n_trials, n_jobs=n_jobs)
 
     # Create and fit best model
-    best_model = model_class(**study.best_params)
+    best_model = create_model(model_class, study.best_params, seed=seed) #model_class(**study.best_params)
     best_model.fit(X_train, y_train.ravel())
 
 

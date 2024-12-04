@@ -39,6 +39,37 @@ class PostScaledRegressor(BaseEstimator, RegressorMixin):
         scaled_pred = self.model.predict(X)
         return self.scaler.inverse_transform(scaled_pred.reshape(-1, 1)).ravel()
 
+
+def create_kernel(params):
+    """Create GPR kernel based on parameters"""
+    from sklearn.gaussian_process.kernels import RBF, Matern, WhiteKernel, ConstantKernel
+
+    kernel_type = params['kernel_type']
+    length_scale = params['length_scale']
+    noise_level = params['noise_level']
+    constant_value = params['constant_value']
+
+    if kernel_type == 'RBF':
+        kernel = ConstantKernel(constant_value) * RBF(length_scale) + WhiteKernel(noise_level)
+    else:  # Matern
+        nu = params['nu']
+        kernel = ConstantKernel(constant_value) * Matern(length_scale, nu=nu) + WhiteKernel(noise_level)
+
+    return kernel
+
+def create_model(model_class, params, seed=None):
+   """Create model instance with proper seed handling"""
+   if model_class.__name__ == 'GaussianProcessRegressor':
+       kernel = create_kernel(params)
+       gpr_params = {k: v for k, v in params.items()
+                    if k not in ['kernel_type', 'length_scale', 'noise_level',
+                               'constant_value', 'nu']}
+       return model_class(kernel=kernel, random_state=seed, **gpr_params)
+   elif model_class.__name__ in ['RandomForestRegressor', 'DecisionTreeRegressor']:
+       return model_class(random_state=seed, **params)
+   else:
+       return model_class(**params)  # For models like SVR that don't use random_state
+
 def create_pipeline(fitted_model, fitted_scaler):
     """Create pipeline with pre-fitted model and scaler"""
     return PostScaledRegressor(fitted_model, fitted_scaler)

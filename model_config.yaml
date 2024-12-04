@@ -206,6 +206,30 @@ models:
         low: 1e-5
         high: 0.5
         log: true
+  gpr:
+    class: sklearn.gaussian_process.GaussianProcessRegressor
+    param_ranges:
+      kernel_type:
+        type: categorical
+        values: [ 'RBF', 'Matern' ]
+      length_scale:
+        type: float
+        low: 1e-5
+        high: 1e5
+        log: true
+      noise_level:
+        type: float
+        low: 1e-10
+        high: 1.0
+        log: true
+      constant_value:
+        type: float
+        low: 1e-7
+        high: 1e5
+        log: true
+      nu:
+        type: categorical
+        values: [ 0.5, 1.5, 2.5 ]
 
 
 default_settings:
