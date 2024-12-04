@@ -25,6 +25,8 @@ import numpy as np
 import  random
 import optunahub
 from src.model import create_model
+from sqlalchemy.exc import OperationalError
+import time
 
 
 def hypopt_parse_arguments():
@@ -135,6 +137,22 @@ def get_class_from_path(class_path: str):
     module = importlib.import_module(module_path)
     return getattr(module, class_name)
 
+class RetryingStorage(optuna.storages.RDBStorage):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.max_retries = 30
+        self.retry_delay = 1.0
+
+    def _retry_execute(self, func, *args, **kwargs):
+        for attempt in range(self.max_retries):
+            try:
+                return func(*args, **kwargs)
+            except OperationalError as e:
+                if "database is locked" in str(e) and attempt < self.max_retries - 1:
+                    time.sleep(self.retry_delay)
+                    continue
+                raise
+        return None
 
 def create_sampler(sampler_config: Dict[str, Any], seed: int = None):
     """Create sampler instance from configuration."""
@@ -230,6 +248,7 @@ def create_hyperparameter_optimizer(
 
     # set storage name
     storage = storage or 'sqlite:///optuna_dbs/optuna_'+property_name+'_'+model_name+'.db'
+    storage = RetryingStorage(storage)
 
     # Create parameter suggestion functions
     param_suggest_fns = {
