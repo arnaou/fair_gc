@@ -229,7 +229,7 @@ def create_hyperparameter_optimizer(
     study_name = study_name or property_name + '_' + model_name
 
     # set storage name
-    storage = storage or 'sqlite:///'+property_name+'_'+model_name+'_optuna.db'
+    storage = storage or 'sqlite:///optuna_'+property_name+'_'+model_name+'.db'
 
     # Create parameter suggestion functions
     param_suggest_fns = {
