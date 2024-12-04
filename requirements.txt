@@ -1,0 +1,8 @@
+hyperopt==0.2.7
+joblib==1.4.2
+mealpy==3.0.1
+optuna==4.1.0
+optunahub==0.1.0
+PyYAML==6.0.2
+ray==2.39.0
+rdkit==2023.9.6
