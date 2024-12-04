@@ -17,6 +17,7 @@
 import pandas as pd
 import numpy as np
 import os
+from src.splits import find_nonzero_columns
 from sklearn.preprocessing import StandardScaler
 from src.optims import hypopt_parse_arguments, create_hyperparameter_optimizer, save_results
 from src.model import predict_new_data
@@ -24,6 +25,7 @@ from src.evaluation import calculate_metrics
 import warnings
 from optuna.exceptions import ExperimentalWarning
 from sklearn.exceptions import ConvergenceWarning
+
 
 # Suppress experimental warnings from Optuna
 warnings.filterwarnings('ignore', category=ExperimentalWarning)
@@ -40,21 +42,27 @@ path_to_data = args.path_2_data+'processed/'+args.property+'/'+args.property+'_p
 df = pd.read_excel(path_to_data)
 
 # remove the zero elements
-columns = [str(i) for i in range(1, 425)]
-
+# construct group ids
+grp_idx = [str(i) for i in range(1, 425)]
+# retrieve indices of available groups
+#idx_avail = find_nonzero_columns(df, ['SMILES', args.property, 'label', 'No'])
+idx_avail = grp_idx
 # split the data
 df_train = df[df['label']=='train']
 df_val = df[df['label']=='val']
 df_test = df[df['label']=='test']
 
 # extract feature vectors and targets
-X_train = df_train.loc[:,'1':].to_numpy()
+#X_train = df_train.loc[:,'1':].to_numpy()
+X_train = df_train.loc[:,idx_avail].to_numpy()
 y_train = {'true':df_train[args.property].to_numpy().reshape(-1,1)}
 
-X_val = df_val.loc[:,'1':].to_numpy()
+#X_val = df_val.loc[:,'1':].to_numpy()
+X_val = df_val.loc[:,idx_avail].to_numpy()
 y_val = {'true':df_val[args.property].to_numpy().reshape(-1,1)}
 
-X_test = df_test.loc[:,'1':].to_numpy()
+#X_test = df_test.loc[:,'1':].to_numpy()
+X_test = df_test.loc[:,idx_avail].to_numpy()
 y_test = {'true':df_test[args.property].to_numpy().reshape(-1,1)}
 
 # scaling the data
