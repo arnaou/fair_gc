@@ -16,7 +16,7 @@ from src.data import construct_mg_data, remove_zero_one_sum_rows, filter_smiles,
 from src.splits import find_minimal_covering_smiles, expand_subset, find_nonzero_columns, split_indices
 
 # define the tag
-prop_tag = 'Omega'
+prop_tag = 'Vc'
 
 # data path
 path_to_data = None
@@ -66,7 +66,8 @@ df_mg = remove_zero_one_sum_rows(df_mg, columns)
 # step 1: ensure that for each dataset, all available groups are available in a subset that is the training set
 minimal_set, coverage = find_minimal_covering_smiles(df_mg)
 df_train = df_mg[df_mg['SMILES'].isin(minimal_set)]
-
+# make a copy of yhe minimal training set
+df_train_min = df_train.copy()
 # step 2: check the percentage of current training data
 ratio_train = df_train.shape[0]/df_mg.shape[0]
 
@@ -86,6 +87,11 @@ df_train, df_val, df_test = expand_subset(df_mg, df_train, n_train_to_add, metho
 df_final = pd.concat([df_train, df_val, df_test], ignore_index=True)
 
 df_final = move_column(df_final, 'label', 3)
+df_final['required'] = [False for i in range(df_final.shape[0])]
+df_final.loc[df_final['SMILES'].isin(df_train_min['SMILES']),'required'] = True
+
+df_final = move_column(df_final, 'required', 4)
+
 
 df_final.to_excel('data/processed/'+prop_tag+'/'+prop_tag+'_processed.xlsx', index=False)
 
