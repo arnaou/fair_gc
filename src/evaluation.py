@@ -1,6 +1,6 @@
 import numpy as np
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score, root_mean_squared_error
-
+from scipy.stats import rankdata
 
 
 
@@ -39,3 +39,28 @@ def calculate_metrics(y_target, y_pred, n_params=None):
     return out
 
 
+def identify_outliers_ecdf(values, lower_threshold=0.025, upper_threshold=0.975):
+    """
+    Identify outliers based on ECDF thresholds.
+
+    Parameters:
+    -----------
+    values : array-like
+        Values to check for outliers
+    lower_threshold : float
+        Lower ECDF threshold (default: 0.025 for 2.5th percentile)
+    upper_threshold : float
+        Upper ECDF threshold (default: 0.975 for 97.5th percentile)
+
+    Returns:
+    --------
+    outlier_mask : numpy array
+        Boolean mask indicating outlier points
+    """
+    # Calculate ECDF values
+    n = len(values)
+    ecdf = rankdata(values) / n
+
+    # Create outlier mask
+    outlier_mask = (ecdf < lower_threshold) | (ecdf > upper_threshold)
+    return outlier_mask

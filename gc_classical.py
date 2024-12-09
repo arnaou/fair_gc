@@ -18,6 +18,8 @@ import pandas as pd
 import numpy as np
 from scipy.optimize import least_squares
 import os
+from statsmodels.distributions.empirical_distribution import ECDF
+import matplotlib.pyplot as plt
 
 from src.data import remove_zero_one_sum_rows
 from src.gc_tools import retrieve_consts, linearize_gc, Fobj_fog, Fobj_sog, Fobj_tog, predict_gc
@@ -26,13 +28,14 @@ from src.evaluation import calculate_metrics
 
 
 ##########################################################################################################
-# parsing arguments
+# parsing arguments --property 'Vc' --path_2_data 'data/' --path_2_result 'results/' --path_2_model 'models/'
 ##########################################################################################################
 parser = argparse.ArgumentParser()
-parser.add_argument('--property', type=str, help='tag of the property of interest')
-parser.add_argument('--path_2_data', type=str, help='path to the data')
-parser.add_argument('--path_2_result', type=str, help='path for storing the results')
-parser.add_argument('--path_2_model', type=str, help='path for storing the model')
+parser.add_argument('--property', type=str, default='Tc', help='tag of the property of interest')
+parser.add_argument('--outlier_treatment', type=bool, default=False, help='should outliers be removed?')
+parser.add_argument('--path_2_data', type=str, default='data/', help='path to the data')
+parser.add_argument('--path_2_result', type=str, default='results/', help='path for storing the results')
+parser.add_argument('--path_2_model', type=str, default='models/', help='path for storing the model')
 
 args = parser.parse_args()
 
@@ -49,8 +52,6 @@ path_2_model = path_2_model+property_tag+'/classical/'+property_tag
 ##########################################################################################################
 # Data Loading & Preprocessing
 ##########################################################################################################
-# construct the path do data
-#path_2_data = path_2_data + '/processed/' + property_tag + '/' + property_tag + '_processed.xlsx'
 # read the data
 df = pd.read_excel(path_2_data)
 # construct list of columns indices
@@ -60,7 +61,7 @@ df = remove_zero_one_sum_rows(df, columns)
 # construct group ids
 grp_idx = [str(i) for i in range(1, 425)]
 # retrieve indices of available groups
-idx_avail = find_nonzero_columns(df, ['SMILES', property_tag, 'label', 'No'])
+idx_avail = find_nonzero_columns(df, ['SMILES', property_tag, 'label', 'No', 'required'])
 # split the indices into 1st, 2nd and 3rd order groups
 idx_mg1, idx_mg2, idx_mg3 = split_indices(idx_avail)
 # extract the number of available groups in each order
@@ -81,11 +82,6 @@ y_val = {'true':df_val[property_tag].to_numpy()}
 # extract feature vectors and targets for testing
 X_test = df_test.loc[:,idx_avail].to_numpy()
 y_test = {'true':df_test[property_tag].to_numpy()}
-# # scaling the target
-# scaler = StandardScaler()
-# y_train['scaled'] = scaler.fit_transform(y_train['true'])
-# y_val['scaled'] = scaler.transform(y_val['true'])
-# y_test['scaled'] = scaler.transform(y_test['true'])
 
 ##########################################################################################################
 # GC modelling
@@ -225,3 +221,19 @@ np.save(path_2_model+'_sim_coefs',coefs_lms, allow_pickle=False)
 
 
 # --property 'Vc' --path_2_data 'data/' --path_2_result 'results/' --path_2_model 'models/'
+#%%
+
+# calculate the errors
+err_train = y_train['true'] - y_train['step_pred']
+err_val = y_val['true'] - y_val['step_pred']
+# calculate the ecdf
+ecdf_train = ECDF(err_train)
+ecdf_val = ECDF(err_val)
+condition_train = (np.isfinite(ecdf_train.x)) & (np.isfinite(ecdf_train.y))
+condition_val = (np.isfinite(ecdf_val.x)) & (np.isfinite(ecdf_val.y))
+ecdf_train.x, ecdf_train.y = ecdf_train.x[condition_train], ecdf_train.y[condition_train]
+ecdf_val.x, ecdf_val.y = ecdf_val.x[condition_val], ecdf_val.y[condition_val]
+# print(err_train.shape)
+# print(condition_train.shape)
+df_val[condition_val[condition_val]]
+#

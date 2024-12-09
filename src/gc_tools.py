@@ -15,7 +15,7 @@ def retrieve_consts(property_tag):
         list_of_const = [0.9080 ,0.1055, 1.002]
     elif property_tag == 'Tc':
         n_const = 1
-        list_of_const = [350]
+        list_of_const = [400]
     elif property_tag == 'Vc':
         n_const = 1
         list_of_const = [20]
