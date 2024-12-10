@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score, root_mean_squared_error
 from scipy.stats import rankdata
-
+import torch
 
 
 #Calculate MARE
@@ -64,3 +64,47 @@ def identify_outliers_ecdf(values, lower_threshold=0.025, upper_threshold=0.975)
     # Create outlier mask
     outlier_mask = (ecdf < lower_threshold) | (ecdf > upper_threshold)
     return outlier_mask
+
+
+
+def predict_property(model, loader, device, y_scaler=None):
+    """
+    Make predictions using the trained model and calculate metrics
+
+    Args:
+        model: Trained AttentiveFP model
+        loader: PyTorch Geometric DataLoader
+        device: torch device
+        y_scaler: StandardScaler used for target scaling
+
+    Returns:
+        predictions: Numpy array of predictions
+        true_values: Numpy array of true values
+        metrics: Dictionary of evaluation metrics
+    """
+    model.eval()
+    predictions = []
+    true_values = []
+
+    with torch.no_grad():
+        for batch in loader:
+            batch = batch.to(device)
+            pred = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
+            true = batch.y.view(-1, 1)
+
+            # Store predictions and true values
+            predictions.extend(pred.cpu().numpy())
+            true_values.extend(true.cpu().numpy())
+
+    predictions = np.array(predictions)
+    true_values = np.array(true_values)
+
+    # Inverse transform if scaler was used
+    if y_scaler is not None:
+        predictions = y_scaler.inverse_transform(predictions)
+        true_values = y_scaler.inverse_transform(true_values)
+
+    # Calculate metrics
+    metrics = calculate_metrics(true_values, predictions)
+
+    return predictions, true_values, metrics
