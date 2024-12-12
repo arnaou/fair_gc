@@ -29,107 +29,23 @@ from sqlalchemy.exc import OperationalError
 import time
 
 
-def hypopt_parse_arguments():
+def ml_hypopt_parse_arguments():
     parser = argparse.ArgumentParser(description='Hyperparameter optimization')
 
-    parser.add_argument(
-        '--property',
-        type=str,
-        required=True,
-        help='Tag for the property'
-    )
-
-    parser.add_argument(
-        '--config_file',
-        type=str,
-        required=True,
-        help='Path to the YAML configuration file'
-    )
-
-    parser.add_argument(
-        '--model',
-        type=str,
-        required=True,
-        help='Model type to optimize (must be defined in config file)'
-    )
-
-    parser.add_argument(
-        '--metric',
-        type=str,
-        required=False,
-        default='rmse',
-        help='Scoring metric to use (must be defined in config file)'
-    )
-
-    parser.add_argument(
-        '--n_trials',
-        type=int,
-        default=500,
-        help='Number of optimization trials (uses config default if not specified)'
-    )
-
-    parser.add_argument(
-        '--n_jobs',
-        type=int,
-        default=-1,
-        help='Number of cores used (uses max if not configured)'
-    )
-
-    parser.add_argument(
-        '--sampler',
-        type=str,
-        default='tpe',
-        help='Sampler to use (uses config default if not specified)'
-    )
-
-    parser.add_argument(
-        '--path_2_data',
-        type=str,
-        required=True,
-        help='Path to the data file'
-    )
-
-    parser.add_argument(
-        '--path_2_result',
-        type=str,
-        required=True,
-        help='Path to save the results (metrics and predictions)'
-    )
-
-    parser.add_argument(
-        '--path_2_model',
-        type=str,
-        required=True,
-        help='Path to save the model and eventual check points'
-    )
-
-    parser.add_argument(
-        '--study_name',
-        type=str,
-        default=None,
-        help='Name of the study for persistence'
-    )
-
-    parser.add_argument(
-        '--storage',
-        type=str,
-        default=None,
-        help='Database URL for study storage (e.g., sqlite:///optuna.db)'
-    )
-
-    parser.add_argument(
-        '--no_load_if_exists',
-        action='store_false',
-        dest='load_if_exists',
-        help='Do not load existing study if it exists'
-    )
-
-    parser.add_argument(
-        '--seed',
-        type=int,
-        default=42,
-        help='Random state for reproducibility'
-    )
+    parser.add_argument('--property', type=str, required=True, help='Tag for the property')
+    parser.add_argument('--config_file', type=str, required=True, help='Path to the YAML configuration file')
+    parser.add_argument('--model', type=str, required=True, help='Model type to optimize (must be defined in config file)')
+    parser.add_argument('--metric', type=str, required=False, default='rmse', help='Scoring metric to use (must be defined in config file)')
+    parser.add_argument('--n_trials', type=int, default=500, help='Number of optimization trials (uses config default if not specified)' )
+    parser.add_argument('--n_jobs', type=int, default=-1, help='Number of cores used (uses max if not configured)')
+    parser.add_argument('--sampler', type=str, default='tpe', help='Sampler to use (uses config default if not specified)')
+    parser.add_argument('--path_2_data', type=str, required=True, help='Path to the data file')
+    parser.add_argument('--path_2_result', type=str, required=True, help='Path to save the results (metrics and predictions)')
+    parser.add_argument('--path_2_model', type=str, required=True, help='Path to save the model and eventual check points')
+    parser.add_argument('--study_name', type=str, default=None, help='Name of the study for persistence')
+    parser.add_argument('--storage', type=str, default=None, help='Database URL for study storage (e.g., sqlite:///optuna.db)')
+    parser.add_argument('--no_load_if_exists', action='store_false', dest='load_if_exists', help='Do not load existing study if it exists')
+    parser.add_argument('--seed', type=int, default=42, help='Random state for reproducibility')
 
     return parser.parse_args()
 
@@ -145,6 +61,9 @@ def get_class_from_path(class_path: str):
     return getattr(module, class_name)
 
 class RetryingStorage(optuna.storages.RDBStorage):
+    """
+    class
+    """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.max_retries = 30
@@ -270,9 +189,11 @@ def create_hyperparameter_optimizer(
             for name, suggest_fn in param_suggest_fns.items()
         }
 
+
         # Create and train model
         model = create_model(model_class, params, seed=seed) # model_class(**params)
         model.fit(X_train, y_train.ravel())
+
 
         return metric_func(y_val, model.predict(X_val))
 

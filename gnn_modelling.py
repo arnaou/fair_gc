@@ -17,19 +17,20 @@ import argparse
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from rdkit import Chem
-from src.features import mol2torchdata, n_atom_features, n_bond_features
+from src.features import mol2graph, n_atom_features, n_bond_features
 from torch_geometric.loader import DataLoader
 import torch
-from src.gnns import AttentiveFP
+from src.gnns import FlexibleMLPAttentiveFP, AttentiveFP
 import torch.nn.functional as F
-from src.training import EarlyStopping, seed_everything
+from src.training import EarlyStopping
+from lightning.pytorch import seed_everything
 from src.evaluation import predict_property
 
 ##########################################################################################################
 # parsing arguments
 ##########################################################################################################
 parser = argparse.ArgumentParser()
-parser.add_argument('--property', type=str, default='Omega', help='tag of the property of interest')
+parser.add_argument('--property', type=str, default='Tc', help='tag of the property of interest')
 parser.add_argument('--model', type=str, default='afp', help='name of the GNN model')
 parser.add_argument('--path_2_data', type=str, default='data/', help='path to the data')
 parser.add_argument('--path_2_result', type=str, default='results/', help='path for storing the results')
@@ -49,6 +50,7 @@ seed = args.seed
 path_2_data = path_2_data+'processed/'+property_tag+'/'+property_tag+'_processed.xlsx'
 path_2_result = path_2_result+ property_tag+'/gnn/'+model_name+'/'+property_tag+'_result.xlsx'
 path_2_model = path_2_model+property_tag+'/gnn/'+model_name+'/'+property_tag
+
 seed_everything(seed)
 ##########################################################################################################
 #%% Data Loading & Preprocessing
@@ -67,13 +69,13 @@ df_train = df_train.assign(mol=[Chem.MolFromSmiles(i) for i in df_train['SMILES'
 df_val = df_val.assign(mol=[Chem.MolFromSmiles(i) for i in df_val['SMILES']])
 df_test = df_test.assign(mol=[Chem.MolFromSmiles(i) for i in df_test['SMILES']])
 # construct molecular graphs
-train_dataset = mol2torchdata(df_train, 'mol', property_tag, y_scaler=y_scaler)
-val_dataset = mol2torchdata(df_val, 'mol', property_tag, y_scaler=y_scaler)
-test_dataset = mol2torchdata(df_test, 'mol', property_tag, y_scaler=y_scaler)
+train_dataset = mol2graph(df_train, 'mol', property_tag, y_scaler=y_scaler)
+val_dataset = mol2graph(df_val, 'mol', property_tag, y_scaler=y_scaler)
+test_dataset = mol2graph(df_test, 'mol', property_tag, y_scaler=y_scaler)
 # construct data loaders
-train_loader = DataLoader(train_dataset, batch_size=2000, shuffle=False, generator = torch.Generator().manual_seed(seed))
-val_loader = DataLoader(val_dataset, batch_size=2000)
-test_loader = DataLoader(test_dataset, batch_size=2000)
+train_loader = DataLoader(train_dataset, batch_size=600, shuffle=False)
+val_loader = DataLoader(val_dataset, batch_size=600, shuffle=False)
+test_loader = DataLoader(test_dataset, batch_size=600, shuffle=False)
 
 ##########################################################################################################
 #%% Model Training
@@ -82,10 +84,20 @@ test_loader = DataLoader(test_dataset, batch_size=2000)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
-model = AttentiveFP(in_channels=n_atom_features(), hidden_channels=150, out_channels=1,
-                    edge_dim=n_bond_features(), num_layers=2, num_timesteps=2, num_mlp_layers = 2 ,
-                    dropout=0.0).to(device)
+# model = AttentiveFP(in_channels=n_atom_features(), hidden_channels=100, out_channels=1,
+#                     edge_dim=n_bond_features(), num_layers=2, num_timesteps=2, num_mlp_layers = 2 ,
+#                     dropout=0.0).to(device)
 
+model = FlexibleMLPAttentiveFP(
+    in_channels=n_atom_features(),
+    hidden_channels=100,
+    out_channels=1,
+    edge_dim=n_bond_features(),
+    num_layers=2,
+    num_timesteps=2,
+    mlp_hidden_dims=[100, 50, 25, 13],  # Explicitly specify MLP dimensions
+    dropout=0.0
+).to(device)
 
 optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
 scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.8, patience=8, verbose=False)

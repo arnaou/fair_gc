@@ -1,0 +1,74 @@
+# metrics
+metric:
+  mae:
+    function: sklearn.metrics.mean_absolute_error
+  mse:
+    function: sklearn.metrics.mean_squared_error
+  rmse:
+    function: sklearn.metrics.root_mean_squared_error
+  r2:
+    function: sklearn.metrics.r2_score
+    direction: maximize  # override default direction
+# samplers for optuna
+sampler:
+  auto:
+    class: "auto"
+    params: {}
+  tpe:
+    class: optuna.samplers.TPESampler
+    params:
+      seed: 42
+  random:
+    class: optuna.samplers.RandomSampler
+    params:
+      seed: null
+  cmaes:
+    class: optuna.samplers.CmaEsSampler
+    params:
+      seed: null
+# Training parameters (separate from model init)
+training_params:
+  learning_rate:
+    type: float
+    low: 1e-4
+    high: 1e-2
+    log: true
+
+
+# model hyperparameters
+models:
+  afp:
+    class: src.gnns.FlexibleMLPAttentiveFP
+    param_ranges:
+      hidden_channels:
+        type: int
+        low: 32
+        high: 256
+      num_layers:
+        type: int
+        low: 2
+        high: 6
+      num_timesteps:
+        type: int
+        low: 1
+        high: 5
+      mlp_hidden_dims:
+        type: categorical
+        values: ['256_128', '256_128_64', '512_256_128', '256_256_128', '512_256_256_128']
+      dropout:
+        type: float
+        low: 0.0
+        high: 0.4
+        log: false
+      learning_rate:
+        type: float
+        low: 1e-4
+        high: 1e-2
+        log: true
+
+
+default_settings:
+  direction: minimize
+  n_trials: 50
+  sampler: auto
+  metric: rmse
