@@ -95,17 +95,17 @@ model = FlexibleMLPAttentiveFP(
     edge_dim=n_bond_features(),
     num_layers=2,
     num_timesteps=2,
-    mlp_hidden_dims=[100, 50, 25, 13],  # Explicitly specify MLP dimensions
+    mlp_hidden_dims=[100, 100],  # Explicitly specify MLP dimensions
     dropout=0.0
 ).to(device)
 
 optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
-scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.8, patience=8, verbose=False)
+scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5, verbose=False)
 
 # Initialize early stopping
 early_stopping = EarlyStopping(patience=25, verbose=True)
 
-num_epochs = 100
+num_epochs = 150
 best_val_loss = float('inf')
 
 for epoch in range(num_epochs):

@@ -18,7 +18,8 @@ class EarlyStopping:
         self.early_stop = False
         self.val_loss_min = float('inf')
 
-    def __call__(self, val_loss):#, model, path):
+    def __call__(self, val_loss , model, path):
+    #def __call__(self, val_loss):#, model, path):
         if self.best_loss is None:
             self.best_loss = val_loss
             #self.save_checkpoint(val_loss, model, path)
@@ -30,7 +31,7 @@ class EarlyStopping:
                 self.early_stop = True
         else:
             self.best_loss = val_loss
-            #self.save_checkpoint(val_loss, model, path)
+            self.save_checkpoint(val_loss, model, path)
             self.counter = 0
 
     def save_checkpoint(self, val_loss, model, path):
