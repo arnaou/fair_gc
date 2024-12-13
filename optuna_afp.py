@@ -35,7 +35,7 @@ def gnn_hypopt_parse_arguments():
     parser.add_argument('--config_file', type=str, required=False, default='gnn_hyperopt_config.yaml',help='Path to the YAML configuration file')
     parser.add_argument('--model', type=str, required=False, default='afp', help='Model type to optimize (must be defined in config file)')
     parser.add_argument('--metric', type=str, required=False, default='rmse', help='Scoring metric to use (must be defined in config file)')
-    parser.add_argument('--n_trials', type=int, default=400, help='Number of optimization trials (uses config default if not specified)' )
+    parser.add_argument('--n_trials', type=int, default=4, help='Number of optimization trials (uses config default if not specified)' )
     parser.add_argument('--n_jobs', type=int, default=-1, help='Number of cores used (uses max if not configured)')
     parser.add_argument('--sampler', type=str, default='auto', help='Sampler to use (uses config default if not specified)')
     parser.add_argument('--path_2_data', type=str, default='data/', required=False, help='Path to the data file')
@@ -82,12 +82,13 @@ test_loader = DataLoader(test_dataset, batch_size=600, shuffle=False)
 
 #%%
 import optuna
-from src.optims import get_class_from_path, load_config, create_sampler, RetryingStorage, create_param_suggest_fn
+from src.optims import get_class_from_path, load_config, create_sampler, RetryingStorage, suggest_gnn_parameter
 import numpy as np
 import random
 import torch
 from src.training import EarlyStopping
 import torch.nn.functional as F
+from typing import Tuple, Dict, Any, Callable
 
 def create_gnn_model(model_class, params):
     """
@@ -115,42 +116,51 @@ def evaluate_model(model, loader, device):
 
     return np.array(predictions), np.array(targets)
 
-def create_hyperparameter_optimizer(
+
+def optimize_gnn(
         config_path: str,
         model_name: str,
         property_name: str,
         train_loader,
         val_loader,
-        metric_name: str = None,
-        sampler_name: str = None,
-        n_trials: int = None,
+        feature_callables: Dict[str, Callable],
         study_name: str = None,
+        sampler_name: str = None,
+        metric_name: str = None,
         storage: str = None,
+        n_trials: int = None,
         load_if_exists: bool = True,
         n_jobs: int = -1,
         seed: int = None,
-):
+        device: str = "cuda"
+) -> Tuple[optuna.study.Study, torch.nn.Module]:
     """
-    Create and run hyperparameter optimization using configuration file
+    Generic GNN model optimization using Optuna.
 
     Args:
         config_path: Path to YAML configuration file
         model_name: Name of the model in config to optimize
-        X_train: Training features
-        y_train: Training labels
-        X_val: Validation features
-        y_val: Validation labels
-        metric_name: Name of scoring function from config (if None, uses default)
-        sampler_name: Name of sampler from config (if None, uses default)
-        n_trials: Number of optimization trials (if None, uses default)
+        train_loader: DataLoader for training data
+        val_loader: DataLoader for validation data
+        feature_callables: Dictionary of callable functions for inferred parameters
+        study_name: Name of the study
+        storage: Storage URL for the study
+        n_trials: Number of optimization trials
+        load_if_exists: Whether to load existing study
+        n_jobs: Number of parallel jobs
+        seed: Random seed
+        device: Device to run on
     """
-    # set no jobs to max
 
     # Load configuration
     config = load_config(config_path)
-
-    # Get defaults
     defaults = config['default_settings']
+    model_config = config['models'][model_name]
+    param_ranges = model_config['param_ranges']
+
+    # Set random seed if provided
+    if seed is not None:
+        seed_everything(seed)
 
     # Setup scoring function
     metric_name = metric_name or defaults['scoring']
@@ -166,10 +176,6 @@ def create_hyperparameter_optimizer(
     # Get number of trials
     n_trials = n_trials or defaults['n_trials']
 
-    # Get model configuration
-    model_config = config['models'][model_name]
-    model_class = get_class_from_path(model_config['class'])
-
     # set study name
     study_name = study_name or property_name + '_' + model_name
 
@@ -177,112 +183,132 @@ def create_hyperparameter_optimizer(
     storage = storage or 'sqlite:///optuna_dbs/optuna_' + property_name + '_' + model_name + '.db'
     storage = RetryingStorage(storage)
 
-    # Create parameter suggestion functions
-    param_suggest_fns = {
-        param_name: create_param_suggest_fn(param_config)
-        for param_name, param_config in model_config['param_ranges'].items()
-    }
+    def objective(trial: optuna.Trial) -> float:
+        # Get model class
+        model_class = get_class_from_path(model_config['class'])
 
-    def objective(trial):
-        # Create parameters dictionary using suggestion functions
-        params = {
-            name: suggest_fn(trial, name)
-            for name, suggest_fn in param_suggest_fns.items()
-        }
+        # Build model parameters
+        # Initialize model parameters
+        model_params = {}
+        training_params = {}
 
-        suggested_params = {
-            name: suggest_fn(trial, name)
-            for name, suggest_fn in param_suggest_fns.items()
-            if name not in ['learning_rate']  # exclude training params
-        }
+        # Add inferred parameters first
+        for param in model_config.get('inferred_params', []):
+            callable_name = param['source']
+            if callable_name in feature_callables:
+                model_params[param['name']] = feature_callables[callable_name]()
+            else:
+                raise ValueError(f"Required callable {callable_name} not provided for parameter {param['name']}")
 
-        # Add dynamically inferred parameters
-        model_params = {
-            'in_channels': n_atom_features(),
-            'edge_dim': n_bond_features(),
-            'out_channels': 1,  # adjust based on your target property
-            **suggested_params
-        }
+        # Add fixed parameters
+        model_params.update(model_config.get('fixed_params', {}))
 
-        # set device
-        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        # Create the model
-        model = create_gnn_model(model_class, model_params).to(device)
+        # Handle MLP structure
+        mlp_config = model_config.get('mlp_config', {})
+        if mlp_config:
+            # Get number of layers
+            n_layers = suggest_gnn_parameter(trial, 'mlp_n_layers', mlp_config['n_layers'])
+            dims = []
 
-        # Training loop
-        optimizer = torch.optim.Adam(model.parameters(), lr=params.get('learning_rate', 0.001))
-        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5,
-                                                               min_lr=1e-6)
-        early_stopping = EarlyStopping(patience=30,  verbose=False)
-        best_score = float('-inf')
+            # Generate dimensions for each layer
+            for i in range(n_layers):
+                dim = suggest_gnn_parameter(
+                    trial,
+                    f'mlp_dim_{i:02d}',  # Use padding to ensure unique names
+                    mlp_config['dim_per_layer']
+                )
+                dims.append(dim)
+            model_params['mlp_hidden_dims'] = dims
+
+        # Add regular model parameters
+        for param_name, param_config in param_ranges.items():
+            model_params[param_name] = suggest_gnn_parameter(trial, param_name, param_config)
+
+            # Handle training parameters separately
+        for param_name, param_config in model_config.get('training_params', {}).items():
+            training_params[param_name] = suggest_gnn_parameter(trial, f'train_{param_name}', param_config)
+
+            dims = []
+            for i in range(n_layers):
+                dim = suggest_gnn_parameter(trial, f'layer_dim_{i}', param_config)
+                dims.append(dim)
+            model_params['mlp_hidden_dims'] = dims
+        else:
+            # Regular parameter suggestion
+            model_params[param_name] = suggest_gnn_parameter(trial, param_name, param_config)
+
+        # Create model and optimizer
+        print("Creating model with parameters:", model_params)
+        model = model_class(**model_params).to(device)
+        optimizer = torch.optim.Adam( model.parameters(), lr=training_params.get('learning_rate', 0.001))
+        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau( optimizer, mode='min', factor=0.6, patience=5, min_lr=1e-6)
+
+        best_val_loss = float('inf')
         best_state_dict = None
+        patience = 25
+        patience_counter = 0
 
-        # start the loops
-        for epoch in range(params.get('epochs', 100)):
-            # model training
+        for epoch in range(defaults['max_epochs']):
+            # Training
             model.train()
             total_loss = 0
             for batch in train_loader:
                 batch = batch.to(device)
                 optimizer.zero_grad()
                 pred = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
-                true = batch.y.view(-1,1)
-                loss = F.mse_loss(pred, true)
+                loss = F.mse_loss(pred, batch.y.view(-1, 1))
                 loss.backward()
                 optimizer.step()
                 total_loss += loss.item()
-            # model validation
+
+            # Validation
             model.eval()
             val_loss = 0
-            for batch in val_loader:
-                batch = batch.to(device)
-                pred = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
-                true = batch.y.view(-1,1)
-                loss = F.mse_loss(pred, true)
-                val_loss += loss.item()
+            with torch.no_grad():
+                for batch in val_loader:
+                    batch = batch.to(device)
+                    pred = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
+                    loss = F.mse_loss(pred, batch.y.view(-1, 1))
+                    val_loss += loss.item()
 
-            # print progress
-            # print(f'Epoch {epoch + 1:03d}, Train Loss: {total_loss / len(train_loader):.4f}, '
-            #       f'Val Loss: {val_loss / len(val_loader):.4f}')
-
-            # Learning rate scheduling
+            val_loss = val_loss / len(val_loader)
             scheduler.step(val_loss)
 
             # Early stopping
-            current_score = val_loss / len(val_loader)
+            if val_loss < best_val_loss:
+                best_val_loss = val_loss
+                # Convert state dict tensors to lists for serialization
+                serializable_state_dict = {
+                    k: v.cpu().numpy().tolist()
+                    for k, v in model.state_dict().items()
+                }
+                trial.set_user_attr('best_state_dict', serializable_state_dict)
+                #best_state_dict = {k: v.cpu().clone() for k, v in model.state_dict().items()}
+                patience_counter = 0
 
-            if current_score < best_score:
-                best_score = current_score
-                best_state_dict = {k: v.cpu().clone() for k, v in model.state_dict().items()}
+            else:
+                patience_counter += 1
 
-            if early_stopping(current_score):
-                print(f"Trial {trial.number} stopped early at epoch {epoch}")
+            if patience_counter >= patience:
                 break
 
+            trial.report(val_loss, epoch)
+            if trial.should_prune():
+                raise optuna.TrialPruned()
 
-        # Load best model state
-        if best_state_dict is not None:
-            model.load_state_dict(best_state_dict)
-
-        # final model evaluation
-        val_preds, val_targets = evaluate_model(model, val_loader, device)
-        final_score = metric_func(val_targets, val_preds)
-
-        # clean up
-        del model, optimizer, best_score, scheduler
+        # Clean up
+        del model, optimizer
         torch.cuda.empty_cache()
 
-        return final_score
+        return best_val_loss
 
-    # Set random seed for reproducibility
-    if seed is not None:
-        np.random.seed(seed)
-        random.seed(seed)
-        seed_everything(seed)
-
-    # Setup and run optimization
-    study = optuna.create_study(direction=direction, sampler=sampler, study_name=study_name, storage=storage,
-                                load_if_exists=load_if_exists)
+    study = optuna.create_study(
+        study_name=study_name,
+        storage=storage,
+        load_if_exists=load_if_exists,
+        direction=defaults['direction'],
+        sampler=sampler,
+        )
 
     # Calculate remaining trials
     existing_trials = len(study.trials)
@@ -299,68 +325,268 @@ def create_hyperparameter_optimizer(
     # run optimization
     study.optimize(objective, n_trials=n_trials, n_jobs=n_jobs)
 
-    # Train final best model
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+     # Create best model
+    model_class = get_class_from_path(model_config['class'])
     best_params = study.best_params
 
-    best_model_params = {k: v for k, v in study.best_params.items()
-                         if k not in ['learning_rate']}  # exclude training params
+    # Reconstruct best parameters
+    best_model_params = {}
+    best_model_params.update(model_config.get('fixed_params', {}))
 
-    # Add the fixed parameters
-    best_model_params.update({
-        'in_channels': n_atom_features(),
-        'edge_dim': n_bond_features(),
-        'out_channels': 1,
-    })
+    for param in model_config.get('inferred_params', []):
+        callable_name = param['source']
+        if callable_name in feature_callables:
+            best_model_params[param['name']] = feature_callables[callable_name]()
 
-    # Convert mlp_hidden_dims string to list if present
-    if 'mlp_hidden_dims' in best_model_params:
-        if best_model_params['mlp_hidden_dims'] is str:
-            best_model_params['mlp_hidden_dims'] = [int(dim) for dim in best_model_params['mlp_hidden_dims'].split('_')]
+    # Add optimized parameters
+    # Add parameters from param_ranges (standard parameters only)
+    for param_name in param_ranges:
+        if param_name in best_params:
+            best_model_params[param_name] = best_params[param_name]
 
-    best_model = create_gnn_model(model_class, best_model_params).to(device)
+    # Handle MLP dimensions separately using mlp_config
+    if 'mlp_config' in model_config:
+        n_layers = best_params['mlp_n_layers']
+        dims = []
+        for i in range(n_layers):
+            dim_key = f'mlp_dim_{i:02d}'
+            if dim_key in best_params:
+                dims.append(best_params[dim_key])
+        best_model_params['mlp_hidden_dims'] = dims
 
-    # Train best model with early stopping
-    optimizer = torch.optim.Adam(best_model.parameters(), lr=best_params.get('learning_rate', 0.001))
-    early_stopping = EarlyStopping(patience=30, verbose=True)
-    best_state_dict = None
-    best_score = float('-inf') if direction == 'maximize' else float('inf')
+    # Create final model
+    best_model = model_class(**best_model_params).to(device)
 
-    for epoch in range(best_params.get('epochs', 100)):
-        # Training phase
-        best_model.train()
-        total_loss = 0
-        for batch in train_loader:
-            batch = batch.to(device)
-            optimizer.zero_grad()
-            out = best_model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
-            loss = F.mse_loss(out, batch.y.view(-1,1))
-            loss.backward()
-            optimizer.step()
-            total_loss += loss.item()
-
-        # Validation phase
-        val_predictions, val_targets = evaluate_model(best_model, val_loader, device)
-        val_loss = F.mse_loss(torch.from_numpy(val_predictions), torch.from_numpy(val_targets))
-        current_score = metric_func(val_targets, val_predictions)
-
-        # print progress
-        print(f'Epoch {epoch + 1:03d}, Train Loss: {total_loss / len(train_loader):.4f}, '
-              f'Val Loss: {val_loss / len(val_loader):.4f}')
-
-        if current_score < best_score:
-            best_score = current_score
-            best_state_dict = {k: v.cpu().clone() for k, v in best_model.state_dict().items()}
-
-        if early_stopping(current_score):
-            print(f"Best model training stopped early at epoch {epoch}")
-            break
-
-    # Load best model state
-    if best_state_dict is not None:
-        best_model.load_state_dict(best_state_dict)
+    # Get the best trial and load its state dict
+    best_trial = study.best_trial
+    if hasattr(best_trial, 'user_attrs') and 'best_state_dict' in best_trial.user_attrs:
+        # Convert lists back to tensors
+        state_dict = {
+            k: torch.tensor(v)
+            for k, v in best_trial.user_attrs['best_state_dict'].items()
+        }
+        best_model.load_state_dict(state_dict)
 
     return study, best_model
+
+
+
+
+
+    #
+    #
+    # # Get model configuration
+    # model_config = config['models'][model_name]
+    # model_class = get_class_from_path(model_config['class'])
+    #
+    # # set study name
+    # study_name = study_name or property_name + '_' + model_name
+    #
+    # # set storage name
+    # storage = storage or 'sqlite:///optuna_dbs/optuna_' + property_name + '_' + model_name + '.db'
+    # storage = RetryingStorage(storage)
+    #
+    # def objective(trial: optuna.Trial) -> float:
+    #     # Suggest hyperparameters from config
+    #     model_params = {
+    #         'in_channels': n_atom_features(),
+    #         'out_channels': 1,
+    #         'edge_dim': n_bond_features(),
+    #     }
+    #     # Add parameters from config
+    #     for param_name in ['hidden_channels', 'num_layers', 'num_timesteps', 'dropout']:
+    #         model_params[param_name] = suggest_gnn_parameter(
+    #             trial, param_name, param_ranges[param_name]
+    #         )
+    #
+    #     # MLP structure from config
+    #     n_mlp_layers = suggest_gnn_parameter(trial, 'n_mlp_layers', param_ranges['n_mlp_layers'])
+    #     mlp_hidden_dims = []
+    #     for i in range(n_mlp_layers):
+    #         dim = suggest_gnn_parameter(
+    #             trial,
+    #             f'mlp_dim_{i}',
+    #             param_ranges['mlp_dimensions']
+    #         )
+    #         mlp_hidden_dims.append(dim)
+    #
+    #     model_params['mlp_hidden_dims'] = mlp_hidden_dims
+    #
+    #     # Training parameters
+    #     lr = suggest_gnn_parameter(trial, 'learning_rate', param_ranges['learning_rate'])
+    #
+    #     # Create model and optimizer
+    #     model = FlexibleMLPAttentiveFP(**model_params).to(device)
+    #     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+    #     scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.5,
+    #                                 patience=5, min_lr=1e-6)
+    #
+    #
+    #     # Add dynamically inferred parameters
+    #     model_params = {
+    #         'in_channels': n_atom_features(),
+    #         'edge_dim': n_bond_features(),
+    #         'out_channels': 1,  # adjust based on your target property
+    #         **suggested_params
+    #     }
+    #
+    #     # set device
+    #     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    #     # Create the model
+    #     model = create_gnn_model(model_class, model_params).to(device)
+    #
+    #     # Training loop
+    #     optimizer = torch.optim.Adam(model.parameters(), lr=params.get('learning_rate', 0.001))
+    #     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5,
+    #                                                            min_lr=1e-6)
+    #     early_stopping = EarlyStopping(patience=30,  verbose=False)
+    #     best_score = float('-inf')
+    #     best_state_dict = None
+    #
+    #     # start the loops
+    #     for epoch in range(params.get('epochs', 100)):
+    #         # model training
+    #         model.train()
+    #         total_loss = 0
+    #         for batch in train_loader:
+    #             batch = batch.to(device)
+    #             optimizer.zero_grad()
+    #             pred = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
+    #             true = batch.y.view(-1,1)
+    #             loss = F.mse_loss(pred, true)
+    #             loss.backward()
+    #             optimizer.step()
+    #             total_loss += loss.item()
+    #         # model validation
+    #         model.eval()
+    #         val_loss = 0
+    #         for batch in val_loader:
+    #             batch = batch.to(device)
+    #             pred = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
+    #             true = batch.y.view(-1,1)
+    #             loss = F.mse_loss(pred, true)
+    #             val_loss += loss.item()
+    #
+    #         # print progress
+    #         # print(f'Epoch {epoch + 1:03d}, Train Loss: {total_loss / len(train_loader):.4f}, '
+    #         #       f'Val Loss: {val_loss / len(val_loader):.4f}')
+    #
+    #         # Learning rate scheduling
+    #         scheduler.step(val_loss)
+    #
+    #         # Early stopping
+    #         current_score = val_loss / len(val_loader)
+    #
+    #         if current_score < best_score:
+    #             best_score = current_score
+    #             best_state_dict = {k: v.cpu().clone() for k, v in model.state_dict().items()}
+    #
+    #         if early_stopping(current_score):
+    #             print(f"Trial {trial.number} stopped early at epoch {epoch}")
+    #             break
+    #
+    #
+    #     # Load best model state
+    #     if best_state_dict is not None:
+    #         model.load_state_dict(best_state_dict)
+    #
+    #     # final model evaluation
+    #     val_preds, val_targets = evaluate_model(model, val_loader, device)
+    #     final_score = metric_func(val_targets, val_preds)
+    #
+    #     # clean up
+    #     del model, optimizer, best_score, scheduler
+    #     torch.cuda.empty_cache()
+    #
+    #     return final_score
+    #
+    # # Set random seed for reproducibility
+    # if seed is not None:
+    #     np.random.seed(seed)
+    #     random.seed(seed)
+    #     seed_everything(seed)
+    #
+    # # Setup and run optimization
+    # study = optuna.create_study(direction=direction, sampler=sampler, study_name=study_name, storage=storage,
+    #                             load_if_exists=load_if_exists)
+    #
+    # # Calculate remaining trials
+    # existing_trials = len(study.trials)
+    # if n_trials is not None:
+    #     remaining_trials = n_trials - existing_trials
+    #     n_trials = max(0, remaining_trials)
+    #
+    # print(f"Continuing from existing study with {existing_trials} trials")
+    # if n_trials > 0:
+    #     print(f"Will run {n_trials} trials")
+    # else:
+    #     print(f"the desired number of iterations have already been done, consider increasing n_trials")
+    #
+    # # run optimization
+    # study.optimize(objective, n_trials=n_trials, n_jobs=n_jobs)
+    #
+    # # Train final best model
+    # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    # best_params = study.best_params
+    #
+    # best_model_params = {k: v for k, v in study.best_params.items()
+    #                      if k not in ['learning_rate']}  # exclude training params
+    #
+    # # Add the fixed parameters
+    # best_model_params.update({
+    #     'in_channels': n_atom_features(),
+    #     'edge_dim': n_bond_features(),
+    #     'out_channels': 1,
+    # })
+    #
+    # # Convert mlp_hidden_dims string to list if present
+    # if 'mlp_hidden_dims' in best_model_params:
+    #     if best_model_params['mlp_hidden_dims'] is str:
+    #         best_model_params['mlp_hidden_dims'] = [int(dim) for dim in best_model_params['mlp_hidden_dims'].split('_')]
+    #
+    # best_model = create_gnn_model(model_class, best_model_params).to(device)
+    #
+    # # Train best model with early stopping
+    # optimizer = torch.optim.Adam(best_model.parameters(), lr=best_params.get('learning_rate', 0.001))
+    # early_stopping = EarlyStopping(patience=30, verbose=True)
+    # best_state_dict = None
+    # best_score = float('-inf') if direction == 'maximize' else float('inf')
+    #
+    # for epoch in range(best_params.get('epochs', 100)):
+    #     # Training phase
+    #     best_model.train()
+    #     total_loss = 0
+    #     for batch in train_loader:
+    #         batch = batch.to(device)
+    #         optimizer.zero_grad()
+    #         out = best_model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
+    #         loss = F.mse_loss(out, batch.y.view(-1,1))
+    #         loss.backward()
+    #         optimizer.step()
+    #         total_loss += loss.item()
+    #
+    #     # Validation phase
+    #     val_predictions, val_targets = evaluate_model(best_model, val_loader, device)
+    #     val_loss = F.mse_loss(torch.from_numpy(val_predictions), torch.from_numpy(val_targets))
+    #     current_score = metric_func(val_targets, val_predictions)
+    #
+    #     # print progress
+    #     print(f'Epoch {epoch + 1:03d}, Train Loss: {total_loss / len(train_loader):.4f}, '
+    #           f'Val Loss: {val_loss / len(val_loader):.4f}')
+    #
+    #     if current_score < best_score:
+    #         best_score = current_score
+    #         best_state_dict = {k: v.cpu().clone() for k, v in best_model.state_dict().items()}
+    #
+    #     if early_stopping(current_score):
+    #         print(f"Best model training stopped early at epoch {epoch}")
+    #         break
+    #
+    # # Load best model state
+    # if best_state_dict is not None:
+    #     best_model.load_state_dict(best_state_dict)
+    #
+    # return study, best_model
 
 
 def get_parameter_ranges(study):
@@ -392,12 +618,18 @@ def get_parameter_ranges(study):
     return param_ranges
 
 #%%
+feature_callables = {
+    'n_atom_features': n_atom_features,
+    'n_bond_features': n_bond_features
+}
 
-study, best_model = create_hyperparameter_optimizer(
+
+study, best_model = optimize_gnn(
     config_path=args.config_file,
     model_name=args.model,
     property_name=args.property,
     study_name=args.study_name,
+    feature_callables=feature_callables,
     train_loader= train_loader,
     val_loader= val_loader,
     metric_name=args.metric,
@@ -407,8 +639,10 @@ study, best_model = create_hyperparameter_optimizer(
     load_if_exists=args.load_if_exists,
     n_jobs = args.n_jobs,
     seed = args.seed,
+    device = 'cuda'
 )
-
+print("Best parameters:", study.best_params)
+print("Best value:", study.best_value)
 #%%
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')

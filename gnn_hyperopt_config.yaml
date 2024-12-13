@@ -28,47 +28,94 @@ sampler:
       seed: null
 # Training parameters (separate from model init)
 training_params:
-  learning_rate:
-    type: float
-    low: 1e-4
-    high: 1e-2
-    log: true
+    learning_rate:
+      type: 'float'
+      low: 1.0e-5
+      high: 1.0e-2
+      log: true
 
 
-# model hyperparameters
 models:
   afp:
-    class: src.gnns.FlexibleMLPAttentiveFP
+    class: 'src.gnns.FlexibleMLPAttentiveFP'
+# Required parameters that will be inferred
+    inferred_params:
+      - name: 'in_channels'
+        source: 'n_atom_features'
+      - name: 'edge_dim'
+        source: 'n_bond_features'
+
+    # Fixed parameters
+    fixed_params:
+      out_channels: 1
+
+    # Parameters to optimize
     param_ranges:
       hidden_channels:
-        type: int
+        type: 'int'
         low: 32
         high: 256
+        step: 16
       num_layers:
-        type: int
-        low: 2
-        high: 6
-      num_timesteps:
-        type: int
+        type: 'int'
         low: 1
-        high: 5
-      mlp_hidden_dims:
-        type: categorical
-        values: ['256_128', '256_128_64', '512_256_128', '256_256_128', '512_256_256_128']
+        high: 4
+      num_timesteps:
+        type: 'int'
+        low: 1
+        high: 4
       dropout:
-        type: float
+        type: 'float'
         low: 0.0
-        high: 0.4
-        log: false
-      learning_rate:
-        type: float
-        low: 1e-4
-        high: 1e-2
-        log: true
+        high: 0.3
+    # MLP specific configuration
+    mlp_config:
+      n_layers:  # Controls how many dimensions to generate
+        type: 'int'
+        low: 1
+        high: 4
+      dim_per_layer:  # Used to generate each layer's dimension
+        type: 'int'
+        low: 32
+        high: 256
+        step: 16
+
+
+############ model hyperparameters
+#models:
+#  afp:
+#    class: src.gnns.FlexibleMLPAttentiveFP
+#    param_ranges:
+#      hidden_channels:
+#        type: int
+#        low: 32
+#        high: 256
+#      num_layers:
+#        type: int
+#        low: 2
+#        high: 6
+#      num_timesteps:
+#        type: int
+#        low: 1
+#        high: 5
+#      mlp_hidden_dims:
+#        type: categorical
+#        values: ['256_128', '256_128_64', '512_256_128', '256_256_128', '512_256_256_128']
+#      dropout:
+#        type: float
+#        low: 0.0
+#        high: 0.4
+#        log: false
+#      learning_rate:
+#        type: float
+#        low: 1e-4
+#        high: 1e-2
+#        log: true
 
 
 default_settings:
   direction: minimize
-  n_trials: 50
+  n_trials: 5
   sampler: auto
   metric: rmse
+  max_epochs: 150

@@ -228,6 +228,26 @@ def create_hyperparameter_optimizer(
 
     return study, best_model
 
+def suggest_gnn_parameter(trial: optuna.Trial, name: str, param_config: Dict[str, Any]) -> Any:
+    """Suggest a parameter value based on its configuration."""
+    param_type = param_config['type']
+    if param_type == 'int':
+        return trial.suggest_int(
+            name,
+            param_config['low'],
+            param_config['high'],
+            step=param_config.get('step', 1)
+        )
+    elif param_type == 'float':
+        return trial.suggest_float(
+            name,
+            param_config['low'],
+            param_config['high'],
+            log=param_config.get('log', False)
+        )
+    else:
+        raise ValueError(f"Unsupported parameter type: {param_type}")
+
 
 def get_parameter_ranges(study):
     """Extract parameter ranges from completed trials"""
