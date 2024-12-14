@@ -30,11 +30,15 @@ sampler:
 training_params:
     learning_rate:
       type: 'float'
-      low: 1.0e-5
+      low: 1.0e-4
       high: 1.0e-2
       log: true
-
-
+    lr_reduce:
+      type: 'float'
+      low: 0.6
+      high: 0.6
+      log: false
+# parameters for the GNN model
 models:
   afp:
     class: 'src.gnns.FlexibleMLPAttentiveFP'
@@ -72,47 +76,14 @@ models:
     mlp_config:
       n_layers:  # Controls how many dimensions to generate
         type: 'int'
-        low: 1
+        low: 2
         high: 4
       dim_per_layer:  # Used to generate each layer's dimension
         type: 'int'
         low: 32
         high: 256
         step: 16
-
-
-############ model hyperparameters
-#models:
-#  afp:
-#    class: src.gnns.FlexibleMLPAttentiveFP
-#    param_ranges:
-#      hidden_channels:
-#        type: int
-#        low: 32
-#        high: 256
-#      num_layers:
-#        type: int
-#        low: 2
-#        high: 6
-#      num_timesteps:
-#        type: int
-#        low: 1
-#        high: 5
-#      mlp_hidden_dims:
-#        type: categorical
-#        values: ['256_128', '256_128_64', '512_256_128', '256_256_128', '512_256_256_128']
-#      dropout:
-#        type: float
-#        low: 0.0
-#        high: 0.4
-#        log: false
-#      learning_rate:
-#        type: float
-#        low: 1e-4
-#        high: 1e-2
-#        log: true
-
-
+# set of default parameters
 default_settings:
   direction: minimize
   n_trials: 5

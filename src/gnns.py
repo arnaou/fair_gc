@@ -163,6 +163,7 @@ class FlexibleMLPAttentiveFP(torch.nn.Module):
         # Flexible MLP layers
         for layer in self.mlp_layers:
             out = F.relu(layer(out))
+
             out = F.dropout(out, p=self.dropout, training=self.training)
 
         # Final output layer

@@ -117,7 +117,7 @@ for epoch in range(num_epochs):
         optimizer.zero_grad()
         pred = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
         true = batch.y.view(-1, 1)
-        loss = F.mse_loss(pred, true)
+        loss = F.mse_loss(pred, true, reduction='mean')
         loss.backward()
         optimizer.step()
         total_loss += loss.item()
@@ -129,7 +129,7 @@ for epoch in range(num_epochs):
             batch = batch.to(device)
             pred = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
             true = batch.y.view(-1, 1)
-            val_loss += F.mse_loss(pred, true).item()
+            val_loss += F.mse_loss(pred, true, reduction='mean').item()
 
     # Print progress
     print(f'Epoch {epoch+1:03d}, Train Loss: {total_loss/len(train_loader):.4f}, '
@@ -167,3 +167,5 @@ for metric, value in val_metrics.items():
 print("\nTest Set Metrics:")
 for metric, value in test_metrics.items():
     print(f"{metric.upper()}: {value:.4f}")
+
+#%%
