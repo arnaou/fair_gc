@@ -21,7 +21,7 @@ from sklearn.preprocessing import StandardScaler
 from rdkit import Chem
 from src.features import mol2graph, n_atom_features, n_bond_features
 from torch_geometric.loader import DataLoader
-from src.gnn_hyperopt import gnn_hypopt_parse_arguments, NumpyEncoder, gnn_hyperparameter_optimizer, save_model_package
+from src.gnn_hyperopt import gnn_hypopt_parse_arguments, afp_hyperparameter_optimizer, save_model_package
 import torch
 import os
 import numpy as np
@@ -72,7 +72,7 @@ feature_callables = {
 }
 
 # perform hyperparameter optimization
-study, best_model, train_params, model_config = gnn_hyperparameter_optimizer(
+study, best_model, train_params, model_config = afp_hyperparameter_optimizer(
     config_path=args.config_file,
     model_name=args.model,
     property_name=args.property,
@@ -100,9 +100,9 @@ print("Best value:", study.best_value)
 # perform predictions and evaluate performance
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 from src.evaluation import evaluate_gnn
-train_pred, train_true, train_metrics = evaluate_gnn(best_model, train_loader, device, y_scaler)
-val_pred, val_true, val_metrics = evaluate_gnn(best_model, val_loader, device, y_scaler)
-test_pred, test_true, test_metrics = evaluate_gnn(best_model, test_loader, device, y_scaler)
+train_pred, train_true, train_metrics = evaluate_gnn(best_model, train_loader, device, y_scaler, tag=args.model)
+val_pred, val_true, val_metrics = evaluate_gnn(best_model, val_loader, device, y_scaler, tag=args.model)
+test_pred, test_true, test_metrics = evaluate_gnn(best_model, test_loader, device, y_scaler, tag=args.model)
 
 # Print metrics
 print("\nTraining Set Metrics:")

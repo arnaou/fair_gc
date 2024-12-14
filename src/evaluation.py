@@ -96,13 +96,14 @@ def identify_outliers_ecdf(values, alpha):
 
 
 
-def evaluate_gnn(model, loader, device, y_scaler=None):
+def evaluate_gnn(model, loader, device, y_scaler=None, tag='afp'):
     """
     function for using a GNN for prediction
     :param model: rained PyG GNN model
     :param loader: Dataloader
     :param device: cpu or cuda
     :param y_scaler: the scaler for the target value
+    :param tag: dictates how the model takes inputs
     :return:
     """
     # set the model in evaluation mode
@@ -115,7 +116,10 @@ def evaluate_gnn(model, loader, device, y_scaler=None):
     with torch.no_grad():
         for batch in loader:
             batch = batch.to(device)
-            pred = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
+            if tag == 'afp':
+                pred = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
+            elif tag == 'mpnn':
+                pred = model(batch)
             true = batch.y.view(-1, 1)
 
             # Store predictions and true values

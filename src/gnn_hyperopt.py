@@ -90,7 +90,7 @@ def suggest_gnn_parameter(trial: optuna.Trial, name: str, param_config: Dict[str
         raise ValueError(f"Unsupported parameter type: {param_type}")
 
 ################################
-def gnn_hyperparameter_optimizer(
+def afp_hyperparameter_optimizer(
         config_path: str,
         model_name: str,
         property_name: str,
