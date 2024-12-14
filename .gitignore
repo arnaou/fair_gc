@@ -168,3 +168,4 @@ results
 models
 optuna_dbs
 temp_model*
+checkpoints

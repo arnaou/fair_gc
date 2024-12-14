@@ -20,6 +20,7 @@ import torch
 from typing import Dict, Any, Tuple, Callable
 import os
 import optuna
+
 from src.ml_hyperopt import RetryingStorage, load_config, create_sampler, get_class_from_path
 from lightning import seed_everything
 import torch.nn.functional as F
@@ -244,13 +245,17 @@ def afp_hyperparameter_optimizer(
             if val_loss < best_val_loss:
                 best_val_loss = val_loss
                 # Convert state dict tensors to lists for serialization
-                serializable_state_dict = {
-                    k: v.cpu().numpy().tolist()
-                    for k, v in model.state_dict().items()
-                }
-                trial.set_user_attr('best_state_dict', serializable_state_dict)
+                # Save state dict to a separate file using trial number
+                save_path = os.path.join('checkpoints', f'trial_{trial.number}_best_state.pt')
+                torch.save({
+                    'state_dict': model.state_dict(),
+                    'val_loss': val_loss,
+                    'epoch': epoch
+                }, save_path)
+
+                # Store only the file path in trial user attributes
+                trial.set_user_attr('best_state_dict_path', save_path)
                 trial.set_user_attr('training_params', training_params)
-                best_state_dict = {k: v.cpu().clone() for k, v in model.state_dict().items()}
                 patience_counter = 0
 
             else:
@@ -333,13 +338,11 @@ def afp_hyperparameter_optimizer(
     best_trial = study.best_trial
     training_params = best_trial.user_attrs.get('training_params', {})
 
-    if hasattr(best_trial, 'user_attrs') and 'best_state_dict' in best_trial.user_attrs:
-        # Convert lists back to tensors
-        state_dict = {
-            k: torch.tensor(v)
-            for k, v in best_trial.user_attrs['best_state_dict'].items()
-        }
-        best_model.load_state_dict(state_dict)
+    # When creating the final model:
+    best_trial = study.best_trial
+    if 'best_state_dict_path' in best_trial.user_attrs:
+        checkpoint = torch.load(best_trial.user_attrs['best_state_dict_path'])
+        best_model.load_state_dict(checkpoint['state_dict'])
 
     return study, best_model, training_params, model_config
 
