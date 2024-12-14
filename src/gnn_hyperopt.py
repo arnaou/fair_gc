@@ -105,7 +105,7 @@ def afp_hyperparameter_optimizer(
         load_if_exists: bool = True,
         n_jobs: int = -1,
         seed: int = None,
-        device: str = "cuda"
+        device: str = None
 ) -> Tuple[optuna.study.Study, torch.nn.Module, Dict[str, Any], Dict[str, Any]]:
     """
     Generic GNN model optimization using Optuna.
@@ -203,6 +203,7 @@ def afp_hyperparameter_optimizer(
 
         # Create model and optimizer
         print("Creating model with parameters:", model_params)
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         model = model_class(**model_params).to(device)
         optimizer = torch.optim.Adam( model.parameters(), lr=training_params.get('learning_rate', 0.001))
         scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau( optimizer, mode='min',
