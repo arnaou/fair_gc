@@ -20,7 +20,7 @@ from rdkit import Chem
 from src.features import mol2graph, n_atom_features, n_bond_features
 from torch_geometric.loader import DataLoader
 import torch
-from src.gnns import FlexibleMLPAttentiveFP, AttentiveFP
+from src.gnn_models import FlexibleMLPAttentiveFP, AttentiveFP
 import torch.nn.functional as F
 from src.training import EarlyStopping
 from lightning.pytorch import seed_everything

@@ -10,7 +10,9 @@
 #                                                                                                        #
 ##########################################################################################################
 
-# import libraries
+##########################################################################################################
+# Import packages and modules
+##########################################################################################################
 import optuna
 import argparse
 from typing import Dict, Any
@@ -19,25 +21,33 @@ import importlib
 import os
 import joblib
 from datetime import datetime
-from src.model import create_pipeline
+from src.ml_utils import create_pipeline
 import json
 import numpy as np
 import  random
 import optunahub
-from src.model import create_model
+from src.ml_utils import create_model
 from sqlalchemy.exc import OperationalError
 import time
 
+##########################################################################################################
+# Define functions and classes
+##########################################################################################################
 
+################################
 def ml_hypopt_parse_arguments():
+    """
+    function for parsing the various arguments relating to the hyperparameter optimization of ML models
+    :return:
+    """
     parser = argparse.ArgumentParser(description='Hyperparameter optimization')
 
     parser.add_argument('--property', type=str, required=True, help='Tag for the property')
     parser.add_argument('--config_file', type=str, required=True, help='Path to the YAML configuration file')
     parser.add_argument('--model', type=str, required=True, help='Model type to optimize (must be defined in config file)')
     parser.add_argument('--metric', type=str, required=False, default='rmse', help='Scoring metric to use (must be defined in config file)')
-    parser.add_argument('--n_trials', type=int, default=500, help='Number of optimization trials (uses config default if not specified)' )
-    parser.add_argument('--n_jobs', type=int, default=-1, help='Number of cores used (uses max if not configured)')
+    parser.add_argument('--n_trials', type=int, default=50, help='Number of optimization trials (uses config default if not specified)' )
+    parser.add_argument('--n_jobs', type=int, default=2, help='Number of cores used (uses max if not configured)')
     parser.add_argument('--sampler', type=str, default='tpe', help='Sampler to use (uses config default if not specified)')
     parser.add_argument('--path_2_data', type=str, required=True, help='Path to the data file')
     parser.add_argument('--path_2_result', type=str, required=True, help='Path to save the results (metrics and predictions)')
@@ -49,17 +59,20 @@ def ml_hypopt_parse_arguments():
 
     return parser.parse_args()
 
+################################
 def load_config(config_path: str) -> Dict[str, Any]:
     """Load configuration from YAML file."""
     with open(config_path, 'r') as file:
         return yaml.safe_load(file)
 
+################################
 def get_class_from_path(class_path: str):
     """Dynamically import class from string path."""
     module_path, class_name = class_path.rsplit('.', 1)
     module = importlib.import_module(module_path)
     return getattr(module, class_name)
 
+################################
 class RetryingStorage(optuna.storages.RDBStorage):
     """
     class
@@ -80,6 +93,7 @@ class RetryingStorage(optuna.storages.RDBStorage):
                 raise
         return None
 
+################################
 def create_sampler(sampler_config: Dict[str, Any], seed: int = None):
     """Create sampler instance from configuration."""
     if sampler_config['class'] == "auto":
@@ -93,6 +107,8 @@ def create_sampler(sampler_config: Dict[str, Any], seed: int = None):
             params['seed'] = seed
         return sampler_class(**params)
 
+
+################################
 def create_param_suggest_fn(param_config: Dict[str, Any]):
     """Create appropriate suggest function based on parameter type."""
     if param_config['type'] == 'categorical':
@@ -114,7 +130,8 @@ def create_param_suggest_fn(param_config: Dict[str, Any]):
     else:
         raise ValueError(f"Unknown parameter type: {param_config['type']}")
 
-def create_hyperparameter_optimizer(
+################################
+def ml_hyperparameter_optimizer(
         config_path: str,
         model_name: str,
         property_name: str,
@@ -225,9 +242,9 @@ def create_hyperparameter_optimizer(
     best_model = create_model(model_class, study.best_params, seed=seed) #model_class(**study.best_params)
     best_model.fit(X_train, y_train.ravel())
 
-
     return study, best_model
 
+################################
 def suggest_gnn_parameter(trial: optuna.Trial, name: str, param_config: Dict[str, Any]) -> Any:
     """Suggest a parameter value based on its configuration."""
     param_type = param_config['type']
@@ -248,7 +265,7 @@ def suggest_gnn_parameter(trial: optuna.Trial, name: str, param_config: Dict[str
     else:
         raise ValueError(f"Unsupported parameter type: {param_type}")
 
-
+################################
 def get_parameter_ranges(study):
     """Extract parameter ranges from completed trials"""
     param_ranges = {}
@@ -277,6 +294,7 @@ def get_parameter_ranges(study):
 
     return param_ranges
 
+################################
 def save_results(study, fitted_model, fitted_scaler, config_path, model_name, seed,
                  metric_name, model_dir='models/', result_dir='results/'):
     """Save the optimization results, model, and metadata"""

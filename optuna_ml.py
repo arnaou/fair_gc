@@ -1,14 +1,14 @@
-##########################################################################################################
-#                                                                                                        #
-#    Script for performing hyperparameter optimization of GC-ML model                                    #
-#    The groups used are based on the Marrero-Gani presented in:                                         #
-#    https://doi.org/10.1016/j.fluid.2012.02.010                                                         #
-#                                                                                                        #
-#                                                                                                        #
-#    Authors: Adem R.N. Aouichaoui                                                                       #
-#    2024/12/03                                                                                          #
-#                                                                                                        #
-##########################################################################################################
+########################################################################################################################
+#                                                                                                                      #
+#    Script for performing hyperparameter optimization of GC-ML model                                                  #
+#                                                                                                                      #
+#                                                                                                                      #
+#                                                                                                                      #
+#                                                                                                                      #
+#    Authors: Adem R.N. Aouichaoui                                                                                     #
+#    2024/12/03                                                                                                        #
+#                                                                                                                      #
+########################################################################################################################
 
 ##########################################################################################################
 # import packages & load arguments
@@ -19,8 +19,8 @@ import numpy as np
 import os
 from src.splits import find_nonzero_columns
 from sklearn.preprocessing import StandardScaler
-from src.optims import ml_hypopt_parse_arguments, create_hyperparameter_optimizer, save_results
-from src.model import predict_new_data
+from src.ml_hyperopt import ml_hypopt_parse_arguments, ml_hyperparameter_optimizer, save_results
+from src.ml_utils import predict_new_data
 from src.evaluation import calculate_metrics
 import warnings
 from optuna.exceptions import ExperimentalWarning
@@ -76,7 +76,7 @@ y_test['scaled'] = scaler.transform(y_test['true'])
 # Hyperparameter optimization
 ##########################################################################################################
 
-study, best_model = create_hyperparameter_optimizer(
+study, best_model = ml_hyperparameter_optimizer(
     config_path=args.config_file,
     model_name=args.model,
     property_name=args.property,
@@ -160,4 +160,4 @@ print(f"Results saved to: {os.path.dirname(results['results_path'])}")
 print(f"Trials saved to: {os.path.dirname(results['trials_path'])}")
 print(f"Prediction and metrics saved to: {os.path.dirname(prediction_path)}")
 
-# python gc_ml.py --property Omega --config_file ml_hyperopt_config.yaml --model svr --n_trials 2000 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42
+# python optuna_ml.py --property Omega --config_file ml_hyperopt_config.yaml --model svr --n_trials 2000 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42

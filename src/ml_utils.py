@@ -16,6 +16,9 @@ from sklearn.base import BaseEstimator, RegressorMixin
 
 
 class PostScaledRegressor(BaseEstimator, RegressorMixin):
+    """
+    a class for creating a regressor for ML-based models
+    """
     def __init__(self, model, scaler):
         self.model = model
         self.scaler = scaler

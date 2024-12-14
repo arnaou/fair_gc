@@ -1,11 +1,35 @@
+########################################################################################################################
+#                                                                                                                      #
+#    Collection of helper function and classes for model evaluations                                                   #
+#                                                                                                                      #
+#                                                                                                                      #
+#                                                                                                                      #
+#                                                                                                                      #
+#    Authors: Adem R.N. Aouichaoui                                                                                     #
+#    2024/12                                                                                                           #
+#                                                                                                                      #
+########################################################################################################################
+
+##########################################################################################################
+# Import packages and modules
+##########################################################################################################
 import numpy as np
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score, root_mean_squared_error
 from scipy.stats import rankdata
 import torch
 
+##########################################################################################################
+# Define function and classes
+##########################################################################################################
 
-#Calculate MARE
+
 def calc_MARE(ym, yp):
+    """
+    function for calculating the mean absolute relative error
+    :param ym: array of target values
+    :param yp: array of predicted values
+    :return:
+    """
     RAE=[]
     pstd=np.std(ym)
     for i in range(0,len(ym)):
@@ -17,12 +41,14 @@ def calc_MARE(ym, yp):
     return mare
 
 
-def calculate_metrics(y_target, y_pred, n_params=None):
+def calculate_metrics(y_target, y_pred):
+    """
+    function for calculating a wide range of performance metrics
+    :param y_target: array of target values
+    :param y_pred: array of predicted values
+    :return: dict of performance metrics (r2, rmse, mse, mare, mae)
+    """
 
-    # length of data
-    N = y_target.shape[0]
-    # degree of freedom
-    #v = N - n_params
     # calculate R2
     r2 = r2_score(y_target, y_pred)
     # calculate rmse
@@ -33,13 +59,12 @@ def calculate_metrics(y_target, y_pred, n_params=None):
     mare = calc_MARE(y_target, y_pred)
     # calculate MAE
     mae = mean_absolute_error(y_target, y_pred)
-
+    # collect the output
     out = {'r2': r2, 'rmse': rmse ,'mse': mse, 'mare': mare, 'mae': mae}
-
     return out
 
 
-def identify_outliers_ecdf(values, lower_threshold=0.025, upper_threshold=0.975):
+def identify_outliers_ecdf(values, alpha):
     """
     Identify outliers based on ECDF thresholds.
 
@@ -57,6 +82,10 @@ def identify_outliers_ecdf(values, lower_threshold=0.025, upper_threshold=0.975)
     outlier_mask : numpy array
         Boolean mask indicating outlier points
     """
+    # calculate the thresholds
+    lower_threshold = alpha
+    upper_threshold = 1-alpha
+
     # Calculate ECDF values
     n = len(values)
     ecdf = rankdata(values) / n
@@ -67,25 +96,22 @@ def identify_outliers_ecdf(values, lower_threshold=0.025, upper_threshold=0.975)
 
 
 
-def predict_property(model, loader, device, y_scaler=None):
+def evaluate_gnn(model, loader, device, y_scaler=None):
     """
-    Make predictions using the trained model and calculate metrics
-
-    Args:
-        model: Trained AttentiveFP model
-        loader: PyTorch Geometric DataLoader
-        device: torch device
-        y_scaler: StandardScaler used for target scaling
-
-    Returns:
-        predictions: Numpy array of predictions
-        true_values: Numpy array of true values
-        metrics: Dictionary of evaluation metrics
+    function for using a GNN for prediction
+    :param model: rained PyG GNN model
+    :param loader: Dataloader
+    :param device: cpu or cuda
+    :param y_scaler: the scaler for the target value
+    :return:
     """
+    # set the model in evaluation mode
     model.eval()
+    # initialize the prediction and true values
     predictions = []
     true_values = []
 
+    # unpack loaders and perform predictions
     with torch.no_grad():
         for batch in loader:
             batch = batch.to(device)
@@ -96,6 +122,7 @@ def predict_property(model, loader, device, y_scaler=None):
             predictions.extend(pred.cpu().numpy())
             true_values.extend(true.cpu().numpy())
 
+    # convert to numpy
     predictions = np.array(predictions)
     true_values = np.array(true_values)
 

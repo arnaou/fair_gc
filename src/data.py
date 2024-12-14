@@ -1,30 +1,38 @@
+########################################################################################################################
+#                                                                                                                      #
+#    Collection of helper function and classes for data handling                                                       #
+#                                                                                                                      #
+#                                                                                                                      #
+#                                                                                                                      #
+#                                                                                                                      #
+#    Authors: Adem R.N. Aouichaoui                                                                                     #
+#    2024/12                                                                                                           #
+#                                                                                                                      #
+########################################################################################################################
+
+##########################################################################################################
+# Import packages and modules
+##########################################################################################################
 import pandas as pd
 import numpy as np
-from collections import defaultdict
-from typing import Union
-from numpy import ndarray
-from rdkit.Chem import MolFromSmiles, rdMolDescriptors
-from rdkit.ML.Cluster import Butina
-from rdkit import DataStructs
-from sklearn.model_selection import train_test_split
 from rdkit import Chem
-from typing import List, Optional
 from typing import List, Optional, Dict, Tuple
 from collections import defaultdict
 
+##########################################################################################################
+# Define functions and classes
+##########################################################################################################
 
 def parse_chemical_file(file_path):
     """
-    Parse a chemical data file that contains SMILES strings followed by a large table.
+    Parse the file produced from "SMILES2Groups" produced by ProPred to organize the files and extract
+    both smiles and groups in a dataframe. the dataframe produced contains the groups available in the file (either
+    1st, 2nd, or 3rd)
 
-    Args:
-        file_path (str): Path to the text file
-
-    Returns:
-        tuple: (pre_table_smiles, table_df)
-            - pre_table_smiles: list of SMILES strings before the table
-            - table_df: pandas DataFrame containing the table data
+    :param file_path: path to the file (.txt format)
+    :return: dataframe with smiles and groups
     """
+
     # Read all lines from file
     with open(file_path, 'r') as file:
         lines = file.readlines()
@@ -124,6 +132,12 @@ def concatenate_dataframes(dfs, key_columns, how='outer'):
     return result
 
 def construct_mg_data(property_tag:str, original_df:pd.DataFrame):
+    """
+    function that constructs a dataframe with groups from MG
+    :param property_tag:
+    :param original_df:
+    :return:
+    """
     # load the dataframes
     _, df_mg1 = parse_chemical_file('./data/interim/' + property_tag + '/' + property_tag +'_mg1.txt')
     _, df_mg2 = parse_chemical_file('./data/interim/' + property_tag + '/' + property_tag + '_mg2.txt')
@@ -141,7 +155,6 @@ def construct_mg_data(property_tag:str, original_df:pd.DataFrame):
     df_mg2['Smiles'] = fragmented_smiles
     df_mg3['Smiles'] = fragmented_smiles
     # concatenate the three dataframes
-    #df_mg = concatenate_dataframes([df_mg1, df_mg2, df_mg3], key_columns=['Smiles'])
     df_mg = pd.concat([df_mg1, df_mg2.iloc[:, 2:], df_mg3.iloc[:, 2:]], axis=1)
     df_mg = df_mg.rename(columns={'Smiles':'SMILES'})
     # find column tag
@@ -173,7 +186,6 @@ def remove_zero_one_sum_rows(df, columns_subset):
     df_filtered = df[row_sums > 1].copy()
 
     return df_filtered
-
 
 
 def expand_subset(org_df, subset_df, target_size, random_seed=42):
@@ -250,12 +262,6 @@ def expand_subset(org_df, subset_df, target_size, random_seed=42):
     cols.insert(smiles_idx + 2, 'label')
     val_df = val_df[cols]
     test_df = test_df[cols]
-    # # Sort by 'No' column if it exists
-    # if 'No' in expanded_df.columns:
-    #     expanded_df = expanded_df.sort_values('No', ignore_index=False)
-    # expanded_df = expanded_df.assign(split='train')
-    # val_df = val_df.assign(split='val')
-    # test_df = test_df.assign(split='test')
 
     return expanded_df, val_df, test_df
 

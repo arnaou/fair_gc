@@ -17,8 +17,6 @@ from rdkit import Chem
 import numpy as np
 import torch
 from torch_geometric.data import Data, Dataset
-from sklearn.preprocessing import StandardScaler, MinMaxScaler
-from torch_geometric.loader import DataLoader
 from rdkit.Chem import Descriptors
 
 ##########################################################################################################

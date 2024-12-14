@@ -1,3 +1,18 @@
+########################################################################################################################
+#                                                                                                                      #
+#    Collection of GNN models                                                                                          #
+#                                                                                                                      #
+#                                                                                                                      #
+#                                                                                                                      #
+#                                                                                                                      #
+#    Authors: Adem R.N. Aouichaoui                                                                                     #
+#    2024/12/03                                                                                                        #
+#                                                                                                                      #
+########################################################################################################################
+
+##########################################################################################################
+# Import packages and modules
+##########################################################################################################
 import torch
 import torch.nn.functional as F
 from torch import Tensor
@@ -7,6 +22,10 @@ from torch_geometric.nn.inits import glorot, zeros
 from torch_geometric.typing import Adj, OptTensor
 from typing import Optional, List
 from torch_geometric.utils import softmax
+
+##########################################################################################################
+# Define layers and models
+##########################################################################################################
 
 class GATEConv(MessagePassing):
     def __init__(
@@ -178,121 +197,3 @@ class FlexibleMLPAttentiveFP(torch.nn.Module):
                 f'num_layers={self.num_layers}, '
                 f'num_timesteps={self.num_timesteps}, '
                 f'mlp_hidden_dims={self.mlp_hidden_dims})')
-
-
-
-class AttentiveFP(torch.nn.Module):
-    def __init__(
-        self,
-        in_channels: int,
-        hidden_channels: int,
-        out_channels: int,
-        edge_dim: int,
-        num_layers: int,
-        num_timesteps: int,
-        num_mlp_layers: int = 1,  # New parameter for number of MLP layers
-        dropout: float = 0.0,
-    ):
-        super().__init__()
-
-        self.in_channels = in_channels
-        self.hidden_channels = hidden_channels
-        self.out_channels = out_channels
-        self.edge_dim = edge_dim
-        self.num_layers = num_layers
-        self.num_timesteps = num_timesteps
-        self.num_mlp_layers = num_mlp_layers
-        self.dropout = dropout
-
-        # Original layers
-        self.lin1 = Linear(in_channels, hidden_channels)
-        self.gate_conv = GATEConv(hidden_channels, hidden_channels, edge_dim, dropout)
-        self.gru = GRUCell(hidden_channels, hidden_channels)
-
-        self.atom_convs = torch.nn.ModuleList()
-        self.atom_grus = torch.nn.ModuleList()
-        for _ in range(num_layers - 1):
-            conv = GATConv(hidden_channels, hidden_channels, dropout=dropout,
-                           add_self_loops=False, negative_slope=0.01)
-            self.atom_convs.append(conv)
-            self.atom_grus.append(GRUCell(hidden_channels, hidden_channels))
-
-        self.mol_conv = GATConv(hidden_channels, hidden_channels,
-                                dropout=dropout, add_self_loops=False,
-                                negative_slope=0.01)
-        self.mol_gru = GRUCell(hidden_channels, hidden_channels)
-
-        # New MLP layers with decreasing sizes
-        self.mlp_layers = torch.nn.ModuleList()
-        current_dim = hidden_channels
-        for i in range(num_mlp_layers - 1):
-            next_dim = current_dim // 2
-            self.mlp_layers.append(torch.nn.Sequential(
-                Linear(current_dim, next_dim),
-                torch.nn.ReLU(),
-                torch.nn.Dropout(p=dropout)
-            ))
-            current_dim = next_dim
-
-        # Final output layer
-        self.lin2 = Linear(current_dim, out_channels)
-
-        self.reset_parameters()
-
-    def reset_parameters(self):
-        self.lin1.reset_parameters()
-        self.gate_conv.reset_parameters()
-        self.gru.reset_parameters()
-        for conv, gru in zip(self.atom_convs, self.atom_grus):
-            conv.reset_parameters()
-            gru.reset_parameters()
-        self.mol_conv.reset_parameters()
-        self.mol_gru.reset_parameters()
-        for layer in self.mlp_layers:
-            if hasattr(layer[0], 'reset_parameters'):
-                layer[0].reset_parameters()
-        self.lin2.reset_parameters()
-
-    def forward(self, x: Tensor, edge_index: Tensor, edge_attr: Tensor,
-                batch: Tensor) -> Tensor:
-        # Atom Embedding:
-        x = F.leaky_relu_(self.lin1(x))
-
-        h = F.elu_(self.gate_conv(x, edge_index, edge_attr))
-        h = F.dropout(h, p=self.dropout, training=self.training)
-        x = self.gru(h, x).relu_()
-
-        for conv, gru in zip(self.atom_convs, self.atom_grus):
-            h = conv(x, edge_index)
-            h = F.elu(h)
-            h = F.dropout(h, p=self.dropout, training=self.training)
-            x = gru(h, x).relu()
-
-        # Molecule Embedding:
-        row = torch.arange(batch.size(0), device=batch.device)
-        edge_index = torch.stack([row, batch], dim=0)
-
-        out = global_add_pool(x, batch).relu_()
-        for t in range(self.num_timesteps):
-            h = F.elu_(self.mol_conv((x, out), edge_index))
-            h = F.dropout(h, p=self.dropout, training=self.training)
-            out = self.mol_gru(h, out).relu_()
-
-        # Pass through MLP layers
-        for layer in self.mlp_layers:
-            out = layer(out)
-
-        # Final prediction
-        out = F.dropout(out, p=self.dropout, training=self.training)
-        return self.lin2(out)
-
-    def __repr__(self) -> str:
-        return (f'{self.__class__.__name__}('
-                f'in_channels={self.in_channels}, '
-                f'hidden_channels={self.hidden_channels}, '
-                f'out_channels={self.out_channels}, '
-                f'edge_dim={self.edge_dim}, '
-                f'num_layers={self.num_layers}, '
-                f'num_timesteps={self.num_timesteps}, '
-                f'num_mlp_layers={self.num_mlp_layers}'
-                f')')

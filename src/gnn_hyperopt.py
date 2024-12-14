@@ -1,41 +1,50 @@
-##########################################################################################################
-#                                                                                                        #
-#    Script for performing hyperparameter optimization of the AFP model                                  #
-#    The groups used are based on the Marrero-Gani presented in:                                         #
-#    https://doi.org/10.1016/j.fluid.2012.02.010                                                         #
-#                                                                                                        #
-#                                                                                                        #
-#    Authors: Adem R.N. Aouichaoui                                                                       #
-#    2024/12/03                                                                                          #
-#                                                                                                        #
-##########################################################################################################
+########################################################################################################################
+#                                                                                                                      #
+#    Script helper function for using optuna for GNN hyperparameter optimization                                       #
+#                                                                                                                      #
+#                                                                                                                      #
+#                                                                                                                      #
+#                                                                                                                      #
+#    Authors: Adem R.N. Aouichaoui                                                                                     #
+#    2024/12/03                                                                                                        #
+#                                                                                                                      #
+########################################################################################################################
 
 ##########################################################################################################
 # import packages & load arguments
 ##########################################################################################################
 import argparse
+import json
+import numpy as np
+import torch
+from typing import Dict, Any, Tuple, Callable
 import os
-import warnings
-
-from hyperopt.rand import suggest
+import optuna
+from src.ml_hyperopt import RetryingStorage, load_config, create_sampler, get_class_from_path
 from lightning import seed_everything
-from optuna.exceptions import ExperimentalWarning
-import pandas as pd
-from sklearn.preprocessing import StandardScaler
-from rdkit import Chem
+import torch.nn.functional as F
+import pickle
 from src.features import mol2graph, n_atom_features, n_bond_features
-from torch_geometric.loader import DataLoader
-# Suppress experimental warnings from Optuna
-warnings.filterwarnings('ignore', category=ExperimentalWarning)
+
+
+
+
+##########################################################################################################
+# Define helper function and classes
+##########################################################################################################
 
 
 def gnn_hypopt_parse_arguments():
+    """
+    function for parsing the command line arguments
+    :return:
+    """
     parser = argparse.ArgumentParser(description='Hyperparameter optimization for GNN models')
-    parser.add_argument('--property', type=str, default='Vc', required=False, help='Tag for the property')
+    parser.add_argument('--property', type=str, default='Omega', required=False, help='Tag for the property')
     parser.add_argument('--config_file', type=str, required=False, default='gnn_hyperopt_config.yaml',help='Path to the YAML configuration file')
     parser.add_argument('--model', type=str, required=False, default='afp', help='Model type to optimize (must be defined in config file)')
     parser.add_argument('--metric', type=str, required=False, default='rmse', help='Scoring metric to use (must be defined in config file)')
-    parser.add_argument('--n_trials', type=int, default=20, help='Number of optimization trials (uses config default if not specified)' )
+    parser.add_argument('--n_trials', type=int, default=10, help='Number of optimization trials (uses config default if not specified)' )
     parser.add_argument('--n_jobs', type=int, default=2, help='Number of cores used (uses max if not configured)')
     parser.add_argument('--sampler', type=str, default='auto', help='Sampler to use (uses config default if not specified)')
     parser.add_argument('--path_2_data', type=str, default='data/', required=False, help='Path to the data file')
@@ -48,76 +57,40 @@ def gnn_hypopt_parse_arguments():
 
     return parser.parse_args()
 
-# load arguments
-args = gnn_hypopt_parse_arguments()
+################################
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.floating):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super().default(obj)
 
+################################
+def suggest_gnn_parameter(trial: optuna.Trial, name: str, param_config: Dict[str, Any]) -> Any:
+    """Suggest a parameter value based on its configuration."""
+    param_type = param_config['type']
+    if param_type == 'int':
+        return trial.suggest_int(
+            name,
+            param_config['low'],
+            param_config['high'],
+            step=param_config.get('step', 1)
+        )
+    elif param_type == 'float':
+        return trial.suggest_float(
+            name,
+            param_config['low'],
+            param_config['high'],
+            log=param_config.get('log', False)
+        )
+    else:
+        raise ValueError(f"Unsupported parameter type: {param_type}")
 
-##########################################################################################################
-# Load the data & Preprocessing
-##########################################################################################################
-
-# import the data
-path_to_data = args.path_2_data+'processed/'+args.property+'/'+args.property+'_processed.xlsx'
-df = pd.read_excel(path_to_data)
-
-# split the data
-df_train = df[df['label']=='train']
-df_val = df[df['label']=='val']
-df_test = df[df['label']=='test']
-# construct a scaler
-y_scaler = StandardScaler()
-y_scaler.fit(df_train[args.property].to_numpy().reshape(-1,1))
-# construct a column with the mol objects
-df_train = df_train.assign(mol=[Chem.MolFromSmiles(i) for i in df_train['SMILES']])
-df_val = df_val.assign(mol=[Chem.MolFromSmiles(i) for i in df_val['SMILES']])
-df_test = df_test.assign(mol=[Chem.MolFromSmiles(i) for i in df_test['SMILES']])
-# construct molecular graphs
-train_dataset = mol2graph(df_train, 'mol', args.property, y_scaler=y_scaler)
-val_dataset = mol2graph(df_val, 'mol', args.property, y_scaler=y_scaler)
-test_dataset = mol2graph(df_test, 'mol', args.property, y_scaler=y_scaler)
-# construct data loaders
-train_loader = DataLoader(train_dataset, batch_size=600, shuffle=False)
-val_loader = DataLoader(val_dataset, batch_size=600, shuffle=False)
-test_loader = DataLoader(test_dataset, batch_size=600, shuffle=False)
-
-#%%
-import optuna
-from src.optims import get_class_from_path, load_config, create_sampler, RetryingStorage, suggest_gnn_parameter
-import numpy as np
-import random
-import torch
-from src.training import EarlyStopping
-import torch.nn.functional as F
-from typing import Tuple, Dict, Any, Callable
-
-def create_gnn_model(model_class, params):
-    """
-    Create a GNN model with the given parameters
-    """
-
-    # Convert mlp_hidden_dims from tuple to list if present
-    if 'mlp_hidden_dims' in params:
-        params['mlp_hidden_dims'] = [int(dim) for dim in params['mlp_hidden_dims'].split('_')]
-
-    return model_class(**params)
-
-def evaluate_model(model, loader, device):
-    """Evaluate model on given loader"""
-    model.eval()
-    predictions = []
-    targets = []
-
-    with torch.no_grad():
-        for batch in loader:
-            batch = batch.to(device)
-            out = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
-            predictions.extend(out.cpu().numpy())
-            targets.extend(batch.y.view(-1,1).cpu().numpy())
-
-    return np.array(predictions), np.array(targets)
-
-
-def optimize_gnn(
+################################
+def gnn_hyperparameter_optimizer(
         config_path: str,
         model_name: str,
         property_name: str,
@@ -285,13 +258,17 @@ def optimize_gnn(
             if patience_counter >= patience:
                 break
 
+
             trial.report(val_loss, epoch)
-            # if trial.should_prune():
-            #     raise optuna.TrialPruned()
+            # if study.pruner is not None:
+            #     if trial.should_prune():
+            #         raise optuna.TrialPruned()
 
         # Clean up
         del model, optimizer
         torch.cuda.empty_cache()
+
+        # redo the predictions to get it in the right scale and based on the right metric
 
         return best_val_loss
 
@@ -365,112 +342,10 @@ def optimize_gnn(
 
     return study, best_model, training_params, model_config
 
-
-
-#%%
 feature_callables = {
     'n_atom_features': n_atom_features,
     'n_bond_features': n_bond_features
 }
-
-
-study, best_model, train_params, model_config = optimize_gnn(
-    config_path=args.config_file,
-    model_name=args.model,
-    property_name=args.property,
-    study_name=args.study_name,
-    feature_callables=feature_callables,
-    train_loader= train_loader,
-    val_loader= val_loader,
-    metric_name=args.metric,
-    sampler_name=args.sampler,
-    n_trials=args.n_trials,
-    storage = args.storage,
-    load_if_exists=args.load_if_exists,
-    n_jobs = args.n_jobs,
-    seed = args.seed,
-    device = 'cuda'
-)
-print("Best parameters:", study.best_params)
-print("Best value:", study.best_value)
-#%%
-
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-from src.evaluation import predict_property
-train_pred, train_true, train_metrics = predict_property(best_model, train_loader, device, y_scaler)
-val_pred, val_true, val_metrics = predict_property(best_model, val_loader, device, y_scaler)
-test_pred, test_true, test_metrics = predict_property(best_model, test_loader, device, y_scaler)
-
-# Print metrics
-print("\nTraining Set Metrics:")
-for metric, value in train_metrics.items():
-    print(f"{metric.upper()}: {value:.4f}")
-
-print("\nValidation Set Metrics:")
-for metric, value in val_metrics.items():
-    print(f"{metric.upper()}: {value:.4f}")
-
-print("\nTest Set Metrics:")
-for metric, value in test_metrics.items():
-    print(f"{metric.upper()}: {value:.4f}")
-
-# calculate the metrics
-metrics = {'train': train_metrics, 'val': val_metrics, 'test': test_metrics}
-df_metrics = pd.DataFrame(metrics).T.reset_index()
-df_metrics.columns = ['label', 'r2', 'rmse', 'mse', 'mare', 'mae']
-
-
-# construct dataframe to save the results
-df_result = df.copy()
-
-y_true = np.vstack((train_pred, val_true, test_true))
-y_pred = np.vstack((train_pred, val_pred, test_pred))
-split_index = df_result.columns.get_loc('label') + 1
-df_result.insert(split_index, 'pred', y_pred)
-
-prediction_path = (args.path_2_result+'/'+args.property+'/gnn/'+args.model+'/'+args.model+'_'+args.metric+'_'+
-                   str(val_metrics[args.metric])+'_predictions.xlsx')
-#%%
-os.makedirs(args.path_2_result+'/'+args.property+'/gnn/'+args.model+'/', exist_ok=True)
-
-if not os.path.exists(prediction_path):
-    with pd.ExcelWriter(prediction_path, mode='w', engine='openpyxl') as writer:
-        df_metrics.to_excel(writer, sheet_name='metrics')
-        df_result.to_excel(writer, sheet_name='prediction')
-else:
-    # If the file already exists, append the sheets
-    with pd.ExcelWriter(prediction_path, mode='a', engine='openpyxl', if_sheet_exists='replace') as writer:
-        df_metrics.to_excel(writer, sheet_name='metrics')
-        df_result.to_excel(writer, sheet_name='prediction')
-
-
-
-#%%
-
-
-import torch
-import json
-import pickle
-import os
-import numpy as np
-from datetime import datetime
-from typing import Dict, Any
-
-
-class NumpyEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, np.integer):
-            return int(obj)
-        if isinstance(obj, np.floating):
-            return float(obj)
-        if isinstance(obj, np.ndarray):
-            return obj.tolist()
-        return super().default(obj)
-
-
-
-#%%
-from typing import Dict, Any
 def save_model_package(
         trial_dir: str,
         model_dir: str,
@@ -480,26 +355,24 @@ def save_model_package(
         scaler: Any,
         model_config: Dict[str, Any],
         study: Any = None,
-        model_name: str = "model",
         metric_name: str = "metric",
-        additional_info: Dict[str, Any] = None
+        additional_info: Dict[str, Any] = None,
+        timestamp: str = None
 ) -> None:
 
     # Generate timestamp and base filename
-    timestamp = datetime.now().strftime('%d%m%Y_%H%M')
-    best_value = study.best_value if study is not None else 0.0
-    base_filename = f"{metric_name}_{best_value:.3g}_{timestamp}"
+
 
     # Create directories if they don't exist
-    os.makedirs(os.path.join(trial_dir, base_filename), exist_ok=True)
-    os.makedirs(os.path.join(model_dir, base_filename), exist_ok=True)
+    os.makedirs(trial_dir, exist_ok=True)
+    os.makedirs(model_dir, exist_ok=True)
 
     # Save model state in model directory
-    model_path = os.path.join(model_dir,base_filename, "model.pt")
+    model_path = os.path.join(model_dir, "model.pt")
     torch.save(model.state_dict(), model_path)
 
     # Save scaler in model directory
-    scaler_path = os.path.join(model_dir, base_filename, f"scaler.pkl")
+    scaler_path = os.path.join(model_dir, f"scaler.pkl")
     with open(scaler_path, 'wb') as f:
         pickle.dump(scaler, f)
 
@@ -573,11 +446,11 @@ def save_model_package(
         config.update(additional_info)
 
     # Save configurations
-    trial_config_path = os.path.join(trial_dir, base_filename,"results.json")
+    trial_config_path = os.path.join(trial_dir,"results.json")
     with open(trial_config_path, 'w') as f:
         json.dump(config, f, indent=4, cls=NumpyEncoder)
 
-    model_config_path = os.path.join(model_dir, base_filename,"model_config.json")
+    model_config_path = os.path.join(model_dir, "model_config.json")
     model_specific_config = {
         'model_class': config['model_class'],
         'model_module': config['model_module'],
@@ -586,112 +459,3 @@ def save_model_package(
     }
     with open(model_config_path, 'w') as f:
         json.dump(model_specific_config, f, indent=4, cls=NumpyEncoder)
-
-
-# Saving
-trial_path = (args.path_2_result+'/'+args.property+'/gnn/'+args.model)
-model_path = args.path_2_model+'/'+args.property+'/gnn/'+args.model
-save_model_package(
-    trial_dir=trial_path,
-    model_dir=model_path,
-    model=best_model,
-    model_hyperparameters=study.best_params,
-    training_params=train_params,
-    scaler=y_scaler,
-    study=study,
-    model_config=model_config,
-    metric_name=args.metric,
-    additional_info={
-        'training_date': datetime.now().strftime('%d%m%Y_%H%M'),
-        'dataset_info': 'your_dataset_details',
-        'train_performance_metrics': train_metrics,
-        'val_performance_metrics': val_metrics,
-        'test_performance_metrics': test_metrics
-    }
-)
-
-
-
-
-
-
-
-
-
-# # Loading
-# loaded = load_model_package('models/model_001')
-# model = loaded['model']
-# config = loaded['config']
-# scaler = loaded['scaler']
-# """
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#%%
-
-# def save_results(study, fitted_model, fitted_scaler, config_path, model_name, seed,
-#                  metric_name, model_dir='models/', result_dir='results/'):
-#     """Save the optimization results, model, and metadata"""
-#     # Create directory if it doesn't exist
-#     os.makedirs(model_dir, exist_ok=True)
-#     os.makedirs(result_dir, exist_ok=True)
-#
-#     # Generate timestamp
-#     timestamp = datetime.now().strftime('%d%m%Y_%H%M')
-#
-#     # Base filename
-#     base_filename = f"{model_name}_{metric_name}_{study.best_value:.3g}_{timestamp}"
-#     model_path = os.path.join(model_dir, f"{base_filename}_pipeline.joblib")
-#     results_path = os.path.join(result_dir, f"{base_filename}_results.json")
-#     trials_path = os.path.join(result_dir, f"{model_name}_{metric_name}_{timestamp}" + "_trials.csv")
-#
-#     # Create and save pipeline
-#     pipeline = create_pipeline(fitted_model, fitted_scaler)
-#     # Create trials DataFrame
-#     trials_df = study.trials_dataframe()
-#     # Get parameter ranges
-#     param_ranges = get_parameter_ranges(study)
-#
-#     # Save optimization results
-#     results = {
-#         'timestamp': timestamp,
-#         'model_name': model_name,
-#         'metric_name': metric_name,
-#         'best_params': study.best_params,
-#         'best_value': study.best_value,
-#         'n_trials': len(study.trials),
-#         'parameter_ranges': param_ranges,
-#         'config_file': config_path,
-#         'model_path': model_path,
-#         'results_path': results_path,
-#         'trials_path': trials_path,
-#         'seed': seed,
-#     }
-#
-#     # Save results to JSON
-#     with open(results_path, 'w') as f:
-#         json.dump(results, f, indent=4)
-#     # save the pipeline
-#     joblib.dump(pipeline, model_path)
-#     # Create trials DataFrame
-#     trials_df.to_csv(trials_path, index=False)
-#
-#     return results
-
-
-# # Loading
-# loaded = ModelSaver.load_model_package('model_package')
-# model = loaded['model']
-# scaler = loaded['scaler']
-# config = loaded['config']  # Contains both model and training parameters

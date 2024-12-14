@@ -113,9 +113,6 @@ def split_indices(indices_list):
 
     return idx_G1, idx_G2, idx_G3
 
-
-
-
 def split_molecules_by_clusters(
         smiles_list: List[str],
         split_fractions: List[float],
@@ -222,12 +219,9 @@ def split_molecules_by_clusters(
 
     # Shuffle largest cluster
     random.shuffle(largest_cluster)
-    # print(len(largest_cluster))
-    # print(remaining_train)
-    # print(remaining_val)
-    # print(remaining_test)
 
-    # Assign from largest cluster to meet targets exactly
+
+    # Assign from the largest cluster to meet targets exactly
     current_idx = 0
 
     # Add to training set
