@@ -174,3 +174,4 @@ save_model_package(
         'test_performance_metrics': test_metrics
     }
 )
+# python optuna_gnn.py --property Tc --config_file gnn_hyperopt_config.yaml --model afp --n_trials 20 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3

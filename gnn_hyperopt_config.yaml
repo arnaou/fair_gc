@@ -41,7 +41,7 @@ training_params:
 # parameters for the GNN model
 models:
   afp:
-    class: 'src.model.afp.FlexibleMLPAttentiveFP'
+    class: 'src.models.afp.FlexibleMLPAttentiveFP'
 # Required parameters that will be inferred
     inferred_params:
       - name: 'in_channels'

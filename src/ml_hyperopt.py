@@ -46,7 +46,7 @@ def ml_hypopt_parse_arguments():
     parser.add_argument('--config_file', type=str, required=True, help='Path to the YAML configuration file')
     parser.add_argument('--model', type=str, required=True, help='Model type to optimize (must be defined in config file)')
     parser.add_argument('--metric', type=str, required=False, default='rmse', help='Scoring metric to use (must be defined in config file)')
-    parser.add_argument('--n_trials', type=int, default=50, help='Number of optimization trials (uses config default if not specified)' )
+    parser.add_argument('--n_trials', type=int, required=True, default=50, help='Number of optimization trials (uses config default if not specified)' )
     parser.add_argument('--n_jobs', type=int, default=2, help='Number of cores used (uses max if not configured)')
     parser.add_argument('--sampler', type=str, default='tpe', help='Sampler to use (uses config default if not specified)')
     parser.add_argument('--path_2_data', type=str, required=True, help='Path to the data file')
