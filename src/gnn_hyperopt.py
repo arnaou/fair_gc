@@ -166,6 +166,10 @@ def afp_hyperparameter_optimizer(
         model_params = {}
         training_params = {}
 
+        # Keep track of the previous best trial's files
+        if not hasattr(objective, 'best_trial_files'):
+            objective.best_trial_files = None
+
         # Add inferred parameters first
         for param in model_config.get('inferred_params', []):
             callable_name = param['source']
@@ -246,7 +250,7 @@ def afp_hyperparameter_optimizer(
                 best_val_loss = val_loss
                 # Convert state dict tensors to lists for serialization
                 # Save state dict to a separate file using trial number
-                save_path = os.path.join('checkpoints', f'trial_{trial.number}_best_state.pt')
+                save_path = os.path.join('checkpoints', f'{property_name}_trial_{trial.number}_best_state.pt')
                 torch.save({
                     'state_dict': model.state_dict(),
                     'val_loss': val_loss,

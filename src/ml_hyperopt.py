@@ -344,3 +344,25 @@ def save_results(study, fitted_model, fitted_scaler, config_path, model_name, se
 
     return results
 
+def model_selector(tag='gpr'):
+    """
+    function for selecting the right model base from a tag
+    :param model_tag
+    :return:
+    """
+    class_path = None
+    if tag == 'svr':
+        class_path = 'sklearn.svm.SVR'
+    elif tag == 'dt':
+        class_path = 'sklearn.tree.DecisionTreeRegressor'
+    elif tag == 'rf':
+        class_path = 'sklearn.ensemble.RandomForestRegressor'
+    elif tag == 'gb':
+        class_path = 'sklearn.ensemble.GradientBoostingRegressor'
+    elif tag == 'xgb':
+        class_path = 'xgboost.XGBRegressor'
+    elif tag == 'gpr':
+        class_path = 'sklearn.gaussian_process.GaussianProcessRegressor'
+
+    model_class = get_class_from_path(class_path)
+    return model_class

@@ -31,7 +31,7 @@ warnings.filterwarnings('ignore', category=ExperimentalWarning)
 
 def gnn_hypopt_parse_arguments():
     parser = argparse.ArgumentParser(description='Hyperparameter optimization for GNN models')
-    parser.add_argument('--property', type=str, default='Vc', required=False, help='Tag for the property')
+    parser.add_argument('--property', type=str, default='Tc', required=False, help='Tag for the property')
     parser.add_argument('--config_file', type=str, required=False, default='gnn_hyperopt_config.yaml',help='Path to the YAML configuration file')
     parser.add_argument('--model', type=str, required=False, default='afp', help='Model type to optimize (must be defined in config file)')
     parser.add_argument('--metric', type=str, required=False, default='rmse', help='Scoring metric to use (must be defined in config file)')
@@ -131,7 +131,7 @@ def load_model_package(
 
 # Loading
 #loaded = load_model_package('models/Omega/gnn/afp/rmse_0.149_14122024_1334')
-loaded = load_model_package('models/'+args.property+'/gnn/afp/rmse_0.0116_14122024_1554')
+loaded = load_model_package('models/'+args.property+'/gnn/afp/rmse_0.0108_15122024_1328')
 
 best_model = loaded['model']
 config = loaded['config']
@@ -139,10 +139,10 @@ y_scaler = loaded['scaler']
 
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-from src.evaluation import predict_property
-train_pred, train_true, train_metrics = predict_property(best_model, train_loader, device, y_scaler)
-val_pred, val_true, val_metrics = predict_property(best_model, val_loader, device, y_scaler)
-test_pred, test_true, test_metrics = predict_property(best_model, test_loader, device, y_scaler)
+from src.evaluation import evaluate_gnn
+train_pred, train_true, train_metrics = evaluate_gnn(best_model, train_loader, device, y_scaler)
+val_pred, val_true, val_metrics = evaluate_gnn(best_model, val_loader, device, y_scaler)
+test_pred, test_true, test_metrics = evaluate_gnn(best_model, test_loader, device, y_scaler)
 
 
 # Print metrics
