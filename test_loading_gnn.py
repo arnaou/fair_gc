@@ -84,54 +84,16 @@ from typing import Dict, Any
 import pickle
 import torch
 import json
-def load_model_package(
-        model_dir: str,
-        device: str = "cuda"
-) -> Dict[str, Any]:
-    """
-    Load saved model package from model directory.
-
-    Args:
-        model_dir: Directory containing saved model
-        device: Device to load model to
-
-    Returns:
-        Dictionary containing loaded model and components
-    """
-    # Load configuration
-    config_path = os.path.join(model_dir, "model_config.json")
-    with open(config_path, 'r') as f:
-        config = json.load(f)
-
-    # Import model class
-    module_path = config['model_module']
-    model_name = config['model_class']
-    module = __import__(module_path, fromlist=[model_name])
-    model_class = getattr(module, model_name)
-
-    # Create model instance
-    model = model_class(**config['model_hyperparameters'])
-
-    # Load model state
-    model_path = os.path.join(model_dir, "model.pt")
-    model.load_state_dict(torch.load(model_path, weights_only=True))#, weights_only=True)
-    model = model.to(device)
-
-    # Load scaler
-    scaler_path = os.path.join(model_dir, "scaler.pkl")
-    with open(scaler_path, 'rb') as f:
-        scaler = pickle.load(f)
-
-    return {
-        'model': model,
-        'config': config,
-        'scaler': scaler
-    }
+from src.gnn_hyperopt import load_model_package
 
 
 # Loading
 #loaded = load_model_package('models/Omega/gnn/afp/rmse_0.149_14122024_1334')
-loaded = load_model_package('models/'+args.property+'/gnn/afp/rmse_0.0108_15122024_1328')
+result_folder = {'Omega': 'rmse_0.132_15122024_1739',
+                 'Tc': 'rmse_0.0108_15122024_1328',
+                 'Pc': 'rmse_0.081_16122024_0136',
+                 'Vc': 'rmse_0.00917_15122024_1525'}
+loaded = load_model_package('models/'+args.property+'/gnn/afp/'+result_folder[args.property])
 
 best_model = loaded['model']
 config = loaded['config']

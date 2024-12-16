@@ -467,3 +467,50 @@ def save_model_package(
     }
     with open(model_config_path, 'w') as f:
         json.dump(model_specific_config, f, indent=4, cls=NumpyEncoder)
+
+
+
+
+def load_model_package(
+        model_dir: str,
+        device: str = "cuda"
+) -> Dict[str, Any]:
+    """
+    Load saved model package from model directory.
+
+    Args:
+        model_dir: Directory containing saved model
+        device: Device to load model to
+
+    Returns:
+        Dictionary containing loaded model and components
+    """
+    # Load configuration
+    config_path = os.path.join(model_dir, "model_config.json")
+    with open(config_path, 'r') as f:
+        config = json.load(f)
+
+    # Import model class
+    module_path = config['model_module']
+    model_name = config['model_class']
+    module = __import__(module_path, fromlist=[model_name])
+    model_class = getattr(module, model_name)
+
+    # Create model instance
+    model = model_class(**config['model_hyperparameters'])
+
+    # Load model state
+    model_path = os.path.join(model_dir, "model.pt")
+    model.load_state_dict(torch.load(model_path, weights_only=True))#, weights_only=True)
+    model = model.to(device)
+
+    # Load scaler
+    scaler_path = os.path.join(model_dir, "scaler.pkl")
+    with open(scaler_path, 'rb') as f:
+        scaler = pickle.load(f)
+
+    return {
+        'model': model,
+        'config': config,
+        'scaler': scaler
+    }
