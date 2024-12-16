@@ -42,7 +42,7 @@ warnings.filterwarnings('ignore', category=ConvergenceWarning)
 # parsing arguments --property 'Vc' --path_2_data 'data/' --path_2_result 'results/' --path_2_model 'models/'
 ##########################################################################################################
 parser = argparse.ArgumentParser()
-parser.add_argument('--property', type=str, default='Omega', help='tag of the property of interest')
+parser.add_argument('--property', type=str, default='Pc', help='tag of the property of interest')
 parser.add_argument('--model', type=str, default='afp', help='name of ml model')
 parser.add_argument('--n_epochs', type=int, default=150, help='number of epochs')
 parser.add_argument('--path_2_data', type=str, default='data/', help='path to the data')
@@ -132,7 +132,7 @@ for frac in fractions:
     # model = model_class(**config['model_hyperparameters']).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=config['training_params']['learning_rate'])
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min',
-                                                           factor=0.7, patience=5,
+                                                           factor=0.5, patience=5,
                                                            min_lr=1e-6)
     best_val_loss = float('inf')
     best_state_dict = None
