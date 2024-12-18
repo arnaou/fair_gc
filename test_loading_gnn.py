@@ -32,7 +32,7 @@ warnings.filterwarnings('ignore', category=ExperimentalWarning)
 def gnn_hypopt_parse_arguments():
     parser = argparse.ArgumentParser(description='Hyperparameter optimization for GNN models')
     parser.add_argument('--property', type=str, default='Tc', required=False, help='Tag for the property')
-    parser.add_argument('--config_file', type=str, required=False, default='gnn_hyperopt_config.yaml',help='Path to the YAML configuration file')
+    parser.add_argument('--config_file', type=str, required=False, default='afp_hyperopt_config.yaml',help='Path to the YAML configuration file')
     parser.add_argument('--model', type=str, required=False, default='afp', help='Model type to optimize (must be defined in config file)')
     parser.add_argument('--metric', type=str, required=False, default='rmse', help='Scoring metric to use (must be defined in config file)')
     parser.add_argument('--n_trials', type=int, default=60, help='Number of optimization trials (uses config default if not specified)' )

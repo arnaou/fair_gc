@@ -1,0 +1,89 @@
+# metrics
+metric:
+  mae:
+    function: sklearn.metrics.mean_absolute_error
+  mse:
+    function: sklearn.metrics.mean_squared_error
+  rmse:
+    function: sklearn.metrics.root_mean_squared_error
+  r2:
+    function: sklearn.metrics.r2_score
+    direction: maximize  # override default direction
+# samplers for optuna
+sampler:
+  auto:
+    class: "auto"
+    params: {}
+  tpe:
+    class: optuna.samplers.TPESampler
+    params:
+      seed: 42
+  random:
+    class: optuna.samplers.RandomSampler
+    params:
+      seed: null
+  cmaes:
+    class: optuna.samplers.CmaEsSampler
+    params:
+      seed: null
+# Training parameters (separate from model init)
+training_params:
+    learning_rate:
+      type: 'float'
+      low: 1.0e-4
+      high: 1.0e-2
+      log: true
+    lr_reduce:
+      type: 'float'
+      low: 0.6
+      high: 0.6
+      log: false
+# parameters for the GNN model
+models:
+  megnet:
+    class: "src.models.megnet.MEGNet"
+    param_ranges:
+      node_hidden_dim:
+        type: "int"
+        low: 32
+        high: 128
+        default: 50
+      edge_hidden_dim:
+        type: "int"
+        low: 32
+        high: 128
+        default: 50
+      depth:
+        type: "int"
+        low: 2
+        high: 4
+      rep_dropout:
+        type: "float"
+        low: 0.0
+        high: 0.25
+
+    mlp_config:
+      n_layers:
+        type: "int"
+        low: 2
+        high: 4
+      dim_per_layer:
+        type: "int"
+        low: 64
+        high: 512
+
+    inferred_params:
+      - name: "node_in_dim"
+        source: "n_atom_features"
+      - name: "edge_in_dim"
+        source: "n_bond_features"
+
+    fixed_params:
+      out_channels: 1
+# set of default parameters
+default_settings:
+  direction: minimize
+  n_trials: 5
+  sampler: auto
+  metric: rmse
+  max_epochs: 100

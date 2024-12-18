@@ -41,9 +41,9 @@ warnings.filterwarnings('ignore', category=ConvergenceWarning)
 # parsing arguments --property 'Vc' --path_2_data 'data/' --path_2_result 'results/' --path_2_model 'models/'
 ##########################################################################################################
 parser = argparse.ArgumentParser()
-parser.add_argument('--property', type=str, default='Tc', help='tag of the property of interest')
+parser.add_argument('--property', type=str, default='Omega', help='tag of the property of interest')
 parser.add_argument('--model', type=str, default='afp', help='name of ml model')
-parser.add_argument('--n_bootstrap', type=int, default=3, help='number of bootstrap samples')
+parser.add_argument('--n_bootstrap', type=int, default=100, help='number of bootstrap samples')
 parser.add_argument('--path_2_data', type=str, default='data/', help='path to the data')
 parser.add_argument('--path_2_result', type=str, default='results/', help='path for storing the results')
 parser.add_argument('--path_2_model', type=str, default='models/', help='path for storing the model')
@@ -240,7 +240,7 @@ for i in range(args.n_bootstrap):
     config = loaded['config']
     optimizer = torch.optim.Adam(model.parameters(), lr=config['training_params']['learning_rate'])
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min',
-                                                           factor=0.5, patience=5,
+                                                           factor=config['training_params']['lr_reduce'], patience=5,
                                                            min_lr=1e-6)
 
     best_val_loss = float('inf')
@@ -336,17 +336,17 @@ df_predictions = pd.concat([df_predictions, df0], axis=1, ignore_index=False)
 #
 #
 #
-# # Check if the directory exists, if not, create it
-# path_results = path_2_result+'bootstrap_predictions.xlsx'
-# os.makedirs(os.path.dirname(path_results), exist_ok=True)
-#
-# # Check if the file exists, if not, create it with 'metrics' and 'prediction' sheets
-# if not os.path.exists(path_results):
-#     with pd.ExcelWriter(path_results, mode='w', engine='openpyxl') as writer:
-#         df_metrics.to_excel(writer, sheet_name='metrics')
-#         df_predictions.to_excel(writer, sheet_name='prediction')
-# else:
-#     # If the file already exists, append the sheets
-#     with pd.ExcelWriter(path_results, mode='a', engine='openpyxl', if_sheet_exists='replace') as writer:
-#         df_metrics.to_excel(writer, sheet_name='metrics')
-#         df_predictions.to_excel(writer, sheet_name='prediction')
+# Check if the directory exists, if not, create it
+path_results = path_2_result+'bootstrap_predictions.xlsx'
+os.makedirs(os.path.dirname(path_results), exist_ok=True)
+
+# Check if the file exists, if not, create it with 'metrics' and 'prediction' sheets
+if not os.path.exists(path_results):
+    with pd.ExcelWriter(path_results, mode='w', engine='openpyxl') as writer:
+        df_metrics.to_excel(writer, sheet_name='metrics')
+        df_predictions.to_excel(writer, sheet_name='prediction')
+else:
+    # If the file already exists, append the sheets
+    with pd.ExcelWriter(path_results, mode='a', engine='openpyxl', if_sheet_exists='replace') as writer:
+        df_metrics.to_excel(writer, sheet_name='metrics')
+        df_predictions.to_excel(writer, sheet_name='prediction')

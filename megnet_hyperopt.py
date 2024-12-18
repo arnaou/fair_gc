@@ -1,19 +1,6 @@
-##########################################################################################################
-#                                                                                                        #
-#    Script for performing hyperparameter optimization of the AFP model                                  #
-#    The groups used are based on the Marrero-Gani presented in:                                         #
-#    https://doi.org/10.1016/j.fluid.2012.02.010                                                         #
-#                                                                                                        #
-#                                                                                                        #
-#    Authors: Adem R.N. Aouichaoui                                                                       #
-#    2024/12/03                                                                                          #
-#                                                                                                        #
-##########################################################################################################
-
-##########################################################################################################
-# import packages & load arguments
-##########################################################################################################
-
+import torch
+from src.gnn_hyperopt import megnet_hyperparameter_optimizer, save_megnet_package, gnn_hypopt_parse_arguments
+import os
 import warnings
 from optuna.exceptions import ExperimentalWarning
 import pandas as pd
@@ -21,19 +8,18 @@ from sklearn.preprocessing import StandardScaler
 from rdkit import Chem
 from src.features import mol2graph, n_atom_features, n_bond_features
 from torch_geometric.loader import DataLoader
-from src.gnn_hyperopt import gnn_hypopt_parse_arguments, afp_hyperparameter_optimizer, save_model_package
-import torch
-import os
+import argparse
 import numpy as np
 from datetime import datetime
+
 
 
 # Suppress experimental warnings from Optuna
 warnings.filterwarnings('ignore', category=ExperimentalWarning)
 
-# load arguments
-args = gnn_hypopt_parse_arguments()
 
+# parse arguments
+args = gnn_hypopt_parse_arguments()
 ##########################################################################################################
 # Load the data & Preprocessing
 ##########################################################################################################
@@ -72,7 +58,7 @@ feature_callables = {
 }
 
 # perform hyperparameter optimization
-study, best_model, train_params, model_config = afp_hyperparameter_optimizer(
+study, best_model, train_params, model_config = megnet_hyperparameter_optimizer(
     config_path=args.config_file,
     model_name=args.model,
     property_name=args.property,
@@ -92,6 +78,7 @@ study, best_model, train_params, model_config = afp_hyperparameter_optimizer(
 # print the results
 print("Best parameters:", study.best_params)
 print("Best value:", study.best_value)
+
 
 ##########################################################################################################
 # Evaluate results
@@ -156,7 +143,8 @@ from typing import Dict, Any
 # Saving
 trial_path = (args.path_2_result+'/'+args.property+'/gnn/'+args.model)
 model_path = args.path_2_model+'/'+args.property+'/gnn/'+args.model
-save_model_package(
+
+save_megnet_package(
     trial_dir=prediction_dir,
     model_dir=model_dir,
     model=best_model,
@@ -174,4 +162,5 @@ save_model_package(
         'test_performance_metrics': test_metrics
     }
 )
-# python optuna_gnn.py --property Tc --config_file afp_hyperopt_config.yaml --model afp --n_trials 20 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
+
+# # python megnet_hyperopt.py --property Tc --config_file megnet_hyperopt_config.yaml --model megnet --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3

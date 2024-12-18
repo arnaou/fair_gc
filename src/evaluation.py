@@ -118,7 +118,7 @@ def evaluate_gnn(model, loader, device, y_scaler=None, tag='afp'):
             batch = batch.to(device)
             if tag == 'afp':
                 pred = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
-            elif tag == 'mpnn':
+            elif tag in ['mpnn','megnet']:
                 pred = model(batch)
             true = batch.y.view(-1, 1)
 
