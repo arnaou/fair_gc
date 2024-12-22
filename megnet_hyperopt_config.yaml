@@ -55,7 +55,7 @@ models:
         default: 50
       depth:
         type: "int"
-        low: 2
+        low: 1
         high: 4
       rep_dropout:
         type: "float"
@@ -65,7 +65,7 @@ models:
     mlp_config:
       n_layers:
         type: "int"
-        low: 2
+        low: 1
         high: 4
       dim_per_layer:
         type: "int"
@@ -86,4 +86,4 @@ default_settings:
   n_trials: 5
   sampler: auto
   metric: rmse
-  max_epochs: 100
+  max_epochs: 250
