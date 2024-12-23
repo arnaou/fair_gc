@@ -36,15 +36,16 @@ import pickle
 from src.grape.models.GroupGAT import GCGAT_v4pro
 # Suppress experimental warnings from Optuna
 warnings.filterwarnings('ignore', category=ExperimentalWarning)
+import numpy as np
 ##########################################################################################################
 # parsing arguments
 ##########################################################################################################
 parser = argparse.ArgumentParser(description='Hyperparameter optimization for GNN models')
-parser.add_argument('--property', type=str, default='Tc', required=False, help='Tag for the property')
+parser.add_argument('--property', type=str, default='Pc', required=False, help='Tag for the property')
 parser.add_argument('--config_file', type=str, required=False, default='groupgat_hyperopt_config.yaml', help='Path to the YAML configuration file')
 parser.add_argument('--model', type=str, required=False, default='groupgat', help='Model type to optimize (must be defined in config file)')
 parser.add_argument('--metric', type=str, required=False, default='rmse', help='Scoring metric to use (must be defined in config file)')
-parser.add_argument('--n_trials', type=int, default=35, help='Number of optimization trials (uses config default if not specified)')
+parser.add_argument('--n_trials', type=int, default=45, help='Number of optimization trials (uses config default if not specified)')
 parser.add_argument('--n_jobs', type=int, default=2, help='Number of cores used (uses max if not configured)')
 parser.add_argument('--sampler', type=str, default='auto', help='Sampler to use (uses config default if not specified)')
 parser.add_argument('--path_2_data', type=str, default='data/', required=False, help='Path to the data file')
@@ -118,7 +119,7 @@ def groupgat_hyperparameter_optimizer(
         n_jobs: int = -1,
         seed: int = None,
         device: str = None
-) -> Tuple[optuna.study.Study, torch.nn.Module, Dict[str, Any], Dict[str, Any]]:
+):
     """
     GroupGAT model optimization using Optuna.
 
@@ -379,7 +380,7 @@ def groupgat_hyperparameter_optimizer(
         checkpoint = torch.load(best_trial.user_attrs['best_state_dict_path'])
         best_model.load_state_dict(checkpoint['state_dict'])
 
-    return study, best_model, training_params, model_config
+    return study, best_model, training_params, model_config, best_model_params
 
 
 
@@ -392,7 +393,7 @@ feature_callables = {
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-study, best_model, train_params, model_config = groupgat_hyperparameter_optimizer(
+study, best_model, train_params, model_config, best_model_params = groupgat_hyperparameter_optimizer(
         config_path = args.config_file,
         model_name=args.model,
         property_name=args.property,
@@ -445,172 +446,145 @@ metrics = {'train': train_metrics, 'val': val_metrics, 'test': test_metrics}
 df_metrics = pd.DataFrame(metrics).T.reset_index()
 df_metrics.columns = ['label', 'r2', 'rmse', 'mse', 'mare', 'mae']
 
-#
-# from src.grape.models.AFP import AFP
-# from src.grape.models.GroupGAT import GCGAT_v4pro
-# net_params = {'node_in_dim': n_atom_features(),
-#               'edge_in_dim': n_bond_features(),
-#               'frag_dim': frag_dim,
-#               'global_features': False,
-#               'L1_hidden_dim': 128,
-#               'L1_layers_atom': 2,
-#               'L1_layers_mol': 2,
-#               'L1_dropout': 0.0,
-#               'L1_out_dim': 50,
-#               'L2_hidden_dim': 155,
-#               'L2_layers_atom': 2,
-#               'L2_layers_mol': 2,
-#               'L2_out_dim': 50,
-#               'L2_dropout': 0.0,
-#               'L3_hidden_dim': 64,
-#               'L3_layers_atom': 2,
-#               'L3_layers_mol': 2,
-#               'L3_out_dim': 50,
-#               'L3_dropout': 0.0,
-#               'MLP_layers': [40, 20],
-#               'num_heads': 1,
-#               'final_dropout': 0.05
-#               }
-#
-#
-#
-# model = GCGAT_v4pro(net_params).to(device)
-#
-#
-# optimizer = torch.optim.Adam(model.parameters(), lr=0.00526, weight_decay=0.00003250012)
-# scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.8, patience=5)
-#
-# # Initialize early stopping
-# early_stopping = EarlyStopping(patience=25, verbose=True)
-#
-# num_epochs = 150
-# best_val_loss = float('inf')
-#
-#
-# for epoch in range(num_epochs):
-#     # model training
-#     model.train()
-#     total_loss = 0
-#     for batch in train_loader:
-#         batch = batch.to(device)
-#         optimizer.zero_grad()
-#         pred = model(batch)
-#         true = batch.y.view(-1, 1)
-#         loss = F.mse_loss(pred, true, reduction='sum')
-#         loss.backward()
-#         optimizer.step()
-#         total_loss += loss.item()
-#     # model validation
-#     model.eval()
-#     val_loss = 0
-#     with torch.no_grad():
-#         for batch in val_loader:
-#             batch = batch.to(device)
-#             pred = model(batch)
-#             true = batch.y.view(-1, 1)
-#             val_loss += F.mse_loss(pred, true, reduction='sum').item()
-#
-#     # Print progress
-#     print(f'Epoch {epoch+1:03d}, Train Loss: {total_loss/len(train_loader):.4f}, '
-#           f'Val Loss: {val_loss/len(val_loader):.4f}')
-#
-#     # Learning rate scheduling
-#     scheduler.step(val_loss)
-#
-#     # Early stopping
-#     early_stopping(val_loss, model, path_2_model + '_best.pt')
-#     if early_stopping.early_stop:
-#         print("Early stopping triggered")
-#         break
-#
-# # Load best model
-# model.load_state_dict(torch.load(path_2_model + '_best.pt', weights_only=True))
-# model = model.to(device)
-#
-#
-#
-# train_pred, train_true, train_metrics = evaluate_gnn(model, train_loader, device, y_scaler, tag='megnet')
-# val_pred, val_true, val_metrics = evaluate_gnn(model, val_loader, device, y_scaler, tag='megnet')
-# test_pred, test_true, test_metrics = evaluate_gnn(model, test_loader, device, y_scaler, tag='megnet')
-#
-#
-# # Print metrics
-# print("\nTraining Set Metrics:")
-# for metric, value in train_metrics.items():
-#     print(f"{metric.upper()}: {value:.4f}")
-#
-# print("\nValidation Set Metrics:")
-# for metric, value in val_metrics.items():
-#     print(f"{metric.upper()}: {value:.4f}")
-#
-# print("\nTest Set Metrics:")
-# for metric, value in test_metrics.items():
-#     print(f"{metric.upper()}: {value:.4f}")
-#
-# #%%
-# def save_groupgat_package(
-#         trial_dir: str,
-#         model_dir: str,
-#         model: torch.nn.Module,
-#         model_hyperparameters: Dict[str, Any],
-#         training_params: Dict[str, Any],
-#         scaler: Any,
-#         model_config: Dict[str, Any],
-#         study: Any = None,
-#         metric_name: str = "metric",
-#         additional_info: Dict[str, Any] = None,
-#         timestamp: str = None
-# ) -> None:
-#     """
-#     Save GroupGAT model package including model state, hyperparameters, and configuration.
-#     """
-#     os.makedirs(trial_dir, exist_ok=True)
-#     os.makedirs(model_dir, exist_ok=True)
-#
-#     # Save model state
-#     model_path = os.path.join(model_dir, "model.pt")
-#     torch.save(model.state_dict(), model_path)
-#
-#     # Save scaler
-#     scaler_path = os.path.join(model_dir, "scaler.pkl")
-#     with open(scaler_path, 'wb') as f:
-#         pickle.dump(scaler, f)
-#
-#     # Clean hyperparameters
-#     clean_hyperparameters = {}
-#
-#     # Add non-optimized parameters
-#     clean_hyperparameters.update({
-#         'node_in_dim': model_hyperparameters['node_in_dim'],
-#         'edge_in_dim': model_hyperparameters['edge_in_dim'],
-#         'frag_dim': model_hyperparameters['frag_dim'],
-#         'global_features': model_hyperparameters['global_features']
-#     })
-#
-#     # Add fixed parameters
-#     clean_hyperparameters.update(model_config.get('fixed_params', {}))
-#
-#     # Add layer parameters
-#     layer_params = ['L1_hidden_dim', 'L1_layers_atom', 'L1_layers_mol', 'L1_dropout', 'L1_out_dim',
-#                    'L2_hidden_dim', 'L2_layers_atom', 'L2_layers_mol', 'L2_dropout', 'L2_out_dim',
-#                    'L3_hidden_dim', 'L3_layers_atom', 'L3_layers_mol', 'L3_dropout', 'L3_out_dim',
-#                    'num_heads', 'final_dropout']
-#
-#     for param in layer_params:
-#         if param in model_hyperparameters:
-#             clean_hyperparameters[param] = model_hyperparameters[param]
-#
-#     # Handle MLP layers
-#     if 'MLP_layers' in model_hyperparameters:
-#         clean_hyperparameters['MLP_layers'] = model_hyperparameters['MLP_layers']
-#
-#     # Prepare configuration
-#     config = {
-#         'model_hyperparameters': clean_hyperparameters,
-#         'training_params': training_params,
-#         'model_class': 'GroupGAT',
-#         'model_module': 'src.models.groupgat'
-#     }
-#
-#     if study is not None:
-#         config
+# construct dataframe to save the results
+df_result = df.copy()
+y_true = np.vstack((train_pred, val_true, test_true))
+y_pred = np.vstack((train_pred, val_pred, test_pred))
+split_index = df_result.columns.get_loc('label') + 1
+df_result.insert(split_index, 'pred', y_pred)
+
+# create time stamp for directory
+timestamp= datetime.now().strftime('%d%m%Y_%H%M')
+# create dir and define path for saving the predictions
+prediction_dir = f"{args.path_2_result}/{args.property}/gnn/{args.model}/rmse_{study.best_value:.3g}_{timestamp}"
+model_dir = f"{args.path_2_model}/{args.property}/gnn/{args.model}/rmse_{study.best_value:.3g}_{timestamp}"
+prediction_path = prediction_dir+'/predictions.xlsx'
+os.makedirs(prediction_dir, exist_ok=True)
+
+# save the predictions and metrics
+if not os.path.exists(prediction_path):
+    with pd.ExcelWriter(prediction_path, mode='w', engine='openpyxl') as writer:
+        df_metrics.to_excel(writer, sheet_name='metrics')
+        df_result.to_excel(writer, sheet_name='prediction')
+else:
+    # If the file already exists, append the sheets
+    with pd.ExcelWriter(prediction_path, mode='a', engine='openpyxl', if_sheet_exists='replace') as writer:
+        df_metrics.to_excel(writer, sheet_name='metrics')
+        df_result.to_excel(writer, sheet_name='prediction')
+#%%
+import json
+from src.gnn_hyperopt import NumpyEncoder
+def save_model_package(
+        trial_dir: str,
+        model_dir: str,
+        model: torch.nn.Module,
+        net_params: Dict[str, Any],
+        training_params: Dict[str, Any],
+        scaler: Any,
+        model_config: Dict[str, Any],
+        study: Any = None,
+        metric_name: str = "metric",
+        additional_info: Dict[str, Any] = None,
+        timestamp: str = None
+) -> None:
+    """
+    Save GroupGAT model package including model state, hyperparameters, and configuration.
+    """
+    # Create directories if they don't exist
+    os.makedirs(trial_dir, exist_ok=True)
+    os.makedirs(model_dir, exist_ok=True)
+
+    # Save model state in model directory
+    model_path = os.path.join(model_dir, "model.pt")
+    torch.save(model.state_dict(), model_path)
+
+    # Save scaler in model directory
+    scaler_path = os.path.join(model_dir, f"scaler.pkl")
+    with open(scaler_path, 'wb') as f:
+        pickle.dump(scaler, f)
+
+    # Print debug information
+    print("Model hyperparameters before cleaning:", net_params)
+
+    # Clean model hyperparameters - remove construction-only parameters and individual MLP dimensions
+    clean_hyperparameters = {}
+
+    # First, add inferred parameters if they were provided separately
+    for param in model_config.get('inferred_params', []):
+        param_name = param['name']
+        if param_name in ['node_in_dim', 'edge_in_dim']:
+            clean_hyperparameters[param_name] = feature_callables[param['source']]()
+
+    # Add fixed parameters
+    clean_hyperparameters.update(model_config.get('fixed_params', {}))
+
+    # Add the rest of the parameters from net_params
+    for k, v in net_params.items():
+        if k not in clean_hyperparameters:  # Don't overwrite inferred or fixed params
+            clean_hyperparameters[k] = v
+
+    # Verify all required parameters are present
+    required_params = ['node_in_dim', 'edge_in_dim', 'frag_dim', 'global_features',
+                      'L1_hidden_dim', 'L2_hidden_dim', 'L3_hidden_dim', 'MLP_layers']
+    missing_params = [param for param in required_params if param not in clean_hyperparameters]
+    if missing_params:
+        raise ValueError(f"Missing required parameters: {missing_params}")
+
+    # Prepare configuration dictionary
+    config = {
+        'model_hyperparameters': clean_hyperparameters,
+        'training_params': training_params,
+        'model_class': model.__class__.__name__,
+        'model_module': model.__class__.__module__
+    }
+
+    if study is not None:
+        config['optimization'] = {
+            'study_best_params': study.best_params,
+            'study_best_value': float(study.best_value),
+            'n_trials': len(study.trials),
+            'direction': study.direction.name
+        }
+        # Save trials as DataFrame
+        study_trials = study.trials_dataframe()
+        trials_path = os.path.join(trial_dir, "trials.csv")
+        study_trials.to_csv(trials_path, index=False)
+
+    if additional_info:
+        config.update(additional_info)
+
+    # Save configurations
+    trial_config_path = os.path.join(trial_dir, "results.json")
+    with open(trial_config_path, 'w') as f:
+        json.dump(config, f, indent=4, cls=NumpyEncoder)
+
+    model_config_path = os.path.join(model_dir, "model_config.json")
+    model_specific_config = {
+        'model_class': config['model_class'],
+        'model_module': config['model_module'],
+        'model_hyperparameters': clean_hyperparameters,
+        'training_params': config['training_params']
+    }
+    with open(model_config_path, 'w') as f:
+        json.dump(model_specific_config, f, indent=4, cls=NumpyEncoder)
+
+
+save_model_package(
+        trial_dir = prediction_dir,
+        model_dir=model_dir,
+        model=best_model,
+        net_params=best_model_params,
+        training_params=train_params,
+        scaler = y_scaler,
+        model_config=model_config,
+        study = study,
+        metric_name = args.metric,
+        timestamp = timestamp,
+        additional_info = {
+            'training_date': datetime.now().strftime('%d%m%Y_%H%M'),
+            'dataset_info': 'your_dataset_details',
+            'train_performance_metrics': train_metrics,
+            'val_performance_metrics': val_metrics,
+            'test_performance_metrics': test_metrics
+        })
+
