@@ -497,7 +497,7 @@ def load_model_package(
     model_class = getattr(module, model_name)
 
     # Create model instance
-    model = model_class(**config['model_hyperparameters'])
+    model = model_class(config['model_hyperparameters'])
 
     # Load model state
     model_path = os.path.join(model_dir, "model.pt")

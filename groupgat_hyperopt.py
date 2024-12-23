@@ -588,3 +588,29 @@ save_model_package(
             'test_performance_metrics': test_metrics
         })
 
+
+#%%
+from src.gnn_hyperopt import load_model_package
+
+loaded = load_model_package(model_dir=model_dir)
+
+best_model2 = loaded['model']
+config = loaded['config']
+y_scaler = loaded['scaler']
+
+train_pred, train_true, train_metrics = evaluate_gnn(best_model2, train_loader, device, y_scaler, tag=args.model)
+val_pred, val_true, val_metrics = evaluate_gnn(best_model2, val_loader, device, y_scaler, tag=args.model)
+test_pred, test_true, test_metrics = evaluate_gnn(best_model2, test_loader, device, y_scaler, tag=args.model)
+
+# Print metrics
+print("\nTraining Set Metrics:")
+for metric, value in train_metrics.items():
+    print(f"{metric.upper()}: {value:.4f}")
+
+print("\nValidation Set Metrics:")
+for metric, value in val_metrics.items():
+    print(f"{metric.upper()}: {value:.4f}")
+
+print("\nTest Set Metrics:")
+for metric, value in test_metrics.items():
+    print(f"{metric.upper()}: {value:.4f}")
