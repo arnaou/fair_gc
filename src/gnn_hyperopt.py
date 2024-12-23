@@ -898,3 +898,383 @@ def save_megnet_package(
     }
     with open(model_config_path, 'w') as f:
         json.dump(model_specific_config, f, indent=4, cls=NumpyEncoder)
+
+
+
+def groupgat_hyperparameter_optimizer(
+        config_path: str,
+        model_name: str,
+        property_name: str,
+        train_loader,
+        val_loader,
+        feature_callables: Dict[str, Callable],
+        frag_dim: int,
+        study_name: str = None,
+        sampler_name: str = None,
+        metric_name: str = None,
+        storage: str = None,
+        n_trials: int = None,
+        load_if_exists: bool = True,
+        n_jobs: int = -1,
+        seed: int = None,
+        device: str = None
+):
+    """
+    GroupGAT model optimization using Optuna.
+
+    Args:
+        config_path: Path to YAML configuration file
+        model_name: Name of the model in config to optimize
+        property_name: Name of the property being predicted
+        train_loader: DataLoader for training data
+        val_loader: DataLoader for validation data
+        feature_callables: Dictionary of callable functions for inferred parameters
+        frag_dim: Dimension of fragment features
+        study_name: Name of the study
+        storage: Storage URL for the study
+        n_trials: Number of optimization trials
+        load_if_exists: Whether to load existing study
+        n_jobs: Number of parallel jobs
+        seed: Random seed
+        device: Device to run on
+    """
+    # Load configuration
+    config = load_config(config_path)
+    defaults = config['default_settings']
+    model_config = config['models'][model_name]
+    param_ranges = model_config['param_ranges']
+    train_range = config['training_params']
+
+    # Set random seed if provided
+    if seed is not None:
+        seed_everything(seed)
+
+    # Setup scoring function
+    metric_name = metric_name or defaults['scoring']
+    metric_config = config['metric'][metric_name]
+    metric_func = get_class_from_path(metric_config['function'])
+    direction = metric_config.get('direction', defaults['direction'])
+
+    # Setup sampler
+    sampler_name = sampler_name or defaults['sampler']
+    sampler_config = config['sampler'][sampler_name]
+    sampler = create_sampler(sampler_config, seed=seed)
+
+    # Get number of trials
+    n_trials = n_trials or defaults['n_trials']
+
+    # Set study name and storage
+    study_name = study_name or f"groupgat_{property_name}_{model_name}"
+    storage = storage or f'sqlite:///optuna_dbs/optuna_groupgat_{property_name}_{model_name}.db'
+    storage = RetryingStorage(storage)
+
+    def objective(trial: optuna.Trial) -> float:
+        # Get model class
+        model_class = get_class_from_path(model_config['class'])
+
+        # Initialize base parameters (non-optimized)
+        model_params = {
+            'node_in_dim': feature_callables['n_atom_features'](),
+            'edge_in_dim': feature_callables['n_bond_features'](),
+            'frag_dim': frag_dim,
+            'global_features': False
+        }
+
+        # Add fixed parameters if any
+        model_params.update(model_config.get('fixed_params', {}))
+
+        # Layer 1 parameters
+        model_params['L1_hidden_dim'] = suggest_gnn_parameter(trial, 'L1_hidden_dim', param_ranges['L1_hidden_dim'])
+        model_params['L1_layers_atom'] = suggest_gnn_parameter(trial, 'L1_layers_atom', param_ranges['L1_layers_atom'])
+        model_params['L1_layers_mol'] = suggest_gnn_parameter(trial, 'L1_layers_mol', param_ranges['L1_layers_mol'])
+        model_params['L1_dropout'] = suggest_gnn_parameter(trial, 'L1_dropout', param_ranges['L1_dropout'])
+        model_params['L1_out_dim'] = suggest_gnn_parameter(trial, 'L1_out_dim', param_ranges['L1_out_dim'])
+
+        # Layer 2 parameters
+        model_params['L2_hidden_dim'] = suggest_gnn_parameter(trial, 'L2_hidden_dim', param_ranges['L2_hidden_dim'])
+        model_params['L2_layers_atom'] = suggest_gnn_parameter(trial, 'L2_layers_atom', param_ranges['L2_layers_atom'])
+        model_params['L2_layers_mol'] = suggest_gnn_parameter(trial, 'L2_layers_mol', param_ranges['L2_layers_mol'])
+        model_params['L2_out_dim'] = suggest_gnn_parameter(trial, 'L2_out_dim', param_ranges['L2_out_dim'])
+        model_params['L2_dropout'] = suggest_gnn_parameter(trial, 'L2_dropout', param_ranges['L2_dropout'])
+
+        # Layer 3 parameters
+        model_params['L3_hidden_dim'] = suggest_gnn_parameter(trial, 'L3_hidden_dim', param_ranges['L3_hidden_dim'])
+        model_params['L3_layers_atom'] = suggest_gnn_parameter(trial, 'L3_layers_atom', param_ranges['L3_layers_atom'])
+        model_params['L3_layers_mol'] = suggest_gnn_parameter(trial, 'L3_layers_mol', param_ranges['L3_layers_mol'])
+        model_params['L3_out_dim'] = suggest_gnn_parameter(trial, 'L3_out_dim', param_ranges['L3_out_dim'])
+        model_params['L3_dropout'] = suggest_gnn_parameter(trial, 'L3_dropout', param_ranges['L3_dropout'])
+
+        # MLP and final parameters
+        n_mlp_layers = suggest_gnn_parameter(trial, 'n_mlp_layers', param_ranges['n_mlp_layers'])
+        mlp_dims = []
+        for i in range(n_mlp_layers):
+            dim = suggest_gnn_parameter(trial, f'mlp_dim_{i}', param_ranges['mlp_dim'])
+            mlp_dims.append(dim)
+        model_params['MLP_layers'] = mlp_dims
+
+        model_params['num_heads'] = suggest_gnn_parameter(trial, 'num_heads', param_ranges['num_heads'])
+        model_params['final_dropout'] = suggest_gnn_parameter(trial, 'final_dropout', param_ranges['final_dropout'])
+
+        # Handle training parameters
+        training_params = {}
+        for param_name, param_config in train_range.items():
+            training_params[param_name] = suggest_gnn_parameter(trial, f'train_{param_name}', param_config)
+
+        # Pack all parameters into net_params dictionary
+        net_params = {
+            'node_in_dim': model_params['node_in_dim'],
+            'edge_in_dim': model_params['edge_in_dim'],
+            'frag_dim': model_params['frag_dim'],
+            'global_features': model_params['global_features'],
+            'L1_hidden_dim': model_params['L1_hidden_dim'],
+            'L1_layers_atom': model_params['L1_layers_atom'],
+            'L1_layers_mol': model_params['L1_layers_mol'],
+            'L1_dropout': model_params['L1_dropout'],
+            'L1_out_dim': model_params['L1_out_dim'],
+            'L2_hidden_dim': model_params['L2_hidden_dim'],
+            'L2_layers_atom': model_params['L2_layers_atom'],
+            'L2_layers_mol': model_params['L2_layers_mol'],
+            'L2_dropout': model_params['L2_dropout'],
+            'L2_out_dim': model_params['L2_out_dim'],
+            'L3_hidden_dim': model_params['L3_hidden_dim'],
+            'L3_layers_atom': model_params['L3_layers_atom'],
+            'L3_layers_mol': model_params['L3_layers_mol'],
+            'L3_dropout': model_params['L3_dropout'],
+            'L3_out_dim': model_params['L3_out_dim'],
+            'MLP_layers': model_params['MLP_layers'],
+            'num_heads': model_params['num_heads'],
+            'final_dropout': model_params['final_dropout']
+        }
+        trial.set_user_attr('training_params', training_params)
+        # Create model and optimizer
+        print("Creating GroupGAT model with parameters:", model_params)
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        model = model_class(net_params).to(device)
+        optimizer = torch.optim.Adam(model.parameters(), lr=training_params.get('learning_rate', 0.001))
+        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+            optimizer,
+            mode='min',
+            factor=training_params.get('lr_reduce', 0.7),
+            patience=5,
+            min_lr=1e-6
+        )
+
+        best_val_loss = float('inf')
+        patience = 25
+        patience_counter = 0
+
+        for epoch in range(defaults['max_epochs']):
+            # Training
+            model.train()
+            total_loss = 0
+            for batch in train_loader:
+                batch = batch.to(device)
+                optimizer.zero_grad()
+                pred = model(batch)
+                loss = F.mse_loss(pred, batch.y.view(-1, 1))
+                loss.backward()
+                optimizer.step()
+                total_loss += loss.item()
+
+            # Validation
+            model.eval()
+            val_loss = 0
+            with torch.no_grad():
+                for batch in val_loader:
+                    batch = batch.to(device)
+                    pred = model(batch)
+                    loss = F.mse_loss(pred, batch.y.view(-1, 1))
+                    val_loss += loss.item()
+
+            val_loss = val_loss / len(val_loader)
+            scheduler.step(val_loss)
+
+            # Early stopping logic
+            if val_loss < best_val_loss:
+                best_val_loss = val_loss
+                save_path = os.path.join('checkpoints', f'groupgat_{property_name}_trial_{trial.number}_best_state.pt')
+                torch.save({
+                    'state_dict': model.state_dict(),
+                    'val_loss': val_loss,
+                    'epoch': epoch
+                }, save_path)
+                trial.set_user_attr('best_state_dict_path', save_path)
+
+                patience_counter = 0
+            else:
+                patience_counter += 1
+
+            if patience_counter >= patience:
+                break
+
+            trial.report(val_loss, epoch)
+        # this has to be out otherwise it take the fina learning rate
+
+        # Clean up
+        del model, optimizer
+        torch.cuda.empty_cache()
+
+        return best_val_loss
+
+    # Create and run study
+    study = optuna.create_study(
+        study_name=study_name,
+        storage=storage,
+        load_if_exists=load_if_exists,
+        direction=defaults['direction'],
+        sampler=sampler
+    )
+
+    # Calculate remaining trials
+    existing_trials = len(study.trials)
+    if n_trials is not None:
+        remaining_trials = n_trials - existing_trials
+        n_trials = max(0, remaining_trials)
+
+    print(f"Continuing from existing study with {existing_trials} trials")
+    if n_trials > 0:
+        print(f"Will run {n_trials} trials")
+    else:
+        print("The desired number of iterations have already been done, consider increasing n_trials")
+
+    # Run optimization
+    study.optimize(objective, n_trials=n_trials, n_jobs=n_jobs)
+
+    # Create best model
+    model_class = get_class_from_path(model_config['class'])
+    best_params = study.best_params
+
+    # Reconstruct best parameters
+    best_model_params = {
+        'node_in_dim': feature_callables['n_atom_features'](),
+        'edge_in_dim': feature_callables['n_bond_features'](),
+        'frag_dim': frag_dim,
+        'global_features': False
+    }
+
+    # Add fixed parameters
+    best_model_params.update(model_config.get('fixed_params', {}))
+
+    # Add optimized layer parameters
+    for param_name in param_ranges:
+        if param_name in best_params and not param_name.startswith('mlp_'):
+            best_model_params[param_name] = best_params[param_name]
+
+    # Handle MLP layers
+    n_mlp_layers = best_params['n_mlp_layers']
+    mlp_dims = []
+    for i in range(n_mlp_layers):
+        dim_key = f'mlp_dim_{i}'
+        if dim_key in best_params:
+            mlp_dims.append(best_params[dim_key])
+    best_model_params['MLP_layers'] = mlp_dims
+
+    # Create final model
+    best_model = model_class(best_model_params).to(device)
+
+    # Load best state
+    best_trial = study.best_trial
+    training_params = best_trial.user_attrs.get('training_params', {})
+
+    if 'best_state_dict_path' in best_trial.user_attrs:
+        checkpoint = torch.load(best_trial.user_attrs['best_state_dict_path'])
+        best_model.load_state_dict(checkpoint['state_dict'])
+
+    return study, best_model, training_params, model_config, best_model_params
+
+
+
+
+def save_groupgat_package(
+        trial_dir: str,
+        model_dir: str,
+        model: torch.nn.Module,
+        net_params: Dict[str, Any],
+        training_params: Dict[str, Any],
+        scaler: Any,
+        model_config: Dict[str, Any],
+        study: Any = None,
+        metric_name: str = "metric",
+        additional_info: Dict[str, Any] = None,
+        timestamp: str = None
+) -> None:
+    """
+    Save GroupGAT model package including model state, hyperparameters, and configuration.
+    """
+    # Create directories if they don't exist
+    os.makedirs(trial_dir, exist_ok=True)
+    os.makedirs(model_dir, exist_ok=True)
+
+    # Save model state in model directory
+    model_path = os.path.join(model_dir, "model.pt")
+    torch.save(model.state_dict(), model_path)
+
+    # Save scaler in model directory
+    scaler_path = os.path.join(model_dir, f"scaler.pkl")
+    with open(scaler_path, 'wb') as f:
+        pickle.dump(scaler, f)
+
+    # Print debug information
+    print("Model hyperparameters before cleaning:", net_params)
+
+    # Clean model hyperparameters - remove construction-only parameters and individual MLP dimensions
+    clean_hyperparameters = {}
+
+    # First, add inferred parameters if they were provided separately
+    for param in model_config.get('inferred_params', []):
+        param_name = param['name']
+        if param_name in ['node_in_dim', 'edge_in_dim']:
+            clean_hyperparameters[param_name] = feature_callables[param['source']]()
+
+    # Add fixed parameters
+    clean_hyperparameters.update(model_config.get('fixed_params', {}))
+
+    # Add the rest of the parameters from net_params
+    for k, v in net_params.items():
+        if k not in clean_hyperparameters:  # Don't overwrite inferred or fixed params
+            clean_hyperparameters[k] = v
+
+    # Verify all required parameters are present
+    required_params = ['node_in_dim', 'edge_in_dim', 'frag_dim', 'global_features',
+                      'L1_hidden_dim', 'L2_hidden_dim', 'L3_hidden_dim', 'MLP_layers']
+    missing_params = [param for param in required_params if param not in clean_hyperparameters]
+    if missing_params:
+        raise ValueError(f"Missing required parameters: {missing_params}")
+
+    # Prepare configuration dictionary
+    config = {
+        'model_hyperparameters': clean_hyperparameters,
+        'training_params': training_params,
+        'model_class': model.__class__.__name__,
+        'model_module': model.__class__.__module__
+    }
+
+    if study is not None:
+        config['optimization'] = {
+            'study_best_params': study.best_params,
+            'study_best_value': float(study.best_value),
+            'n_trials': len(study.trials),
+            'direction': study.direction.name
+        }
+        # Save trials as DataFrame
+        study_trials = study.trials_dataframe()
+        trials_path = os.path.join(trial_dir, "trials.csv")
+        study_trials.to_csv(trials_path, index=False)
+
+    if additional_info:
+        config.update(additional_info)
+
+    # Save configurations
+    trial_config_path = os.path.join(trial_dir, "results.json")
+    with open(trial_config_path, 'w') as f:
+        json.dump(config, f, indent=4, cls=NumpyEncoder)
+
+    model_config_path = os.path.join(model_dir, "model_config.json")
+    model_specific_config = {
+        'model_class': config['model_class'],
+        'model_module': config['model_module'],
+        'model_hyperparameters': clean_hyperparameters,
+        'training_params': config['training_params']
+    }
+    with open(model_config_path, 'w') as f:
+        json.dump(model_specific_config, f, indent=4, cls=NumpyEncoder)
