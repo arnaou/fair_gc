@@ -1,8 +1,7 @@
 import torch
 import torch.nn as nn
-from torch_geometric.nn import global_add_pool
 from torch_geometric.data import Data, Batch
-
+import torch.nn.functional as F
 from src.grape.models.AFP import AFP
 
 __all__ = ['GCGAT_v4pro']
@@ -185,6 +184,7 @@ class GCGAT_v4pro(nn.Module):
         self.output_dim = net_params['output_dim'] if 'output_dim' in net_params else 1
         self.frag_res_dim = net_params['L2_hidden_dim']  # will be needed to sum and concat the frag graph embeddings
         # assuming net_params includes dimensions for concatenated outputs (does it?)
+        self.dropout = net_params['final_dropout'] if 'dropout' in net_params else 0.0
         concat_dim = net_params['L1_hidden_dim'] + net_params['L2_hidden_dim'] + net_params['L3_hidden_dim']
 
         self.use_global_features = net_params.get('global_features', False)
@@ -192,19 +192,34 @@ class GCGAT_v4pro(nn.Module):
             self.global_feats_dim = net_params.get('num_global_feats', 1)
             concat_dim += self.global_feats_dim
 
-        self.linear_predict1 = nn.Sequential(
-            nn.Dropout(net_params['final_dropout']),
-            nn.Linear(concat_dim, int(concat_dim / 2), bias=True),
-            nn.LeakyReLU(negative_slope=0.001),
-            nn.BatchNorm1d(int(concat_dim / 2)),
-        )
+        # self.linear_predict1 = nn.Sequential(
+        #     nn.Dropout(net_params['final_dropout']),
+        #     nn.Linear(concat_dim, int(concat_dim / 2), bias=True),
+        #     nn.LeakyReLU(negative_slope=0.001),
+        #     nn.BatchNorm1d(int(concat_dim / 2)),
+        # )
+        #
+        # self.linear_predict2 = nn.Sequential()
+        # mid_dim = int(concat_dim / 2)
+        # for _ in range(net_params['MLP_layers'] - 1):
+        #     self.linear_predict2.append(nn.Linear(mid_dim, mid_dim, bias=True))
+        #     self.linear_predict2.append(nn.LeakyReLU(negative_slope=0.001))
+        # self.linear_predict2.append(nn.Linear(mid_dim, self.output_dim, bias=True))
 
-        self.linear_predict2 = nn.Sequential()
-        mid_dim = int(concat_dim / 2)
-        for _ in range(net_params['MLP_layers'] - 1):
-            self.linear_predict2.append(nn.Linear(mid_dim, mid_dim, bias=True))
-            self.linear_predict2.append(nn.LeakyReLU(negative_slope=0.001))
-        self.linear_predict2.append(nn.Linear(mid_dim, self.output_dim, bias=True))
+        # Flexible MLP layers
+        self.mlp_layers = torch.nn.ModuleList()
+
+        # First layer from hidden_channels to first MLP dimension
+        self.mlp_layers.append(nn.Linear(concat_dim, net_params['MLP_layers'][0]))
+
+        # Middle layers
+        for i in range(len(net_params['MLP_layers']) - 1):
+            self.mlp_layers.append(
+                nn.Linear(net_params['MLP_layers'][i], net_params['MLP_layers'][i + 1])
+            )
+
+        # Final output layer
+        self.out_layer = nn.Linear(net_params['MLP_layers'][-1], self.output_dim)
 
 
     def forward(self, data, get_descriptors=False, global_feature=None):
@@ -235,15 +250,18 @@ class GCGAT_v4pro(nn.Module):
         if hasattr(data, 'global_feats') and data.global_feats is not None:
             global_feats = data.global_feats.to(concat_features.device).unsqueeze(-1)
             concat_features = torch.cat([concat_features, global_feats], dim=-1)
-        descriptors = self.linear_predict1(concat_features)
-        output = self.linear_predict2(descriptors)
+        out = concat_features
+        #descriptors = self.linear_predict1(concat_features)
+        #output = self.linear_predict2(descriptors)
+            # Flexible MLP layers
+        for layer in self.mlp_layers:
+            out = F.relu(layer(out))
 
-        results = [output]
+            out = F.dropout(out, p=self.dropout, training=self.training)
 
-        if get_descriptors:
-            results.append(descriptors)
+        # Final output layer
+        return self.out_layer(out)
 
-        return tuple(results) if len(results) > 1 else results[0]
 
     def reset_parameters(self):
         self.origin_module.reset_parameters()

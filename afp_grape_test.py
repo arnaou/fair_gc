@@ -115,19 +115,15 @@ net_params = {'node_in_dim': n_atom_features(),
               'L3_layers_mol': 2,
               'L3_out_dim': 50,
               'L3_dropout': 0.0,
-              'MLP_layers': 2,
+              'MLP_layers': [40, 20],
               'num_heads': 1,
-              'final_dropout': 0.1
+              'final_dropout': 0.05
               }
 
 
 
 model = GCGAT_v4pro(net_params).to(device)
 
-
-# model = AFP(node_in_dim = n_atom_features(), edge_in_dim = n_bond_features(), out_dim = 1,
-#             hidden_dim = 128, num_layers_atom = 2, num_layers_mol=2,
-#             mlp_out_hidden=[128,64,32]).to(device)
 
 optimizer = torch.optim.Adam(model.parameters(), lr=0.00526, weight_decay=0.00003250012)
 scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.8, patience=5, verbose=False)
