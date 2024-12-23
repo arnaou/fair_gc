@@ -24,7 +24,7 @@ from src.models.afp import FlexibleMLPAttentiveFP
 import torch.nn.functional as F
 from src.training import EarlyStopping
 from lightning.pytorch import seed_everything
-from src.evaluation import predict_property
+from src.evaluation import evaluate_gnn
 
 ##########################################################################################################
 # parsing arguments
@@ -150,9 +150,9 @@ model = model.to(device)
 
 
 
-train_pred, train_true, train_metrics = predict_property(model, train_loader, device, y_scaler)
-val_pred, val_true, val_metrics = predict_property(model, val_loader, device, y_scaler)
-test_pred, test_true, test_metrics = predict_property(model, test_loader, device, y_scaler)
+train_pred, train_true, train_metrics = evaluate_gnn(model, train_loader, device, y_scaler)
+val_pred, val_true, val_metrics = evaluate_gnn(model, val_loader, device, y_scaler)
+test_pred, test_true, test_metrics = evaluate_gnn(model, test_loader, device, y_scaler)
 
 
 # Print metrics

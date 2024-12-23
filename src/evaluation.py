@@ -127,8 +127,8 @@ def evaluate_gnn(model, loader, device, y_scaler=None, tag='afp'):
             true_values.extend(true.cpu().numpy())
 
     # convert to numpy
-    predictions = np.array(predictions)
-    true_values = np.array(true_values)
+    predictions = np.array(predictions).reshape(-1, 1)
+    true_values = np.array(true_values).reshape(-1, 1)
 
     # Inverse transform if scaler was used
     if y_scaler is not None:
