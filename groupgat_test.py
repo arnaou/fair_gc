@@ -27,7 +27,7 @@ from src.training import EarlyStopping
 from lightning.pytorch import seed_everything
 from src.evaluation import evaluate_gnn
 from src.grape.utils import JT_SubGraph, DataSet
-f
+
 
 ##########################################################################################################
 # parsing arguments
@@ -95,14 +95,102 @@ test_loader = DataLoader(test_dataset, batch_size=1000, shuffle=False)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 from src.grape.models.AFP import AFP
+from src.grape.models.GroupGAT import GCGAT_v4pro
+net_params = {'node_in_dim': n_atom_features(),
+              'edge_in_dim': n_bond_features(),
+              'frag_dim': frag_dim,
+              'global_features': False,
+              'L1_hidden_dim': 128,
+              'L1_layers_atom': 2,
+              'L1_layers_mol': 2,
+              'L1_dropout': 0.0,
+              'L1_out_dim': 50,
+              'L2_hidden_dim': 155,
+              'L2_layers_atom': 2,
+              'L2_layers_mol': 2,
+              'L2_out_dim': 50,
+              'L2_dropout': 0.0,
+              'L3_hidden_dim': 64,
+              'L3_layers_atom': 2,
+              'L3_layers_mol': 2,
+              'L3_out_dim': 50,
+              'L3_dropout': 0.0,
+              'MLP_layers': [40, 20],
+              'num_heads': 1,
+              'final_dropout': 0.05
+              }
 
-model = AFP
-
-model(node_in_dim = n_atom_features(), edge_in_dim = n_bond_features(), out_dim = 1,
-            hidden_dim = 128, num_layers_atom = 3)
 
 
-# def __init__(self, node_in_dim: int, edge_in_dim: int, out_dim: int = None, hidden_dim: int = 128,
-#              num_layers_atom: int = 3, num_layers_mol: int = 3, dropout: float = 0.0,
-#              regressor: bool = True, mlp_out_hidden: Union[int, list] = 512, rep_dropout: float = 0.0,
-#              num_global_feats: int = 0):
+model = GCGAT_v4pro(net_params).to(device)
+
+
+optimizer = torch.optim.Adam(model.parameters(), lr=0.00526, weight_decay=0.00003250012)
+scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.8, patience=5)
+
+# Initialize early stopping
+early_stopping = EarlyStopping(patience=25, verbose=True)
+
+num_epochs = 150
+best_val_loss = float('inf')
+
+
+for epoch in range(num_epochs):
+    # model training
+    model.train()
+    total_loss = 0
+    for batch in train_loader:
+        batch = batch.to(device)
+        optimizer.zero_grad()
+        pred = model(batch)
+        true = batch.y.view(-1, 1)
+        loss = F.mse_loss(pred, true, reduction='sum')
+        loss.backward()
+        optimizer.step()
+        total_loss += loss.item()
+    # model validation
+    model.eval()
+    val_loss = 0
+    with torch.no_grad():
+        for batch in val_loader:
+            batch = batch.to(device)
+            pred = model(batch)
+            true = batch.y.view(-1, 1)
+            val_loss += F.mse_loss(pred, true, reduction='sum').item()
+
+    # Print progress
+    print(f'Epoch {epoch+1:03d}, Train Loss: {total_loss/len(train_loader):.4f}, '
+          f'Val Loss: {val_loss/len(val_loader):.4f}')
+
+    # Learning rate scheduling
+    scheduler.step(val_loss)
+
+    # Early stopping
+    early_stopping(val_loss, model, path_2_model + '_best.pt')
+    if early_stopping.early_stop:
+        print("Early stopping triggered")
+        break
+
+# Load best model
+model.load_state_dict(torch.load(path_2_model + '_best.pt', weights_only=True))
+model = model.to(device)
+
+
+
+train_pred, train_true, train_metrics = evaluate_gnn(model, train_loader, device, y_scaler, tag='megnet')
+val_pred, val_true, val_metrics = evaluate_gnn(model, val_loader, device, y_scaler, tag='megnet')
+test_pred, test_true, test_metrics = evaluate_gnn(model, test_loader, device, y_scaler, tag='megnet')
+
+
+# Print metrics
+print("\nTraining Set Metrics:")
+for metric, value in train_metrics.items():
+    print(f"{metric.upper()}: {value:.4f}")
+
+print("\nValidation Set Metrics:")
+for metric, value in val_metrics.items():
+    print(f"{metric.upper()}: {value:.4f}")
+
+print("\nTest Set Metrics:")
+for metric, value in test_metrics.items():
+    print(f"{metric.upper()}: {value:.4f}")
