@@ -1,0 +1,72 @@
+{
+    "layer0": {
+        "_type": "choice",
+        "_value": [{
+                "_name": "Empty"
+            },
+            {
+                "_name": "Dense",
+                "size": {
+                    "_type": "quniform",
+                    "_value": [128, 512, 64]
+                },
+                "activation": {
+                    "_type": "choice",
+                    "_value": ["relu", "leaky_relu"]
+                }
+            }
+        ]
+    },
+    "layer1": {
+        "_type": "choice",
+        "_value": [{
+                "_name": "Empty"
+            },
+            {
+                "_name": "Dense",
+                "size": {
+                    "_type": "quniform",
+                    "_value": [64, 256, 32]
+                },
+                "activation": {
+                    "_type": "choice",
+                    "_value": ["relu", "leaky_relu"]
+                }
+            }
+        ]
+    },
+    "layer2": {
+        "_type": "choice",
+        "_value": [{
+                "_name": "Empty"
+            },
+            {
+                "_name": "Dense",
+                "size": {
+                    "_type": "quniform",
+                    "_value": [32, 128, 16]
+                },
+                "activation": {
+                    "_type": "choice",
+                    "_value": ["relu", "leaky_relu"]
+                }
+            }
+        ]
+    },
+    "layer3_size": {
+        "_type": "quniform",
+        "_value": [16, 64, 8]
+    },
+    "layer3_dropout": {
+        "_type": "loguniform",
+        "_value": [0.001, 0.1]
+    },
+    "layer3_activation": {
+        "_type": "choice",
+        "_value": ["relu", "leaky_relu"]
+    },
+    "learning_rate": {
+        "_type": "loguniform",
+        "_value": [0.0001, 0.01]
+    }
+} 
