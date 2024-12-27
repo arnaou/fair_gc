@@ -1,0 +1,21 @@
+{
+    "layer0": {
+        "_name": "Dense",
+        "size": 192,
+        "activation": "leaky_relu"
+    },
+    "layer1": {
+        "_name": "Dense",
+        "size": 64,
+        "activation": "leaky_relu"
+    },
+    "layer2": {
+        "_name": "Dense",
+        "size": 96,
+        "activation": "relu"
+    },
+    "layer3_size": 40,
+    "layer3_dropout": 0.05688641202530103,
+    "layer3_activation": "relu",
+    "learning_rate": 0.00109965163990563
+}

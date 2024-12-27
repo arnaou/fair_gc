@@ -1,0 +1,20 @@
+experimentName: mlp_hpo_Vc
+searchSpaceFile: /zhome/32/3/215274/jinlia/project/Adem/search_space/search_space.json
+trialCommand: python /zhome/32/3/215274/jinlia/project/Adem/config_train.py --dataset_name Vc_processed --y_name Vc --train_label label --smiles SMILES --other_columns No
+trialCodeDirectory: .
+trialConcurrency: 1
+maxTrialNumber: 500
+maxExperimentDuration: 24h
+
+tuner:
+  name: TPE
+  classArgs:
+    optimize_mode: minimize
+    tpe_args:
+      gamma: 0.25
+      n_startup_jobs: 50
+   
+
+trainingService:
+  platform: local
+  useActiveGpu: true 

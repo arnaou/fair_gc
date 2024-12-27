@@ -1,0 +1,15 @@
+{
+    "layer0": {
+        "_name": "Empty"
+    },
+    "layer1": {
+        "_name": "Empty"
+    },
+    "layer2": {
+        "_name": "Empty"
+    },
+    "layer3_size": 56,
+    "layer3_dropout": 0.0012546923176891208,
+    "layer3_activation": "leaky_relu",
+    "learning_rate": 0.008651974391005643
+}
