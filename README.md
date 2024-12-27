@@ -129,14 +129,15 @@ Together, we can make my_project **better**!
 
 First off, thanks for taking the time to contribute! Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make will benefit everybody else and are **greatly appreciated**.
 
-
 Please read [our contribution guidelines](docs/CONTRIBUTING.md), and thank you for being involved!
 
 ## Authors & contributors
 
-The original setup of this repository is by [adem aouichaoui](https://github.com/arnaou).
+The original setup of this repository is by [Adem R.N. Aouichaoui](https://github.com/arnaou).
 
-For a full list of all authors and contributors, see [the contributors page](https://github.com/arnaou/my_project/contributors).
+
+
+For a full list of all authors and contributors, see [the contributors page](https://github.com/arnaou/fair_gc/contributors).
 
 ## Security
 
@@ -147,12 +148,12 @@ _For more information and to report security issues, please refer to our [securi
 
 ## License
 
-This project is licensed under the **MIT license**.
+This project is licensed under the **GPLv3**.
 
 See [LICENSE](LICENSE) for more information.
 
 ## Acknowledgements
+Some of the code used in this project is adapted from the work by Paul Seghers. The project was conducted as part
+of his M.Sc. thesis in 2024.
 
-> **[?]**
-> If your work was funded by any organization or institution, acknowledge their support here.
-> In addition, if your work relies on other software libraries, or was inspired by looking at other work, it is appropriate to acknowledge this intellectual debt too.
+The original code can be found in the [GraPE](https://github.com/aerte/GraPE) repository.

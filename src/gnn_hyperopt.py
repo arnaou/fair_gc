@@ -1060,7 +1060,7 @@ def groupgat_hyperparameter_optimizer(
         )
 
         best_val_loss = float('inf')
-        patience = 25
+        patience = 30
         patience_counter = 0
 
         for epoch in range(defaults['max_epochs']):
@@ -1105,6 +1105,7 @@ def groupgat_hyperparameter_optimizer(
                 patience_counter += 1
 
             if patience_counter >= patience:
+
                 break
 
             trial.report(val_loss, epoch)

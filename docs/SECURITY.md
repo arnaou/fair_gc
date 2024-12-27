@@ -4,7 +4,7 @@
 
 If there are any vulnerabilities in **my_project**, don't hesitate to _report them_.
 
-1. Use any of the [private contact addresses](https://github.com/arnaou/my_project#support).
+1. Use any of the [private contact addresses](https://github.com/arnaou).
 2. Describe the vulnerability.
 
    If you have a fix, that is most welcome -- please attach or summarize it in your message!
