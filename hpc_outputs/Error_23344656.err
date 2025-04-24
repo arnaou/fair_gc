@@ -1,0 +1,216 @@
+[I 2024-12-04 14:55:05,483] A new study created in RDB with name: Tc_gpr
+[I 2024-12-04 14:55:29,535] Trial 9 finished with value: 0.9864686819484582 and parameters: {'kernel_type': 'RBF', 'length_scale': 0.000103006091673754, 'noise_level': 0.00022876651239300174, 'constant_value': 0.04818832130500423, 'nu': 0.5}. Best is trial 9 with value: 0.9864686819484582.
+[W 2024-12-04 14:55:30,558] Trial 25 failed with parameters: {'kernel_type': 'Matern', 'length_scale': 502.435602694937} because of the following error: StorageInternalError('An exception is raised during the commit. This typically happens due to invalid data in the commit, e.g. exceeding max length. ').
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 81, in _create_scoped_session
+    session.commit()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4352, in flush
+    self._flush(objects)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
+    flush_context.execute()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: INSERT INTO trial_params (trial_id, param_name, param_value, distribution_json) VALUES (?, ?, ?, ?)]
+[parameters: (26, 'noise_level', 9.992571438701794e-07, '{"name": "FloatDistribution", "attributes": {"step": null, "low": 1e-10, "high": 1.0, "log": true}}')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 197, in _run_trial
+    value_or_values = func(trial)
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 242, in objective
+    params = {
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 243, in <dictcomp>
+    name: suggest_fn(trial, name)
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 157, in <lambda>
+    return lambda trial, name: trial.suggest_float(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/trial/_trial.py", line 161, in suggest_float
+    suggested_value = self._suggest(name, distribution)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/trial/_trial.py", line 637, in _suggest
+    storage.set_trial_param(trial_id, name, param_value_in_internal_repr, distribution)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_cached_storage.py", line 171, in set_trial_param
+    self._backend.set_trial_param(trial_id, param_name, param_value_internal, distribution)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 585, in set_trial_param
+    self._set_trial_param_without_commit(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/contextlib.py", line 126, in __exit__
+    next(self.gen)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 98, in _create_scoped_session
+    raise optuna.exceptions.StorageInternalError(message) from e
+optuna.exceptions.StorageInternalError: An exception is raised during the commit. This typically happens due to invalid data in the commit, e.g. exceeding max length. 
+[W 2024-12-04 14:55:31,393] Trial 25 failed with value None.
+[I 2024-12-04 14:55:32,174] Trial 16 finished with value: 0.9864686804693108 and parameters: {'kernel_type': 'Matern', 'length_scale': 0.05113950415614796, 'noise_level': 0.00013199690840201277, 'constant_value': 1.0837604877981148, 'nu': 0.5}. Best is trial 16 with value: 0.9864686804693108.
+[I 2024-12-04 14:55:32,271] Trial 21 finished with value: 0.9982167338040404 and parameters: {'kernel_type': 'RBF', 'length_scale': 4.507076809362691e-05, 'noise_level': 5.09314351591015e-10, 'constant_value': 6.728950024418045, 'nu': 1.5}. Best is trial 16 with value: 0.9864686804693108.
+[I 2024-12-04 14:55:42,063] Trial 19 finished with value: 0.9982167338040179 and parameters: {'kernel_type': 'RBF', 'length_scale': 0.002098355507289263, 'noise_level': 5.132485987502525e-07, 'constant_value': 28.489741486023913, 'nu': 2.5}. Best is trial 16 with value: 0.9864686804693108.
+[I 2024-12-04 14:55:43,383] Trial 26 finished with value: 0.9864686819226799 and parameters: {'kernel_type': 'RBF', 'length_scale': 4.344164630003866e-05, 'noise_level': 3.6908689174677256e-06, 'constant_value': 0.0086699164428054, 'nu': 2.5}. Best is trial 16 with value: 0.9864686804693108.
+[I 2024-12-04 14:55:43,720] Trial 14 finished with value: 0.9864686819007056 and parameters: {'kernel_type': 'RBF', 'length_scale': 0.009710907154134104, 'noise_level': 1.7246856591815926e-06, 'constant_value': 2.4541986414394273e-07, 'nu': 1.5}. Best is trial 16 with value: 0.9864686804693108.
+[I 2024-12-04 14:55:44,467] Trial 3 finished with value: 0.9982170916372646 and parameters: {'kernel_type': 'RBF', 'length_scale': 0.4988407111300731, 'noise_level': 2.1524838901062894e-06, 'constant_value': 67.61259377984011, 'nu': 0.5}. Best is trial 16 with value: 0.9864686804693108.
+[I 2024-12-04 14:55:45,753] Trial 23 finished with value: 0.9864686819233036 and parameters: {'kernel_type': 'RBF', 'length_scale': 1913.4945581160707, 'noise_level': 7.288805110362257e-05, 'constant_value': 64.41184047482001, 'nu': 2.5}. Best is trial 16 with value: 0.9864686804693108.
+[I 2024-12-04 14:55:47,147] Trial 28 finished with value: 0.9982158544967741 and parameters: {'kernel_type': 'Matern', 'length_scale': 2.0343964601698246, 'noise_level': 8.111480068184494e-10, 'constant_value': 61.86065953460329, 'nu': 0.5}. Best is trial 16 with value: 0.9864686804693108.
+[I 2024-12-04 14:55:49,760] Trial 5 finished with value: 0.9864686819227988 and parameters: {'kernel_type': 'RBF', 'length_scale': 143.1017273496252, 'noise_level': 7.343900182914512e-05, 'constant_value': 0.019716288793394536, 'nu': 0.5}. Best is trial 16 with value: 0.9864686804693108.
+[I 2024-12-04 14:55:50,773] Trial 18 finished with value: 0.9982165044821966 and parameters: {'kernel_type': 'Matern', 'length_scale': 0.22976346166102923, 'noise_level': 0.002591611960424319, 'constant_value': 31.37735776455613, 'nu': 1.5}. Best is trial 16 with value: 0.9864686804693108.
+[I 2024-12-04 14:55:51,855] Trial 20 finished with value: 0.19720004026055973 and parameters: {'kernel_type': 'Matern', 'length_scale': 0.5920211249915761, 'noise_level': 0.30419090402025717, 'constant_value': 1.1900878642487203, 'nu': 0.5}. Best is trial 20 with value: 0.19720004026055973.
+[I 2024-12-04 14:55:52,219] Trial 6 finished with value: 0.9864686820742227 and parameters: {'kernel_type': 'RBF', 'length_scale': 0.00018869536775030746, 'noise_level': 0.00014481590110348693, 'constant_value': 549.3068127914142, 'nu': 2.5}. Best is trial 20 with value: 0.19720004026055973.
+[I 2024-12-04 14:55:52,412] Trial 29 finished with value: 0.9864686818585142 and parameters: {'kernel_type': 'Matern', 'length_scale': 1.225087166760889e-05, 'noise_level': 6.826192624608277e-08, 'constant_value': 0.031269489766263356, 'nu': 0.5}. Best is trial 20 with value: 0.19720004026055973.
+[I 2024-12-04 14:55:52,929] Trial 7 finished with value: 0.9864686819042462 and parameters: {'kernel_type': 'RBF', 'length_scale': 0.0006802519159553548, 'noise_level': 0.0005172736386079374, 'constant_value': 3.8123026858402715e-07, 'nu': 2.5}. Best is trial 20 with value: 0.19720004026055973.
+[I 2024-12-04 14:55:54,183] Trial 15 finished with value: 0.9864686819189401 and parameters: {'kernel_type': 'RBF', 'length_scale': 0.06622256231599652, 'noise_level': 0.0014853394855708492, 'constant_value': 4.182921575617345e-06, 'nu': 1.5}. Best is trial 20 with value: 0.19720004026055973.
+[I 2024-12-04 14:55:57,015] Trial 11 finished with value: 0.1424950545886159 and parameters: {'kernel_type': 'Matern', 'length_scale': 4.308904746954795, 'noise_level': 2.483954759642654e-05, 'constant_value': 925.405946290836, 'nu': 1.5}. Best is trial 11 with value: 0.1424950545886159.
+[I 2024-12-04 14:55:58,127] Trial 22 finished with value: 0.9864686819520407 and parameters: {'kernel_type': 'RBF', 'length_scale': 0.003921835954659726, 'noise_level': 6.701294418989111e-05, 'constant_value': 4.607348147161673e-05, 'nu': 0.5}. Best is trial 11 with value: 0.1424950545886159.
+[I 2024-12-04 14:55:58,381] Trial 27 finished with value: 0.9864686819554819 and parameters: {'kernel_type': 'Matern', 'length_scale': 7.667925019296144e-05, 'noise_level': 1.9101145096452567e-06, 'constant_value': 0.0007823264205232938, 'nu': 0.5}. Best is trial 11 with value: 0.1424950545886159.
+[I 2024-12-04 14:55:59,586] Trial 1 finished with value: 0.1477105053126093 and parameters: {'kernel_type': 'RBF', 'length_scale': 0.6153190906362938, 'noise_level': 7.6552944267493e-09, 'constant_value': 1.2540458133199507e-05, 'nu': 2.5}. Best is trial 11 with value: 0.1424950545886159.
+[I 2024-12-04 14:55:59,839] Trial 24 finished with value: 0.19720003392881058 and parameters: {'kernel_type': 'Matern', 'length_scale': 61776.652369117975, 'noise_level': 2.8834884746338894e-05, 'constant_value': 1859.6050540771657, 'nu': 0.5}. Best is trial 11 with value: 0.1424950545886159.
+[I 2024-12-04 14:56:01,599] Trial 12 finished with value: 0.9864686818869278 and parameters: {'kernel_type': 'Matern', 'length_scale': 1429.1586627236807, 'noise_level': 1.624398979236747e-06, 'constant_value': 0.3945155949002367, 'nu': 1.5}. Best is trial 11 with value: 0.1424950545886159.
+[I 2024-12-04 14:56:01,848] Trial 31 finished with value: 0.9864686819216679 and parameters: {'kernel_type': 'RBF', 'length_scale': 201.7356547577191, 'noise_level': 8.729857066178746e-10, 'constant_value': 19.847050810193615, 'nu': 0.5}. Best is trial 11 with value: 0.1424950545886159.
+[I 2024-12-04 14:56:02,899] Trial 17 finished with value: 0.14469884691264798 and parameters: {'kernel_type': 'Matern', 'length_scale': 0.5305943295111384, 'noise_level': 9.299858633093008e-07, 'constant_value': 4.085096572032984e-06, 'nu': 2.5}. Best is trial 11 with value: 0.1424950545886159.
+[I 2024-12-04 14:56:03,582] Trial 2 finished with value: 0.9864686819237122 and parameters: {'kernel_type': 'Matern', 'length_scale': 30584.75310321541, 'noise_level': 2.1889294132887076e-06, 'constant_value': 4.386843413389913e-07, 'nu': 1.5}. Best is trial 11 with value: 0.1424950545886159.
+[I 2024-12-04 14:56:04,344] Trial 4 finished with value: 0.9864686819168413 and parameters: {'kernel_type': 'Matern', 'length_scale': 4.463695858632819e-05, 'noise_level': 0.12467112753136654, 'constant_value': 0.00050072133505518, 'nu': 2.5}. Best is trial 11 with value: 0.1424950545886159.
+[I 2024-12-04 14:56:04,909] Trial 0 finished with value: 0.9864686816729646 and parameters: {'kernel_type': 'Matern', 'length_scale': 5764.6933675709015, 'noise_level': 6.12328949839038e-06, 'constant_value': 0.0020631204378540008, 'nu': 2.5}. Best is trial 11 with value: 0.1424950545886159.
+[I 2024-12-04 14:56:05,021] Trial 10 finished with value: 0.9864686819226415 and parameters: {'kernel_type': 'Matern', 'length_scale': 0.00015431732837779374, 'noise_level': 4.2397514883341116e-05, 'constant_value': 4.328220481828989e-06, 'nu': 1.5}. Best is trial 11 with value: 0.1424950545886159.
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 81, in _create_scoped_session
+    session.commit()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4352, in flush
+    self._flush(objects)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
+    flush_context.execute()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 85, in save_obj
+    _emit_update_statements(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 912, in _emit_update_statements
+    c = connection.execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: UPDATE trials SET state=?, datetime_complete=? WHERE trials.trial_id = ?]
+[parameters: ('COMPLETE', '2024-12-04 14:55:19.266872', 9)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 209, in _run_trial
+    frozen_trial = _tell_with_warning(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_tell.py", line 183, in _tell_with_warning
+    study._storage.set_trial_state_values(frozen_trial._trial_id, state, values)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_cached_storage.py", line 187, in set_trial_state_values
+    return self._backend.set_trial_state_values(trial_id, state=state, values=values)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 661, in set_trial_state_values
+    trial.datetime_complete = datetime.now()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/contextlib.py", line 126, in __exit__
+    next(self.gen)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 98, in _create_scoped_session
+    raise optuna.exceptions.StorageInternalError(message) from e
+optuna.exceptions.StorageInternalError: An exception is raised during the commit. This typically happens due to invalid data in the commit, e.g. exceeding max length. 
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/Documents/fair_gc/gc_ml.py", line 79, in <module>
+    study, best_model = create_hyperparameter_optimizer(
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 275, in create_hyperparameter_optimizer
+    study.optimize(objective, n_trials=n_trials, n_jobs=n_jobs)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/study.py", line 475, in optimize
+    _optimize(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 100, in _optimize
+    f.result()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 160, in _optimize_sequential
+    frozen_trial = _run_trial(study, func, catch)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 241, in _run_trial
+    assert False, "Should not reach."
+AssertionError: Should not reach.

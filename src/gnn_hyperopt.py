@@ -1092,7 +1092,7 @@ def groupgat_hyperparameter_optimizer(
             # Early stopping logic
             if val_loss < best_val_loss:
                 best_val_loss = val_loss
-                save_path = os.path.join('checkpoints', f'groupgat_{property_name}_trial_{trial.number}_best_state.pt')
+                save_path = os.path.join('/work3/arnaou/checkpoints', f'groupgat_{property_name}_trial_{trial.number}_best_state.pt')
                 torch.save({
                     'state_dict': model.state_dict(),
                     'val_loss': val_loss,

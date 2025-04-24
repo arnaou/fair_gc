@@ -1,0 +1,212 @@
+[I 2024-12-03 18:31:33,658] A new study created in RDB with name: Tc_svr
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+[I 2024-12-03 18:31:36,807] Trial 4 finished with value: 0.6362931637709152 and parameters: {'kernel': 'rbf', 'C': 0.3868805404927135, 'gamma': 0.0013687291947151613, 'epsilon': 0.6086519400818116}. Best is trial 4 with value: 0.6362931637709152.
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+[I 2024-12-03 18:31:37,107] Trial 0 finished with value: 157.66442683722988 and parameters: {'kernel': 'sigmoid', 'C': 5.171094831952739, 'gamma': 0.4148994059022437, 'epsilon': 0.014209584892603357}. Best is trial 4 with value: 0.6362931637709152.
+[I 2024-12-03 18:31:37,254] Trial 5 finished with value: 0.9642970460465986 and parameters: {'kernel': 'poly', 'C': 3.9635585379021787, 'gamma': 0.0004411714354030697, 'epsilon': 0.06469983909254333}. Best is trial 4 with value: 0.6362931637709152.
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+[I 2024-12-03 18:31:37,869] Trial 11 finished with value: 0.9869986813663242 and parameters: {'kernel': 'sigmoid', 'C': 2.147205564331183, 'gamma': 0.0009548690462748681, 'epsilon': 0.0030221058445712976}. Best is trial 4 with value: 0.6362931637709152.
+[I 2024-12-03 18:31:38,054] Trial 9 finished with value: 0.9646679259932103 and parameters: {'kernel': 'rbf', 'C': 0.0013395284824567722, 'gamma': 0.10715112414807722, 'epsilon': 0.02100334654787444}. Best is trial 4 with value: 0.6362931637709152.
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+[I 2024-12-03 18:31:38,876] Trial 16 finished with value: 0.9649664500534249 and parameters: {'kernel': 'poly', 'C': 3.391640072701173, 'gamma': 0.0004505005611291624, 'epsilon': 0.007062024057621538}. Best is trial 4 with value: 0.6362931637709152.
+[I 2024-12-03 18:31:38,887] Trial 12 finished with value: 0.9470751864511977 and parameters: {'kernel': 'rbf', 'C': 0.00334327672710183, 'gamma': 0.004706606591134561, 'epsilon': 0.005426535884257289}. Best is trial 4 with value: 0.6362931637709152.
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+[I 2024-12-03 18:31:39,683] Trial 18 finished with value: 54.21790031791677 and parameters: {'kernel': 'sigmoid', 'C': 4.186511217244649, 'gamma': 0.01022662062933253, 'epsilon': 0.002709010142895058}. Best is trial 2 with value: 0.6125003592698577.
+[I 2024-12-03 18:31:39,877] Trial 1 finished with value: 4.676474153868032 and parameters: {'kernel': 'sigmoid', 'C': 0.19293719244999968, 'gamma': 0.1229300987939637, 'epsilon': 0.011085037605884335}. Best is trial 2 with value: 0.6125003592698577.
+[I 2024-12-03 18:31:39,885] Trial 2 finished with value: 0.6125003592698577 and parameters: {'kernel': 'rbf', 'C': 2.239393614331402, 'gamma': 0.00021907201186771388, 'epsilon': 0.0017157948436183853}. Best is trial 2 with value: 0.6125003592698577.
+[I 2024-12-03 18:31:40,284] Trial 10 finished with value: 0.965540802165493 and parameters: {'kernel': 'poly', 'C': 45.07139837268868, 'gamma': 0.00015632521367346487, 'epsilon': 0.0041571619904060015}. Best is trial 2 with value: 0.6125003592698577.
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+[I 2024-12-03 18:31:40,649] Trial 20 finished with value: 0.902719205897098 and parameters: {'kernel': 'poly', 'C': 1.7686665816235227, 'gamma': 0.0024126386959790374, 'epsilon': 0.001986471431772225}. Best is trial 2 with value: 0.6125003592698577.
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+[I 2024-12-03 18:31:41,089] Trial 17 finished with value: 65.48302129479362 and parameters: {'kernel': 'sigmoid', 'C': 2.733860690123561, 'gamma': 0.06867294120879361, 'epsilon': 0.4011246546030967}. Best is trial 2 with value: 0.6125003592698577.
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+[I 2024-12-03 18:31:41,736] Trial 8 finished with value: 0.8214280474582752 and parameters: {'kernel': 'poly', 'C': 0.0012770159001364203, 'gamma': 0.07860966620449306, 'epsilon': 0.8063616028318505}. Best is trial 2 with value: 0.6125003592698577.
+[I 2024-12-03 18:31:41,738] Trial 13 finished with value: 72.24396679210273 and parameters: {'kernel': 'sigmoid', 'C': 4.636045177316123, 'gamma': 0.013698452091926168, 'epsilon': 0.06689721269468912}. Best is trial 2 with value: 0.6125003592698577.
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+[I 2024-12-03 18:31:42,353] Trial 19 finished with value: 0.674183396086627 and parameters: {'kernel': 'rbf', 'C': 0.1353549189122367, 'gamma': 0.0014214946005759279, 'epsilon': 0.01930125310683251}. Best is trial 29 with value: 0.5325618276885327.
+[I 2024-12-03 18:31:42,438] Trial 21 finished with value: 0.9046422072472176 and parameters: {'kernel': 'poly', 'C': 9.851783658485958, 'gamma': 0.0013308124564200077, 'epsilon': 0.027585313657796637}. Best is trial 29 with value: 0.5325618276885327.
+[I 2024-12-03 18:31:42,861] Trial 29 finished with value: 0.5325618276885327 and parameters: {'kernel': 'rbf', 'C': 16.818713157143527, 'gamma': 0.0021222606355804493, 'epsilon': 0.9594912721017322}. Best is trial 33 with value: 0.4593870135368509.
+[I 2024-12-03 18:31:43,094] Trial 33 finished with value: 0.4593870135368509 and parameters: {'kernel': 'rbf', 'C': 4.333669608069308, 'gamma': 0.0018677146048481682, 'epsilon': 0.5322091722064675}. Best is trial 33 with value: 0.4593870135368509.
+[I 2024-12-03 18:31:43,849] Trial 26 finished with value: 0.9929629168938839 and parameters: {'kernel': 'rbf', 'C': 0.006658363418930587, 'gamma': 0.00014106466235235053, 'epsilon': 0.4879071409197936}. Best is trial 33 with value: 0.4593870135368509.
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+[I 2024-12-03 18:31:44,195] Trial 23 finished with value: 0.7479615841487269 and parameters: {'kernel': 'rbf', 'C': 0.5308967174596153, 'gamma': 0.00016184869985154613, 'epsilon': 0.0026620257951919845}. Best is trial 33 with value: 0.4593870135368509.
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+[I 2024-12-03 18:31:45,227] Trial 14 finished with value: 0.35161553792148287 and parameters: {'kernel': 'linear', 'C': 10.08638939288246, 'gamma': 0.15857859489251983, 'epsilon': 0.01185308764677132}. Best is trial 14 with value: 0.35161553792148287.
+[I 2024-12-03 18:31:45,269] Trial 28 finished with value: 0.6236735328174616 and parameters: {'kernel': 'rbf', 'C': 0.2874717142591309, 'gamma': 0.0013196657935103172, 'epsilon': 0.18158387380098143}. Best is trial 14 with value: 0.35161553792148287.
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+[I 2024-12-03 18:31:46,058] Trial 39 finished with value: 0.47381057892047584 and parameters: {'kernel': 'rbf', 'C': 28.347861758470025, 'gamma': 0.0009756608318122725, 'epsilon': 0.745124958883564}. Best is trial 14 with value: 0.35161553792148287.
+[I 2024-12-03 18:31:46,184] Trial 36 finished with value: 0.606859337272039 and parameters: {'kernel': 'rbf', 'C': 2.7362138095258617, 'gamma': 0.00019309919384001147, 'epsilon': 0.002762054013303056}. Best is trial 31 with value: 0.22615945721581118.
+[I 2024-12-03 18:31:46,358] Trial 37 finished with value: 0.3907684900972108 and parameters: {'kernel': 'linear', 'C': 30.44970673043794, 'gamma': 0.003072558074685767, 'epsilon': 0.5786131274574331}. Best is trial 31 with value: 0.22615945721581118.
+[I 2024-12-03 18:31:46,426] Trial 34 finished with value: 0.6351106003757225 and parameters: {'kernel': 'sigmoid', 'C': 12.82791882032739, 'gamma': 0.0002617091486891866, 'epsilon': 0.6405873643104792}. Best is trial 31 with value: 0.22615945721581118.
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``constant_liar`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+[I 2024-12-03 18:31:46,861] Trial 30 finished with value: 0.22178007421455675 and parameters: {'kernel': 'rbf', 'C': 88.11197544214255, 'gamma': 0.014037293126187131, 'epsilon': 0.24227070135276244}. Best is trial 30 with value: 0.22178007421455675.
+[I 2024-12-03 18:31:47,443] Trial 31 finished with value: 0.22615945721581118 and parameters: {'kernel': 'rbf', 'C': 35.56547960488861, 'gamma': 0.0036752403904909926, 'epsilon': 0.0010832541198039065}. Best is trial 30 with value: 0.22178007421455675.
+[I 2024-12-03 18:31:49,507] Trial 41 finished with value: 0.3436709377072268 and parameters: {'kernel': 'linear', 'C': 0.2472062329328856, 'gamma': 0.15060898938367104, 'epsilon': 0.022164366286483956}. Best is trial 30 with value: 0.22178007421455675.
+[I 2024-12-03 18:31:49,917] Trial 6 finished with value: 0.4118393706866367 and parameters: {'kernel': 'rbf', 'C': 62.02782607094486, 'gamma': 0.324690339818222, 'epsilon': 0.013352824151892193}. Best is trial 30 with value: 0.22178007421455675.
+[I 2024-12-03 18:31:50,481] Trial 35 finished with value: 0.47075097717198755 and parameters: {'kernel': 'rbf', 'C': 31.769591950064807, 'gamma': 0.00027855012039588604, 'epsilon': 0.5801170765434103}. Best is trial 30 with value: 0.22178007421455675.
+[I 2024-12-03 18:31:50,484] Trial 51 finished with value: 0.38180947169005247 and parameters: {'kernel': 'rbf', 'C': 2.7285664485590457, 'gamma': 0.15809807493010136, 'epsilon': 0.33149900730166804}. Best is trial 30 with value: 0.22178007421455675.
+[I 2024-12-03 18:31:50,488] Trial 44 finished with value: 0.259779359535082 and parameters: {'kernel': 'rbf', 'C': 9.76197112137202, 'gamma': 0.00587760797444745, 'epsilon': 0.001195111978221708}. Best is trial 30 with value: 0.22178007421455675.
+[I 2024-12-03 18:31:52,772] Trial 46 finished with value: 0.14565651779054078 and parameters: {'kernel': 'rbf', 'C': 93.54357161541601, 'gamma': 0.006193969417257591, 'epsilon': 0.001815555416653269}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:31:52,948] Trial 50 finished with value: 0.2402166340104561 and parameters: {'kernel': 'rbf', 'C': 31.941775292003644, 'gamma': 0.0602769926806529, 'epsilon': 0.18906422899098094}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:31:53,047] Trial 55 finished with value: 0.33571229061053554 and parameters: {'kernel': 'linear', 'C': 0.3448289772469024, 'gamma': 0.03871872939821014, 'epsilon': 0.01822875312263057}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:31:53,415] Trial 56 finished with value: 0.36673099022537936 and parameters: {'kernel': 'linear', 'C': 0.09673246228718964, 'gamma': 0.022068671808800563, 'epsilon': 0.012370524814244685}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:31:53,486] Trial 52 finished with value: 0.2858211495475934 and parameters: {'kernel': 'rbf', 'C': 57.648492990453725, 'gamma': 0.126793651943363, 'epsilon': 0.13358725974906738}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:31:53,850] Trial 48 finished with value: 0.1951994582163767 and parameters: {'kernel': 'rbf', 'C': 37.560429116476, 'gamma': 0.006553699434990282, 'epsilon': 0.08340822288750331}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:31:54,148] Trial 49 finished with value: 0.3362889672756124 and parameters: {'kernel': 'linear', 'C': 0.6530862435312077, 'gamma': 0.03896625581543571, 'epsilon': 0.008610177329525268}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:31:54,483] Trial 58 finished with value: 0.4932630351093379 and parameters: {'kernel': 'rbf', 'C': 0.17183091337163167, 'gamma': 0.016839812981020847, 'epsilon': 0.0014988119554299178}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:31:54,991] Trial 32 finished with value: 0.3374871602843334 and parameters: {'kernel': 'linear', 'C': 0.3379044249920392, 'gamma': 0.05691549659857766, 'epsilon': 0.00407167066641423}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:31:55,310] Trial 59 finished with value: 0.30607513620577503 and parameters: {'kernel': 'rbf', 'C': 2.832295259975724, 'gamma': 0.007279105242747742, 'epsilon': 0.0023263856588455847}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:31:55,920] Trial 60 finished with value: 0.4564021848583812 and parameters: {'kernel': 'linear', 'C': 0.018411494228637398, 'gamma': 0.040927604410266126, 'epsilon': 0.02316914390050557}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:31:55,922] Trial 27 finished with value: 0.34987499567864433 and parameters: {'kernel': 'linear', 'C': 3.679439254790792, 'gamma': 0.057920058693736565, 'epsilon': 0.0027838053706044975}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:31:56,072] Trial 47 finished with value: 0.5488250857230295 and parameters: {'kernel': 'rbf', 'C': 72.34338378741938, 'gamma': 0.2181943636557105, 'epsilon': 0.6145653587769483}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:31:56,578] Trial 53 finished with value: 0.41759575640619373 and parameters: {'kernel': 'linear', 'C': 0.03228619815737509, 'gamma': 0.04862611801936101, 'epsilon': 0.03489144792690775}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:31:58,513] Trial 54 finished with value: 0.3932496335547765 and parameters: {'kernel': 'linear', 'C': 0.049253485013422575, 'gamma': 0.0499504506087747, 'epsilon': 0.026107424484754848}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:31:59,238] Trial 25 finished with value: 0.3344241378154211 and parameters: {'kernel': 'linear', 'C': 96.1883640737024, 'gamma': 0.0004601229932797198, 'epsilon': 0.36939218840108184}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:32:00,574] Trial 57 finished with value: 0.37853623465098557 and parameters: {'kernel': 'linear', 'C': 0.06901776243034718, 'gamma': 0.03793520923709266, 'epsilon': 0.021761680642885365}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:32:08,281] Trial 42 finished with value: 0.35269304935817625 and parameters: {'kernel': 'linear', 'C': 19.83023951865027, 'gamma': 0.3688914313797003, 'epsilon': 0.0016813442986638736}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:32:16,226] Trial 43 finished with value: 0.3542498733784854 and parameters: {'kernel': 'linear', 'C': 32.340093396572904, 'gamma': 0.6066606042314595, 'epsilon': 0.02253209366010015}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:32:25,294] Trial 45 finished with value: 0.32413136310394824 and parameters: {'kernel': 'linear', 'C': 65.17088337790858, 'gamma': 0.6698865700172756, 'epsilon': 0.10200650693708792}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:32:32,100] Trial 38 finished with value: 0.3534234456587547 and parameters: {'kernel': 'linear', 'C': 58.74523474096266, 'gamma': 0.025834126949214865, 'epsilon': 0.007327350958872215}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:33:01,081] Trial 15 finished with value: 0.5870828719666435 and parameters: {'kernel': 'poly', 'C': 15.600972566270416, 'gamma': 0.040174020670610266, 'epsilon': 0.06429134777535998}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 18:46:40,921] Trial 7 finished with value: 0.8004790884834069 and parameters: {'kernel': 'poly', 'C': 19.787185479767224, 'gamma': 0.09555613117216784, 'epsilon': 0.021604283173431008}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 19:00:23,571] Trial 24 finished with value: 0.869774643597387 and parameters: {'kernel': 'poly', 'C': 90.9589111897638, 'gamma': 0.08739591165301397, 'epsilon': 0.023592716691538337}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 19:56:53,456] Trial 22 finished with value: 0.8961187419029917 and parameters: {'kernel': 'poly', 'C': 0.590537325180788, 'gamma': 0.4875578894787635, 'epsilon': 0.00363989356768925}. Best is trial 46 with value: 0.14565651779054078.
+[I 2024-12-03 21:08:32,903] Trial 3 finished with value: 5.6283169683300445 and parameters: {'kernel': 'poly', 'C': 2.9031902768190907, 'gamma': 0.45689671263192366, 'epsilon': 0.004498943740905158}. Best is trial 46 with value: 0.14565651779054078.
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 80, in _create_scoped_session
+    yield session
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 734, in set_trial_system_attr
+    self._set_trial_attr_without_commit(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 769, in _set_trial_attr_without_commit
+    session.execute(sqlite_upsert_stmt)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2362, in execute
+    return self._execute_internal(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/bulk_persistence.py", line 1294, in orm_execute_statement
+    result = conn.execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: INSERT INTO trial_system_attributes (trial_id, "key", value_json) VALUES (?, ?, ?) ON CONFLICT (trial_id, "key") DO UPDATE SET value_json = excluded.value_json]
+[parameters: (423, 'auto:sampler', '"TPESampler"')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/Documents/fair_gc/gc_ml.py", line 64, in <module>
+    study, best_model = create_hyperparameter_optimizer(
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 272, in create_hyperparameter_optimizer
+    print(f"the desired number of iterations have already been done, consider increasing n_trials")
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/study.py", line 475, in optimize
+    _optimize(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 100, in _optimize
+    f.result()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 160, in _optimize_sequential
+    frozen_trial = _run_trial(study, func, catch)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 188, in _run_trial
+    trial = study.ask()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/study.py", line 566, in ask
+    trial = optuna.Trial(self, trial_id)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/trial/_trial.py", line 59, in __init__
+    self.study.sampler.before_trial(study, self._cached_frozen_trial)
+  File "/zhome/b1/0/88900/.cache/optunahub/api.github.com/optuna/optunahub-registry/main/package/samplers/auto_sampler/_sampler.py", line 226, in before_trial
+    study._storage.set_trial_system_attr(trial._trial_id, _SAMPLER_KEY, sampler_name)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_cached_storage.py", line 198, in set_trial_system_attr
+    self._backend.set_trial_system_attr(trial_id, key=key, value=value)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 734, in set_trial_system_attr
+    self._set_trial_attr_without_commit(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 98, in _create_scoped_session
+    raise optuna.exceptions.StorageInternalError(message) from e
+optuna.exceptions.StorageInternalError: An exception is raised during the commit. This typically happens due to invalid data in the commit, e.g. exceeding max length. 

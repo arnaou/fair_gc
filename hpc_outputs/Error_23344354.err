@@ -1,0 +1,644 @@
+[I 2024-12-04 14:52:48,510] A new study created in RDB with name: Vc_xgb
+[I 2024-12-04 14:52:53,652] Trial 12 finished with value: 0.4130895248807566 and parameters: {'n_estimators': 268, 'max_depth': 7, 'learning_rate': 0.03094779468013782, 'subsample': 0.7375844650224441, 'colsample_bytree': 0.5632387687517706, 'min_child_weight': 5, 'gamma': 0.12290178962938579, 'reg_alpha': 0.05317124476552491, 'reg_lambda': 0.002081038138128845}. Best is trial 12 with value: 0.4130895248807566.
+[I 2024-12-04 14:52:54,568] Trial 7 finished with value: 0.4203220654536948 and parameters: {'n_estimators': 139, 'max_depth': 7, 'learning_rate': 0.03822120443113875, 'subsample': 0.8422268430761383, 'colsample_bytree': 0.5023529013933096, 'min_child_weight': 4, 'gamma': 0.010399876547723686, 'reg_alpha': 1.1741690047956126e-05, 'reg_lambda': 0.0871872788380196}. Best is trial 6 with value: 0.4006736270822022.
+[I 2024-12-04 14:52:55,092] Trial 6 finished with value: 0.4006736270822022 and parameters: {'n_estimators': 955, 'max_depth': 11, 'learning_rate': 0.028283406486864202, 'subsample': 0.9554704018888724, 'colsample_bytree': 0.7829105118717921, 'min_child_weight': 1, 'gamma': 0.37125259743176925, 'reg_alpha': 8.084013069229118e-05, 'reg_lambda': 2.3358670919494693e-05}. Best is trial 14 with value: 0.4004727643177731.
+[I 2024-12-04 14:52:55,263] Trial 1 finished with value: 0.4165975348627749 and parameters: {'n_estimators': 506, 'max_depth': 3, 'learning_rate': 0.02253812278571007, 'subsample': 0.7723344055214134, 'colsample_bytree': 0.8617665865752113, 'min_child_weight': 4, 'gamma': 0.19472448628612232, 'reg_alpha': 2.7337319029068472e-05, 'reg_lambda': 0.006077889861078581}. Best is trial 14 with value: 0.4004727643177731.
+[I 2024-12-04 14:52:55,395] Trial 14 finished with value: 0.4004727643177731 and parameters: {'n_estimators': 829, 'max_depth': 6, 'learning_rate': 0.03935408508302988, 'subsample': 0.9070360771747537, 'colsample_bytree': 0.7360476204948295, 'min_child_weight': 2, 'gamma': 0.0010122245582293618, 'reg_alpha': 0.464474769850118, 'reg_lambda': 0.00119774410738043}. Best is trial 14 with value: 0.4004727643177731.
+[I 2024-12-04 14:52:55,447] Trial 15 finished with value: 0.4376409352940237 and parameters: {'n_estimators': 147, 'max_depth': 5, 'learning_rate': 0.06569486821052621, 'subsample': 0.8558042415768521, 'colsample_bytree': 0.8043128052486872, 'min_child_weight': 5, 'gamma': 9.351053493888867e-05, 'reg_alpha': 0.05115235486650283, 'reg_lambda': 1.834619597828415e-05}. Best is trial 14 with value: 0.4004727643177731.
+[I 2024-12-04 14:52:55,665] Trial 26 finished with value: 0.6362024790527168 and parameters: {'n_estimators': 126, 'max_depth': 6, 'learning_rate': 0.010278744736679916, 'subsample': 0.9431279776627411, 'colsample_bytree': 0.6332028953669306, 'min_child_weight': 5, 'gamma': 8.982431655039112e-05, 'reg_alpha': 0.027351823888895923, 'reg_lambda': 4.548355881845423e-05}. Best is trial 14 with value: 0.4004727643177731.
+[I 2024-12-04 14:52:56,155] Trial 2 finished with value: 0.41234056948852055 and parameters: {'n_estimators': 714, 'max_depth': 12, 'learning_rate': 0.01401157293037877, 'subsample': 0.9397454645418158, 'colsample_bytree': 0.6656969783768134, 'min_child_weight': 5, 'gamma': 0.01012416763542055, 'reg_alpha': 1.1546290760784803e-05, 'reg_lambda': 0.0013155399032679577}. Best is trial 14 with value: 0.4004727643177731.
+[I 2024-12-04 14:52:56,212] Trial 11 finished with value: 0.42299915764549756 and parameters: {'n_estimators': 1435, 'max_depth': 8, 'learning_rate': 0.04740538376332127, 'subsample': 0.9821860754170788, 'colsample_bytree': 0.6174391280813076, 'min_child_weight': 3, 'gamma': 0.193438070883622, 'reg_alpha': 0.00032417957349486733, 'reg_lambda': 0.0005645241468545161}. Best is trial 14 with value: 0.4004727643177731.
+[I 2024-12-04 14:52:56,429] Trial 20 finished with value: 0.4289635297084886 and parameters: {'n_estimators': 759, 'max_depth': 12, 'learning_rate': 0.04049647793509223, 'subsample': 0.9435396541250678, 'colsample_bytree': 0.9521139845060238, 'min_child_weight': 3, 'gamma': 0.0008464995573009079, 'reg_alpha': 0.000927540248241913, 'reg_lambda': 0.0139157432170014}. Best is trial 14 with value: 0.4004727643177731.
+[I 2024-12-04 14:52:56,472] Trial 4 finished with value: 0.44404616602462293 and parameters: {'n_estimators': 387, 'max_depth': 11, 'learning_rate': 0.01837109420084228, 'subsample': 0.9742380320596022, 'colsample_bytree': 0.9108952413072006, 'min_child_weight': 4, 'gamma': 1.917486078541317e-05, 'reg_alpha': 0.017852718125450404, 'reg_lambda': 0.1098002535766757}. Best is trial 14 with value: 0.4004727643177731.
+[I 2024-12-04 14:52:56,522] Trial 8 finished with value: 0.4419054628920906 and parameters: {'n_estimators': 1172, 'max_depth': 12, 'learning_rate': 0.028124923309507284, 'subsample': 0.8513748750273411, 'colsample_bytree': 0.9492757520375585, 'min_child_weight': 3, 'gamma': 0.13870237394831755, 'reg_alpha': 2.6986862544470183e-05, 'reg_lambda': 0.0001477969135469822}. Best is trial 14 with value: 0.4004727643177731.
+[I 2024-12-04 14:52:56,601] Trial 0 finished with value: 0.45454220719135546 and parameters: {'n_estimators': 243, 'max_depth': 9, 'learning_rate': 0.03322229580778893, 'subsample': 0.873625375930417, 'colsample_bytree': 0.9798271433448424, 'min_child_weight': 5, 'gamma': 0.10196336764499352, 'reg_alpha': 0.010151760375002039, 'reg_lambda': 0.018318937267572725}. Best is trial 14 with value: 0.4004727643177731.
+[I 2024-12-04 14:52:56,658] Trial 13 finished with value: 0.4453802343684496 and parameters: {'n_estimators': 1406, 'max_depth': 10, 'learning_rate': 0.08514315270279507, 'subsample': 0.8766573631347219, 'colsample_bytree': 0.9592732223487741, 'min_child_weight': 3, 'gamma': 0.3982469484123125, 'reg_alpha': 0.0005217301404711834, 'reg_lambda': 0.0004482252553982631}. Best is trial 14 with value: 0.4004727643177731.
+[I 2024-12-04 14:52:58,060] Trial 5 finished with value: 0.3936323375790539 and parameters: {'n_estimators': 989, 'max_depth': 3, 'learning_rate': 0.014362565571615634, 'subsample': 0.9346505595168044, 'colsample_bytree': 0.9438627921458125, 'min_child_weight': 2, 'gamma': 1.2628899282284922e-05, 'reg_alpha': 0.021126359509280268, 'reg_lambda': 5.07993966793455e-05}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:52:58,224] Trial 16 finished with value: 0.37977992215736867 and parameters: {'n_estimators': 793, 'max_depth': 9, 'learning_rate': 0.010875413070333862, 'subsample': 0.7530376428383891, 'colsample_bytree': 0.6483003943741235, 'min_child_weight': 2, 'gamma': 0.0001307022402782754, 'reg_alpha': 0.0003246558574464495, 'reg_lambda': 0.0010218630168967384}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:52:58,331] Trial 23 finished with value: 0.4083663050478384 and parameters: {'n_estimators': 1362, 'max_depth': 9, 'learning_rate': 0.010402510841093495, 'subsample': 0.7515848283305673, 'colsample_bytree': 0.8164024600885889, 'min_child_weight': 3, 'gamma': 0.0034015428586919336, 'reg_alpha': 0.005801127055960603, 'reg_lambda': 0.02436286388868374}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:52:58,573] Trial 17 finished with value: 0.29466360916411066 and parameters: {'n_estimators': 647, 'max_depth': 12, 'learning_rate': 0.0665955930629845, 'subsample': 0.7521088326792487, 'colsample_bytree': 0.6818285169975811, 'min_child_weight': 1, 'gamma': 2.3969990814663433e-05, 'reg_alpha': 0.0001751401945460572, 'reg_lambda': 0.00020879911689757448}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:52:58,608] Trial 24 finished with value: 0.3869721453058929 and parameters: {'n_estimators': 880, 'max_depth': 12, 'learning_rate': 0.025869406049584737, 'subsample': 0.8049761011988643, 'colsample_bytree': 0.7102000016833292, 'min_child_weight': 2, 'gamma': 3.498008693202933e-05, 'reg_alpha': 0.0007650573418631495, 'reg_lambda': 3.385839747882822e-05}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:52:58,680] Trial 19 finished with value: 0.35583109415660163 and parameters: {'n_estimators': 970, 'max_depth': 11, 'learning_rate': 0.03526405441921227, 'subsample': 0.867516099768733, 'colsample_bytree': 0.5602731059123357, 'min_child_weight': 2, 'gamma': 0.009949146046772384, 'reg_alpha': 0.06740913245623817, 'reg_lambda': 3.283520199126117e-05}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:52:58,805] Trial 3 finished with value: 0.41130241563476394 and parameters: {'n_estimators': 827, 'max_depth': 4, 'learning_rate': 0.02121118863618034, 'subsample': 0.8214943719006191, 'colsample_bytree': 0.5217887682859366, 'min_child_weight': 5, 'gamma': 0.15518309112480846, 'reg_alpha': 0.0005352378838985004, 'reg_lambda': 2.2276873323144228e-05}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:52:58,843] Trial 21 finished with value: 0.3184126111499245 and parameters: {'n_estimators': 1207, 'max_depth': 8, 'learning_rate': 0.045703285088776704, 'subsample': 0.7954887795095122, 'colsample_bytree': 0.8549700790848302, 'min_child_weight': 1, 'gamma': 0.00018373838478204422, 'reg_alpha': 0.003767837267996113, 'reg_lambda': 0.0057333869416735465}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:52:59,021] Trial 27 finished with value: 0.3975692269369193 and parameters: {'n_estimators': 1361, 'max_depth': 10, 'learning_rate': 0.013091851382059743, 'subsample': 0.9267999171459718, 'colsample_bytree': 0.6269949454080976, 'min_child_weight': 2, 'gamma': 0.00355261459502597, 'reg_alpha': 0.0003615797449628955, 'reg_lambda': 9.094732851073041e-05}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:52:59,374] Trial 18 finished with value: 0.40509895353938347 and parameters: {'n_estimators': 748, 'max_depth': 7, 'learning_rate': 0.025226733815456363, 'subsample': 0.9351491968307691, 'colsample_bytree': 0.5567589780436676, 'min_child_weight': 4, 'gamma': 0.006732235227819903, 'reg_alpha': 0.012808645164859928, 'reg_lambda': 0.030321884928199913}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:52:59,702] Trial 9 finished with value: 0.4230217852500634 and parameters: {'n_estimators': 938, 'max_depth': 10, 'learning_rate': 0.01793373626305099, 'subsample': 0.8792172053762647, 'colsample_bytree': 0.6559273472951358, 'min_child_weight': 4, 'gamma': 0.15221942420611637, 'reg_alpha': 0.006572731726386587, 'reg_lambda': 0.00042191501908563853}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:52:59,751] Trial 31 finished with value: 0.42372706379838365 and parameters: {'n_estimators': 549, 'max_depth': 7, 'learning_rate': 0.015168829820941688, 'subsample': 0.9195364520695973, 'colsample_bytree': 0.6864748048120632, 'min_child_weight': 5, 'gamma': 0.0002688446943225738, 'reg_alpha': 0.0036763362056531895, 'reg_lambda': 0.0015308546234614627}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:53:00,035] Trial 22 finished with value: 0.3993383011071085 and parameters: {'n_estimators': 1084, 'max_depth': 5, 'learning_rate': 0.08906417622573724, 'subsample': 0.9268315595954979, 'colsample_bytree': 0.5942919674863054, 'min_child_weight': 5, 'gamma': 0.00016795951065418517, 'reg_alpha': 0.01965845332888948, 'reg_lambda': 0.0009367951294896507}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:53:00,037] Trial 10 finished with value: 0.40365315849651157 and parameters: {'n_estimators': 1272, 'max_depth': 5, 'learning_rate': 0.010122367294057346, 'subsample': 0.8687926632225387, 'colsample_bytree': 0.6196343223666416, 'min_child_weight': 3, 'gamma': 0.0019163549507947536, 'reg_alpha': 0.00022969285063327276, 'reg_lambda': 0.0005583529755829269}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:53:00,718] Trial 29 finished with value: 0.3975640933305522 and parameters: {'n_estimators': 1315, 'max_depth': 3, 'learning_rate': 0.018318214317024142, 'subsample': 0.9696407003575082, 'colsample_bytree': 0.6326103829325367, 'min_child_weight': 4, 'gamma': 0.053328168181165835, 'reg_alpha': 0.00010676099037517669, 'reg_lambda': 0.1077838734241085}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:53:00,822] Trial 28 finished with value: 0.4063833460425605 and parameters: {'n_estimators': 340, 'max_depth': 11, 'learning_rate': 0.05094653754539521, 'subsample': 0.8097357054121841, 'colsample_bytree': 0.8073807468361107, 'min_child_weight': 2, 'gamma': 1.4672285898309212e-05, 'reg_alpha': 0.0041817202426981575, 'reg_lambda': 0.02707416451381767}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:53:03,252] Trial 25 finished with value: 0.37730010824587656 and parameters: {'n_estimators': 1421, 'max_depth': 7, 'learning_rate': 0.013667835793263245, 'subsample': 0.7322718204891322, 'colsample_bytree': 0.6422458336484127, 'min_child_weight': 2, 'gamma': 0.09408961333772313, 'reg_alpha': 0.00039843855972777464, 'reg_lambda': 0.006095162182450184}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:53:04,080] Trial 30 finished with value: 0.42360527367136785 and parameters: {'n_estimators': 465, 'max_depth': 3, 'learning_rate': 0.01849787761394436, 'subsample': 0.9319583978114037, 'colsample_bytree': 0.617714839711262, 'min_child_weight': 3, 'gamma': 0.0026851101832836947, 'reg_alpha': 0.0022401485998555814, 'reg_lambda': 0.00012928786018879073}. Best is trial 17 with value: 0.29466360916411066.
+[I 2024-12-04 14:53:09,433] Trial 32 finished with value: 0.2560584171039051 and parameters: {'n_estimators': 605, 'max_depth': 12, 'learning_rate': 0.09204835856587162, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 4.4543822278744406e-05, 'reg_lambda': 0.00018527495927604586}. Best is trial 32 with value: 0.2560584171039051.
+[I 2024-12-04 14:53:14,470] Trial 35 finished with value: 0.2556133608382932 and parameters: {'n_estimators': 605, 'max_depth': 12, 'learning_rate': 0.09187245105108985, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 4.4816046869178304e-05, 'reg_lambda': 0.00018482233812539326}. Best is trial 35 with value: 0.2556133608382932.
+[I 2024-12-04 14:53:18,219] Trial 34 finished with value: 0.2569528464019815 and parameters: {'n_estimators': 659, 'max_depth': 12, 'learning_rate': 0.09496639794767242, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0001162994503654833, 'reg_alpha': 0.00022322645970886633, 'reg_lambda': 0.00010928979803428887}. Best is trial 35 with value: 0.2556133608382932.
+[I 2024-12-04 14:53:18,928] Trial 36 finished with value: 0.2552125347471869 and parameters: {'n_estimators': 605, 'max_depth': 12, 'learning_rate': 0.09206121045532566, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 4.533525170201872e-05, 'reg_lambda': 0.00018514943483538955}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:21,581] Trial 33 finished with value: 0.2583661050685033 and parameters: {'n_estimators': 646, 'max_depth': 12, 'learning_rate': 0.09130434340866447, 'subsample': 0.7, 'colsample_bytree': 0.5043752440902157, 'min_child_weight': 1, 'gamma': 7.649438432727528e-05, 'reg_alpha': 6.961154114647065e-05, 'reg_lambda': 0.0002626401101377099}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:24,718] Trial 38 finished with value: 0.26202186383568427 and parameters: {'n_estimators': 880, 'max_depth': 10, 'learning_rate': 0.08606783196105612, 'subsample': 0.7, 'colsample_bytree': 0.5322325531180943, 'min_child_weight': 1, 'gamma': 6.62700593159579e-05, 'reg_alpha': 0.0005682885119520191, 'reg_lambda': 0.0004813520720367999}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:27,149] Trial 40 finished with value: 0.26288011257682603 and parameters: {'n_estimators': 880, 'max_depth': 10, 'learning_rate': 0.0860670858535602, 'subsample': 0.7, 'colsample_bytree': 0.532229428023902, 'min_child_weight': 1, 'gamma': 6.629383316138355e-05, 'reg_alpha': 0.0005683839578823435, 'reg_lambda': 0.00048159826015185955}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:28,617] Trial 39 finished with value: 0.26014119900431343 and parameters: {'n_estimators': 879, 'max_depth': 10, 'learning_rate': 0.08612153828898014, 'subsample': 0.7, 'colsample_bytree': 0.53190951825232, 'min_child_weight': 1, 'gamma': 6.686610780333407e-05, 'reg_alpha': 0.0005712629334285407, 'reg_lambda': 0.0004777136414982227}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:31,016] Trial 37 finished with value: 0.2628999958395924 and parameters: {'n_estimators': 880, 'max_depth': 10, 'learning_rate': 0.08606174640796517, 'subsample': 0.7, 'colsample_bytree': 0.5322276373297223, 'min_child_weight': 1, 'gamma': 6.62922272758722e-05, 'reg_alpha': 0.0005682703359223487, 'reg_lambda': 0.0004818371290289209}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:32,227] Trial 53 finished with value: 0.2565474113449977 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08796417589996139, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.558500558519915e-05, 'reg_alpha': 5.970899688500315e-05, 'reg_lambda': 0.00010963629599439006}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:34,591] Trial 55 finished with value: 0.2565474113449977 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08796417589996139, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.558500558519915e-05, 'reg_alpha': 5.970899688500315e-05, 'reg_lambda': 0.00010963629599439006}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:36,503] Trial 56 finished with value: 0.25590210134294433 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08798751797914864, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.5524432686490264e-05, 'reg_alpha': 5.91284735492768e-05, 'reg_lambda': 0.0001100496338287016}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:36,679] Trial 60 finished with value: 0.2567705891525934 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.0879658582537024, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.5586937754511233e-05, 'reg_alpha': 5.958943125199215e-05, 'reg_lambda': 0.00010964907668614111}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:37,163] Trial 46 finished with value: 0.2565474113449977 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08796417589996139, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.558500558519915e-05, 'reg_alpha': 5.970899688500315e-05, 'reg_lambda': 0.00010963629599439006}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:37,163] Trial 51 finished with value: 0.2584622830607704 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08797002757169285, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.5553441527945673e-05, 'reg_alpha': 5.926797902102819e-05, 'reg_lambda': 0.0001098075433646975}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:38,511] Trial 45 finished with value: 0.2573500618457258 and parameters: {'n_estimators': 805, 'max_depth': 12, 'learning_rate': 0.09106443821727911, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 2.6077657318044038e-05, 'reg_alpha': 0.00022010206528475966, 'reg_lambda': 0.00023191552116050222}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:38,974] Trial 48 finished with value: 0.2556801549401306 and parameters: {'n_estimators': 805, 'max_depth': 12, 'learning_rate': 0.0911258295969402, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 2.6260749099727187e-05, 'reg_alpha': 0.0002208081485724287, 'reg_lambda': 0.00023005327800633424}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:39,703] Trial 50 finished with value: 0.2584422553864506 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08801758608810155, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.5578191502480122e-05, 'reg_alpha': 5.905126534796926e-05, 'reg_lambda': 0.00010992016102954231}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:40,487] Trial 41 finished with value: 0.25735005042414755 and parameters: {'n_estimators': 805, 'max_depth': 12, 'learning_rate': 0.09106504683149964, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 2.607894705182893e-05, 'reg_alpha': 0.00022011398997510745, 'reg_lambda': 0.0002319106589465759}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:42,874] Trial 52 finished with value: 0.2564676747563932 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08796315374545502, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.5573560862309366e-05, 'reg_alpha': 5.935032994923427e-05, 'reg_lambda': 0.00010963780844560471}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:42,945] Trial 44 finished with value: 0.2565474113449977 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08796417589996139, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.558500558519915e-05, 'reg_alpha': 5.970899688500315e-05, 'reg_lambda': 0.00010963629599439006}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:43,846] Trial 49 finished with value: 0.2565474113449977 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08796417589996139, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.558500558519915e-05, 'reg_alpha': 5.970899688500315e-05, 'reg_lambda': 0.00010963629599439006}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:44,211] Trial 57 finished with value: 0.2563095995064093 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08796915602319712, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.558064249153917e-05, 'reg_alpha': 5.95329922164169e-05, 'reg_lambda': 0.00010970779353113801}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:44,726] Trial 54 finished with value: 0.2565474113449977 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08796417589996139, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.558500558519915e-05, 'reg_alpha': 5.970899688500315e-05, 'reg_lambda': 0.00010963629599439006}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:45,274] Trial 43 finished with value: 0.2584876706914601 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08797065558279449, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.5554151040440047e-05, 'reg_alpha': 5.925120409592729e-05, 'reg_lambda': 0.00010986057790237825}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:46,283] Trial 58 finished with value: 0.2583861570573133 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08797026486249326, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.555028295364279e-05, 'reg_alpha': 5.922456631638737e-05, 'reg_lambda': 0.0001098557750336751}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:46,531] Trial 59 finished with value: 0.2567768750470573 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08795807706587977, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.542552022669524e-05, 'reg_alpha': 5.896852376366916e-05, 'reg_lambda': 0.00011018589536060703}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:46,574] Trial 42 finished with value: 0.25664553839068494 and parameters: {'n_estimators': 805, 'max_depth': 12, 'learning_rate': 0.0910633979745887, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 2.6075183165581278e-05, 'reg_alpha': 0.0002200759908035655, 'reg_lambda': 0.00023192301582272582}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:46,684] Trial 63 finished with value: 0.2565898577368331 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.0879621337127947, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.5571434222581e-05, 'reg_alpha': 5.934228326620445e-05, 'reg_lambda': 0.00010960424841931052}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:47,070] Trial 62 finished with value: 0.25574049815700445 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08798704109635802, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.5541554313604805e-05, 'reg_alpha': 5.9225991932663655e-05, 'reg_lambda': 0.00010990710878283877}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:47,434] Trial 47 finished with value: 0.2565474113449977 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08796417589996139, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.558500558519915e-05, 'reg_alpha': 5.970899688500315e-05, 'reg_lambda': 0.00010963629599439006}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:47,925] Trial 61 finished with value: 0.2583861861009559 and parameters: {'n_estimators': 780, 'max_depth': 12, 'learning_rate': 0.08797112591404954, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.5550530598484432e-05, 'reg_alpha': 5.924174770378166e-05, 'reg_lambda': 0.00010985329970579431}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:48,051] Trial 64 finished with value: 0.2561053696397692 and parameters: {'n_estimators': 792, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.00012083027804624486}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:52,203] Trial 74 finished with value: 0.2633511526305464 and parameters: {'n_estimators': 700, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 36 with value: 0.2552125347471869.
+[I 2024-12-04 14:53:54,000] Trial 66 finished with value: 0.2546203426015856 and parameters: {'n_estimators': 804, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.0015223439445436135}. Best is trial 66 with value: 0.2546203426015856.
+[I 2024-12-04 14:53:55,300] Trial 69 finished with value: 0.2545330132567017 and parameters: {'n_estimators': 749, 'max_depth': 12, 'learning_rate': 0.09999999999999998, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 69 with value: 0.2545330132567017.
+[I 2024-12-04 14:53:55,308] Trial 65 finished with value: 0.25533564371797346 and parameters: {'n_estimators': 797, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1.007822077275421e-05, 'reg_lambda': 9.607328501470499e-05}. Best is trial 69 with value: 0.2545330132567017.
+[I 2024-12-04 14:53:57,736] Trial 67 finished with value: 0.2530436221270857 and parameters: {'n_estimators': 806, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.002949124611821293}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:53:59,659] Trial 83 finished with value: 0.32903902157189635 and parameters: {'n_estimators': 1146, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:01,430] Trial 71 finished with value: 0.2545021813815921 and parameters: {'n_estimators': 751, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:01,579] Trial 73 finished with value: 0.2633511526305464 and parameters: {'n_estimators': 700, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:02,285] Trial 68 finished with value: 0.25478064230265784 and parameters: {'n_estimators': 741, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:03,265] Trial 77 finished with value: 0.3286093240653413 and parameters: {'n_estimators': 1140, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:03,368] Trial 81 finished with value: 0.32630274917583224 and parameters: {'n_estimators': 1071, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 1e-05}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:04,463] Trial 85 finished with value: 0.3291258174944041 and parameters: {'n_estimators': 1148, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.4999999999999991, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:04,756] Trial 82 finished with value: 0.32630274917583224 and parameters: {'n_estimators': 1071, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 1e-05}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:06,318] Trial 72 finished with value: 0.2544884243675009 and parameters: {'n_estimators': 750, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:07,223] Trial 75 finished with value: 0.26333304292322124 and parameters: {'n_estimators': 697, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:07,335] Trial 87 finished with value: 0.3297183587594725 and parameters: {'n_estimators': 1151, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:07,889] Trial 78 finished with value: 0.29335884726226835 and parameters: {'n_estimators': 1047, 'max_depth': 10, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 1e-05}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:10,065] Trial 76 finished with value: 0.2971072040110243 and parameters: {'n_estimators': 1084, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:10,234] Trial 97 finished with value: 0.32977703387791796 and parameters: {'n_estimators': 1155, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:10,568] Trial 86 finished with value: 0.3297183587594725 and parameters: {'n_estimators': 1151, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:11,246] Trial 96 finished with value: 0.32977703387791796 and parameters: {'n_estimators': 1155, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:11,451] Trial 79 finished with value: 0.3282108169562396 and parameters: {'n_estimators': 1138, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.4999999999999991}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:12,697] Trial 70 finished with value: 0.254546294072901 and parameters: {'n_estimators': 747, 'max_depth': 12, 'learning_rate': 0.09999999999999998, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:13,212] Trial 80 finished with value: 0.3286093240653413 and parameters: {'n_estimators': 1140, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:13,847] Trial 95 finished with value: 0.32977703387791796 and parameters: {'n_estimators': 1155, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:14,611] Trial 94 finished with value: 0.32977703387791796 and parameters: {'n_estimators': 1155, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:16,639] Trial 88 finished with value: 0.3292685680452174 and parameters: {'n_estimators': 1149, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:16,999] Trial 98 finished with value: 0.3282426794197236 and parameters: {'n_estimators': 1134, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:17,579] Trial 100 finished with value: 0.3032550705852453 and parameters: {'n_estimators': 1131, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:20,839] Trial 101 finished with value: 0.29694694744588385 and parameters: {'n_estimators': 1102, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:21,550] Trial 99 finished with value: 0.3032550705852453 and parameters: {'n_estimators': 1131, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:24,167] Trial 92 finished with value: 0.3292685680452174 and parameters: {'n_estimators': 1149, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:25,435] Trial 103 finished with value: 0.2682620959230417 and parameters: {'n_estimators': 1006, 'max_depth': 12, 'learning_rate': 0.06583854403463321, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.4999999999999991}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:27,244] Trial 93 finished with value: 0.3292685680452174 and parameters: {'n_estimators': 1149, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:28,102] Trial 106 finished with value: 0.2648746833030989 and parameters: {'n_estimators': 703, 'max_depth': 9, 'learning_rate': 0.09999999999999998, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:29,440] Trial 91 finished with value: 0.3292685680452174 and parameters: {'n_estimators': 1149, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:30,053] Trial 105 finished with value: 0.26484264522234646 and parameters: {'n_estimators': 700, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:31,488] Trial 102 finished with value: 0.2626880965368124 and parameters: {'n_estimators': 700, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.4999999999999991}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:33,147] Trial 104 finished with value: 0.2626756940129636 and parameters: {'n_estimators': 699, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:34,893] Trial 84 finished with value: 0.3292685680452174 and parameters: {'n_estimators': 1149, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.4999999999999991}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:35,860] Trial 118 finished with value: 0.2648029619598544 and parameters: {'n_estimators': 694, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:36,822] Trial 89 finished with value: 0.3292685680452174 and parameters: {'n_estimators': 1149, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:40,130] Trial 112 finished with value: 0.2647588011780091 and parameters: {'n_estimators': 691, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:42,289] Trial 119 finished with value: 0.2648029619598544 and parameters: {'n_estimators': 694, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.4999999999999991}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:44,283] Trial 113 finished with value: 0.2647616548222302 and parameters: {'n_estimators': 692, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:45,849] Trial 109 finished with value: 0.2682443934139019 and parameters: {'n_estimators': 1009, 'max_depth': 12, 'learning_rate': 0.06461568668708362, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:46,643] Trial 108 finished with value: 0.2668568049442615 and parameters: {'n_estimators': 1010, 'max_depth': 12, 'learning_rate': 0.06445105772842749, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:48,342] Trial 107 finished with value: 0.27022319350535934 and parameters: {'n_estimators': 1009, 'max_depth': 12, 'learning_rate': 0.06499204314040744, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:48,413] Trial 115 finished with value: 0.2647616548222302 and parameters: {'n_estimators': 692, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:48,748] Trial 117 finished with value: 0.2665423801889649 and parameters: {'n_estimators': 723, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1.600311557483604e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:50,880] Trial 90 finished with value: 0.3291258174944041 and parameters: {'n_estimators': 1148, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 0.5, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:51,011] Trial 122 finished with value: 0.26654245566525686 and parameters: {'n_estimators': 723, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1.6159390533492114e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:51,554] Trial 129 finished with value: 0.2631976838656196 and parameters: {'n_estimators': 729, 'max_depth': 8, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:52,737] Trial 123 finished with value: 0.266542382094331 and parameters: {'n_estimators': 723, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1.603675648946563e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:53,124] Trial 127 finished with value: 0.2632148431426949 and parameters: {'n_estimators': 726, 'max_depth': 8, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:53,635] Trial 130 finished with value: 0.2631976838656196 and parameters: {'n_estimators': 729, 'max_depth': 8, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.4999999999999991}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:54,046] Trial 116 finished with value: 0.2648029619598544 and parameters: {'n_estimators': 694, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:54,899] Trial 114 finished with value: 0.26654239867047985 and parameters: {'n_estimators': 723, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1.6292504263014733e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:55,304] Trial 126 finished with value: 0.2632148431426949 and parameters: {'n_estimators': 726, 'max_depth': 8, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:56,520] Trial 131 finished with value: 0.25316616335191433 and parameters: {'n_estimators': 548, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:56,528] Trial 125 finished with value: 0.26654234144683747 and parameters: {'n_estimators': 723, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1.5891019600988463e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:56,617] Trial 110 finished with value: 0.2647809208313368 and parameters: {'n_estimators': 690, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:56,808] Trial 121 finished with value: 0.2665424082820171 and parameters: {'n_estimators': 723, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1.616366656718915e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:57,450] Trial 133 finished with value: 0.28727899894946174 and parameters: {'n_estimators': 318, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:58,819] Trial 111 finished with value: 0.2647809208313368 and parameters: {'n_estimators': 690, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:59,517] Trial 132 finished with value: 0.2541146411421432 and parameters: {'n_estimators': 555, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1.2024677531835535e-05, 'reg_lambda': 1e-05}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:59,521] Trial 124 finished with value: 0.2665423011458734 and parameters: {'n_estimators': 723, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1.590436673046215e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:59,731] Trial 135 finished with value: 0.36561477760577565 and parameters: {'n_estimators': 979, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.5, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:59,895] Trial 120 finished with value: 0.26478401680754343 and parameters: {'n_estimators': 695, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.4999999999999991}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:54:59,897] Trial 128 finished with value: 0.2632186563916323 and parameters: {'n_estimators': 727, 'max_depth': 8, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.4999999999999991}. Best is trial 67 with value: 0.2530436221270857.
+[I 2024-12-04 14:55:00,036] Trial 137 finished with value: 0.2614726879618012 and parameters: {'n_estimators': 501, 'max_depth': 8, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:00,043] Trial 134 finished with value: 0.2609833525505167 and parameters: {'n_estimators': 515, 'max_depth': 8, 'learning_rate': 0.09999999999999998, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:00,222] Trial 138 finished with value: 0.2615842049033481 and parameters: {'n_estimators': 499, 'max_depth': 8, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:00,606] Trial 140 finished with value: 0.26237267566851014 and parameters: {'n_estimators': 413, 'max_depth': 6, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:00,745] Trial 136 finished with value: 0.2529704454797877 and parameters: {'n_estimators': 541, 'max_depth': 9, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:00,788] Trial 139 finished with value: 0.2616659338991743 and parameters: {'n_estimators': 490, 'max_depth': 8, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:03,599] Trial 142 finished with value: 0.2614629492614683 and parameters: {'n_estimators': 504, 'max_depth': 8, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:04,113] Trial 143 finished with value: 0.287366660397061 and parameters: {'n_estimators': 310, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:04,283] Trial 141 finished with value: 0.26531808264827456 and parameters: {'n_estimators': 447, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1.3067992114951096e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:05,139] Trial 147 finished with value: 0.2579309180522603 and parameters: {'n_estimators': 350, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:07,700] Trial 144 finished with value: 0.35851450510445315 and parameters: {'n_estimators': 208, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.5, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:08,489] Trial 145 finished with value: 0.2870811992705684 and parameters: {'n_estimators': 307, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:10,801] Trial 146 finished with value: 0.2582756728343017 and parameters: {'n_estimators': 341, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:12,855] Trial 150 finished with value: 0.36003541108659454 and parameters: {'n_estimators': 100, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.5, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:13,356] Trial 151 finished with value: 0.36431097236802096 and parameters: {'n_estimators': 100, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.5, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:14,817] Trial 149 finished with value: 0.36003541108659454 and parameters: {'n_estimators': 100, 'max_depth': 12, 'learning_rate': 0.09999999999999998, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.5, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:15,319] Trial 148 finished with value: 0.3596263364616614 and parameters: {'n_estimators': 196, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.5, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:22,738] Trial 153 finished with value: 0.3083380992781557 and parameters: {'n_estimators': 887, 'max_depth': 3, 'learning_rate': 0.03536201865679854, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:25,429] Trial 154 finished with value: 0.36003541108659454 and parameters: {'n_estimators': 100, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.5, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:26,480] Trial 157 finished with value: 0.25809495684821954 and parameters: {'n_estimators': 578, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.6876618150835144e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:31,101] Trial 155 finished with value: 0.2545076926988306 and parameters: {'n_estimators': 563, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.3907947462034685e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 136 with value: 0.2529704454797877.
+[I 2024-12-04 14:55:34,716] Trial 163 finished with value: 0.2468611191985654 and parameters: {'n_estimators': 648, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0020158692132296644, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 163 with value: 0.2468611191985654.
+[I 2024-12-04 14:55:35,654] Trial 162 finished with value: 0.2578915246193508 and parameters: {'n_estimators': 576, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.7218250658600928e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 163 with value: 0.2468611191985654.
+[I 2024-12-04 14:55:35,719] Trial 167 finished with value: 0.24853616578258528 and parameters: {'n_estimators': 648, 'max_depth': 5, 'learning_rate': 0.09999999999999998, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.002023199327201719, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 163 with value: 0.2468611191985654.
+[I 2024-12-04 14:55:38,588] Trial 171 finished with value: 0.25802193537101575 and parameters: {'n_estimators': 581, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.408366535773668e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 163 with value: 0.2468611191985654.
+[I 2024-12-04 14:55:40,033] Trial 164 finished with value: 0.24872289491433483 and parameters: {'n_estimators': 657, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0018030542129384803, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 163 with value: 0.2468611191985654.
+[I 2024-12-04 14:55:40,076] Trial 158 finished with value: 0.25809495684821954 and parameters: {'n_estimators': 578, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.6876848987587943e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 163 with value: 0.2468611191985654.
+[I 2024-12-04 14:55:40,089] Trial 152 finished with value: 0.3553372786319502 and parameters: {'n_estimators': 850, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.4999999999999991, 'reg_alpha': 0.0019619066304926995, 'reg_lambda': 1e-05}. Best is trial 163 with value: 0.2468611191985654.
+[I 2024-12-04 14:55:40,092] Trial 168 finished with value: 0.24818881586063218 and parameters: {'n_estimators': 648, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0020183292374724065, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 163 with value: 0.2468611191985654.
+[I 2024-12-04 14:55:41,796] Trial 174 finished with value: 0.25867074471381485 and parameters: {'n_estimators': 581, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.4093121810733674e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 163 with value: 0.2468611191985654.
+[I 2024-12-04 14:55:43,148] Trial 166 finished with value: 0.2582742176138942 and parameters: {'n_estimators': 578, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.6867582229258712e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 163 with value: 0.2468611191985654.
+[I 2024-12-04 14:55:45,447] Trial 170 finished with value: 0.25738571696534257 and parameters: {'n_estimators': 580, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.4011148671085993e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 163 with value: 0.2468611191985654.
+[I 2024-12-04 14:55:45,493] Trial 172 finished with value: 0.2479336382382616 and parameters: {'n_estimators': 657, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.001820684196093047, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 163 with value: 0.2468611191985654.
+[I 2024-12-04 14:55:47,249] Trial 161 finished with value: 0.2512231968815468 and parameters: {'n_estimators': 624, 'max_depth': 10, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 3.8016741954957905e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 163 with value: 0.2468611191985654.
+[I 2024-12-04 14:55:47,638] Trial 165 finished with value: 0.2809265713148198 and parameters: {'n_estimators': 588, 'max_depth': 4, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 163 with value: 0.2468611191985654.
+[I 2024-12-04 14:55:48,423] Trial 156 finished with value: 0.25816172951647054 and parameters: {'n_estimators': 614, 'max_depth': 4, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0002649475729928789, 'reg_alpha': 1e-05, 'reg_lambda': 0.025616706283226185}. Best is trial 163 with value: 0.2468611191985654.
+[I 2024-12-04 14:55:49,421] Trial 160 finished with value: 0.28090180036433554 and parameters: {'n_estimators': 589, 'max_depth': 4, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 163 with value: 0.2468611191985654.
+[I 2024-12-04 14:55:50,130] Trial 159 finished with value: 0.25809495684821954 and parameters: {'n_estimators': 578, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.6874011542885166e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 169 with value: 0.24613747456716087.
+[I 2024-12-04 14:55:50,261] Trial 169 finished with value: 0.24613747456716087 and parameters: {'n_estimators': 657, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0018035823671747621, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 169 with value: 0.24613747456716087.
+[I 2024-12-04 14:55:50,546] Trial 176 finished with value: 0.25765114007112405 and parameters: {'n_estimators': 580, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.4003304542287167e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 169 with value: 0.24613747456716087.
+[I 2024-12-04 14:55:51,704] Trial 178 finished with value: 0.2590115981856228 and parameters: {'n_estimators': 586, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.4573700139053575e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 169 with value: 0.24613747456716087.
+[I 2024-12-04 14:55:51,822] Trial 180 finished with value: 0.25863016589072507 and parameters: {'n_estimators': 585, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.3966344796856048e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 169 with value: 0.24613747456716087.
+[I 2024-12-04 14:55:51,926] Trial 177 finished with value: 0.25738571696534257 and parameters: {'n_estimators': 580, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.4014389160923845e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 169 with value: 0.24613747456716087.
+[I 2024-12-04 14:55:52,201] Trial 173 finished with value: 0.25856400255814743 and parameters: {'n_estimators': 581, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.4102593440634319e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 169 with value: 0.24613747456716087.
+[I 2024-12-04 14:55:54,182] Trial 183 finished with value: 0.2593928543889801 and parameters: {'n_estimators': 588, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.4623438308469737e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 169 with value: 0.24613747456716087.
+[I 2024-12-04 14:55:57,093] Trial 186 finished with value: 0.24543524418567958 and parameters: {'n_estimators': 737, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.001195217820541665}. Best is trial 186 with value: 0.24543524418567958.
+[I 2024-12-04 14:55:57,095] Trial 175 finished with value: 0.25856514821191806 and parameters: {'n_estimators': 581, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.4111658633054845e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 186 with value: 0.24543524418567958.
+[I 2024-12-04 14:55:58,060] Trial 179 finished with value: 0.2590115981856228 and parameters: {'n_estimators': 586, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.4579337817231249e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 186 with value: 0.24543524418567958.
+[I 2024-12-04 14:56:01,078] Trial 194 finished with value: 0.2609512449810572 and parameters: {'n_estimators': 608, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0010317397038632616, 'reg_alpha': 1e-05, 'reg_lambda': 0.0006777703172169371}. Best is trial 186 with value: 0.24543524418567958.
+[I 2024-12-04 14:56:02,020] Trial 181 finished with value: 0.2580707351626337 and parameters: {'n_estimators': 588, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.4548547542808201e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 186 with value: 0.24543524418567958.
+[I 2024-12-04 14:56:04,090] Trial 192 finished with value: 0.25593139140904947 and parameters: {'n_estimators': 573, 'max_depth': 6, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0007735828368239696, 'reg_alpha': 1e-05, 'reg_lambda': 0.003188126783494645}. Best is trial 186 with value: 0.24543524418567958.
+[I 2024-12-04 14:56:05,040] Trial 185 finished with value: 0.2571451827848378 and parameters: {'n_estimators': 590, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.5951016560852313e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 186 with value: 0.24543524418567958.
+[I 2024-12-04 14:56:07,872] Trial 195 finished with value: 0.2616407177936707 and parameters: {'n_estimators': 608, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0010317102034425323, 'reg_alpha': 1e-05, 'reg_lambda': 0.0007298110927646208}. Best is trial 186 with value: 0.24543524418567958.
+[I 2024-12-04 14:56:07,921] Trial 198 finished with value: 0.2575087526490567 and parameters: {'n_estimators': 584, 'max_depth': 6, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0007461429031108759, 'reg_alpha': 1e-05, 'reg_lambda': 0.00307908902710511}. Best is trial 186 with value: 0.24543524418567958.
+[I 2024-12-04 14:56:10,693] Trial 189 finished with value: 0.2541427105438942 and parameters: {'n_estimators': 862, 'max_depth': 6, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0004139609625393567, 'reg_alpha': 1e-05, 'reg_lambda': 5.355317242148184e-05}. Best is trial 186 with value: 0.24543524418567958.
+[I 2024-12-04 14:56:12,504] Trial 184 finished with value: 0.25390175320762315 and parameters: {'n_estimators': 640, 'max_depth': 10, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 2.962658651688072e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 186 with value: 0.24543524418567958.
+[I 2024-12-04 14:56:12,506] Trial 193 finished with value: 0.2609512267192085 and parameters: {'n_estimators': 608, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0010323904800453852, 'reg_alpha': 1e-05, 'reg_lambda': 0.0006749194612010296}. Best is trial 186 with value: 0.24543524418567958.
+[I 2024-12-04 14:56:12,551] Trial 197 finished with value: 0.2630442182099686 and parameters: {'n_estimators': 619, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0010009495373178112, 'reg_alpha': 1e-05, 'reg_lambda': 0.0007506556718433606}. Best is trial 186 with value: 0.24543524418567958.
+[I 2024-12-04 14:56:12,576] Trial 201 finished with value: 0.26109653966804086 and parameters: {'n_estimators': 638, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0009202119652295058, 'reg_alpha': 1e-05, 'reg_lambda': 0.0012990258252527124}. Best is trial 186 with value: 0.24543524418567958.
+[I 2024-12-04 14:56:12,598] Trial 190 finished with value: 0.25414271098136954 and parameters: {'n_estimators': 862, 'max_depth': 6, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0004139639419514225, 'reg_alpha': 1e-05, 'reg_lambda': 5.3548447227325305e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:12,938] Trial 187 finished with value: 0.2454348168496935 and parameters: {'n_estimators': 737, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.0011809605730074022}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:15,330] Trial 182 finished with value: 0.258082264707846 and parameters: {'n_estimators': 588, 'max_depth': 11, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1.4562314562878147e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:18,067] Trial 196 finished with value: 0.26298375922962913 and parameters: {'n_estimators': 608, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0010360161425666283, 'reg_alpha': 1e-05, 'reg_lambda': 0.0007256447185114706}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:18,741] Trial 199 finished with value: 0.2587738118235402 and parameters: {'n_estimators': 642, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0010432737185988438, 'reg_alpha': 1e-05, 'reg_lambda': 0.0003860269720921425}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:19,012] Trial 209 finished with value: 0.26144161802816585 and parameters: {'n_estimators': 708, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0006612543014437114, 'reg_alpha': 1e-05, 'reg_lambda': 0.0010487118470552462}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:20,099] Trial 188 finished with value: 0.25429109836506897 and parameters: {'n_estimators': 860, 'max_depth': 6, 'learning_rate': 0.09999999999999998, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0004491332608316451, 'reg_alpha': 1e-05, 'reg_lambda': 5.067144171723959e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:20,700] Trial 200 finished with value: 0.26014790817381644 and parameters: {'n_estimators': 639, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0009132277130293602, 'reg_alpha': 1e-05, 'reg_lambda': 0.001300658404468971}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:21,028] Trial 205 finished with value: 0.26285656610196595 and parameters: {'n_estimators': 718, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0006471387346650692, 'reg_alpha': 1e-05, 'reg_lambda': 0.0010518767551793338}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:21,594] Trial 191 finished with value: 0.25332172880750836 and parameters: {'n_estimators': 858, 'max_depth': 6, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.00042033175855073137, 'reg_alpha': 1e-05, 'reg_lambda': 5.0431516919732013e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:22,698] Trial 202 finished with value: 0.2610059946576031 and parameters: {'n_estimators': 730, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0006316073811934269, 'reg_alpha': 1e-05, 'reg_lambda': 0.0010337179391670052}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:23,361] Trial 210 finished with value: 0.26098561106625084 and parameters: {'n_estimators': 708, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.000661145689325963, 'reg_alpha': 1e-05, 'reg_lambda': 0.0010463812433155941}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:24,257] Trial 207 finished with value: 0.26098559774033475 and parameters: {'n_estimators': 708, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0006612395784798992, 'reg_alpha': 1e-05, 'reg_lambda': 0.0010464070576021362}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:25,700] Trial 204 finished with value: 0.2625162093664399 and parameters: {'n_estimators': 718, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0006467159465760343, 'reg_alpha': 1e-05, 'reg_lambda': 0.0010530826002843215}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:26,110] Trial 208 finished with value: 0.26149197039553246 and parameters: {'n_estimators': 708, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0006621692800212695, 'reg_alpha': 1e-05, 'reg_lambda': 0.001050563560621869}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:26,354] Trial 211 finished with value: 0.25256074594332656 and parameters: {'n_estimators': 740, 'max_depth': 6, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.00028285102625762843, 'reg_alpha': 1e-05, 'reg_lambda': 0.0007036850251707911}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:27,019] Trial 214 finished with value: 0.2525741364004161 and parameters: {'n_estimators': 737, 'max_depth': 6, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.00028622477276916725, 'reg_alpha': 1e-05, 'reg_lambda': 0.0007104074441052415}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:27,438] Trial 203 finished with value: 0.2625161924484081 and parameters: {'n_estimators': 718, 'max_depth': 7, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0006466569647617607, 'reg_alpha': 1e-05, 'reg_lambda': 0.0010552993246054718}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:28,403] Trial 206 finished with value: 0.2629794136679923 and parameters: {'n_estimators': 718, 'max_depth': 7, 'learning_rate': 0.09999999999999998, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.000645158661166593, 'reg_alpha': 1e-05, 'reg_lambda': 0.0010582473543437176}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:28,410] Trial 212 finished with value: 0.25219534224628726 and parameters: {'n_estimators': 737, 'max_depth': 6, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.0002865315477125169, 'reg_alpha': 1e-05, 'reg_lambda': 0.0007109667010857572}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:33,041] Trial 218 finished with value: 0.24660207783261712 and parameters: {'n_estimators': 757, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.00010458472861724561, 'reg_alpha': 1e-05, 'reg_lambda': 0.00013358344207495845}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:33,111] Trial 213 finished with value: 0.2525740971388349 and parameters: {'n_estimators': 737, 'max_depth': 6, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.00028620072167637807, 'reg_alpha': 1e-05, 'reg_lambda': 0.0007102473666953485}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:33,769] Trial 217 finished with value: 0.24632983983719056 and parameters: {'n_estimators': 753, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.00010105663394528181, 'reg_alpha': 1e-05, 'reg_lambda': 0.00012523464047390834}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:36,531] Trial 215 finished with value: 0.2460944263722805 and parameters: {'n_estimators': 759, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 9.622431991917434e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.00011808803734329822}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:39,228] Trial 216 finished with value: 0.24617930211400138 and parameters: {'n_estimators': 760, 'max_depth': 5, 'learning_rate': 0.09999999999999998, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 9.67681230142094e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.00012033692456838665}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:41,630] Trial 221 finished with value: 0.24952988259298384 and parameters: {'n_estimators': 665, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 0.00011237619265964202, 'reg_alpha': 1e-05, 'reg_lambda': 3.259798918020269e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:44,296] Trial 223 finished with value: 0.2455309013087327 and parameters: {'n_estimators': 710, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 8.210822346281357e-05, 'reg_alpha': 1e-05, 'reg_lambda': 2.100681748328671e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:44,388] Trial 226 finished with value: 0.24553089687014232 and parameters: {'n_estimators': 710, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 8.219092615762279e-05, 'reg_alpha': 1e-05, 'reg_lambda': 2.1247407792689206e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:48,304] Trial 222 finished with value: 0.24553090534177172 and parameters: {'n_estimators': 710, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 8.222339657380488e-05, 'reg_alpha': 1e-05, 'reg_lambda': 2.128844763409938e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:49,910] Trial 219 finished with value: 0.24657674984037073 and parameters: {'n_estimators': 714, 'max_depth': 5, 'learning_rate': 0.09999999999999998, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 8.655741634036422e-05, 'reg_alpha': 1e-05, 'reg_lambda': 3.683169665413738e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:50,982] Trial 225 finished with value: 0.24553090938748207 and parameters: {'n_estimators': 710, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 8.221735110860695e-05, 'reg_alpha': 1e-05, 'reg_lambda': 2.145555218589622e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:51,545] Trial 246 finished with value: 0.2838474966123656 and parameters: {'n_estimators': 800, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 1.0, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:53,212] Trial 233 finished with value: 0.24894198756967134 and parameters: {'n_estimators': 727, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 5.208260614854538e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:53,810] Trial 248 finished with value: 0.2838474966123656 and parameters: {'n_estimators': 800, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 1.0, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:54,704] Trial 229 finished with value: 0.24756535034341737 and parameters: {'n_estimators': 680, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 8.948028197355193e-05, 'reg_alpha': 1e-05, 'reg_lambda': 2.546912320452648e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:55,414] Trial 247 finished with value: 0.2838474966123656 and parameters: {'n_estimators': 800, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 1.0, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:56,732] Trial 227 finished with value: 0.2455309144423619 and parameters: {'n_estimators': 710, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 8.223154816143289e-05, 'reg_alpha': 1e-05, 'reg_lambda': 2.131814480740038e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:56,740] Trial 241 finished with value: 0.24764076991855316 and parameters: {'n_estimators': 726, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 5.799692931448313e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:57,057] Trial 237 finished with value: 0.2477379346018944 and parameters: {'n_estimators': 727, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 5.621214242435195e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:59,084] Trial 220 finished with value: 0.24657677465868014 and parameters: {'n_estimators': 714, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 8.658296078239946e-05, 'reg_alpha': 1e-05, 'reg_lambda': 3.6964032033111346e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:56:59,750] Trial 240 finished with value: 0.24764076991855316 and parameters: {'n_estimators': 726, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 5.8021924503988276e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:57:00,196] Trial 231 finished with value: 0.2947318112293393 and parameters: {'n_estimators': 770, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.8672711305135783, 'min_child_weight': 1, 'gamma': 2.046788250114514e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:57:00,306] Trial 230 finished with value: 0.24623914864896526 and parameters: {'n_estimators': 736, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 4.76548860832977e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:57:00,391] Trial 234 finished with value: 0.24762581233162204 and parameters: {'n_estimators': 725, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 5.398874324952261e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:57:03,066] Trial 249 finished with value: 0.28766206528287114 and parameters: {'n_estimators': 803, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.9888205923899813, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:57:03,357] Trial 238 finished with value: 0.24764076991855316 and parameters: {'n_estimators': 726, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 5.8021851598076025e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:57:09,349] Trial 250 finished with value: 0.28759979297619215 and parameters: {'n_estimators': 803, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.9867599770530673, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:57:09,350] Trial 236 finished with value: 0.2488063380822877 and parameters: {'n_estimators': 730, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 5.1981015237882986e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 187 with value: 0.2454348168496935.
+[I 2024-12-04 14:57:09,830] Trial 235 finished with value: 0.2478539494520529 and parameters: {'n_estimators': 727, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 5.320174960887962e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 252 with value: 0.24319550060096112.
+[I 2024-12-04 14:57:09,988] Trial 245 finished with value: 0.24758898714270092 and parameters: {'n_estimators': 726, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 5.798803321569465e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 252 with value: 0.24319550060096112.
+[W 2024-12-04 14:57:10,160] Trial 242 failed with parameters: {} because of the following error: StorageInternalError('An exception is raised during the commit. This typically happens due to invalid data in the commit, e.g. exceeding max length. ').
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 81, in _create_scoped_session
+    session.commit()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4352, in flush
+    self._flush(objects)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
+    flush_context.execute()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: INSERT INTO trial_params (trial_id, param_name, param_value, distribution_json) VALUES (?, ?, ?, ?)]
+[parameters: (243, 'n_estimators', 726.0, '{"name": "IntDistribution", "attributes": {"log": false, "step": 1, "low": 100, "high": 1500}}')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 197, in _run_trial
+    value_or_values = func(trial)
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 242, in objective
+    params = {
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 243, in <dictcomp>
+    name: suggest_fn(trial, name)
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 164, in <lambda>
+    return lambda trial, name: trial.suggest_int(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_convert_positional_args.py", line 83, in converter_wrapper
+    return func(**kwargs)  # type: ignore[call-arg]
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/trial/_trial.py", line 324, in suggest_int
+    suggested_value = int(self._suggest(name, distribution))
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/trial/_trial.py", line 637, in _suggest
+    storage.set_trial_param(trial_id, name, param_value_in_internal_repr, distribution)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_cached_storage.py", line 171, in set_trial_param
+    self._backend.set_trial_param(trial_id, param_name, param_value_internal, distribution)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 585, in set_trial_param
+    self._set_trial_param_without_commit(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/contextlib.py", line 126, in __exit__
+    next(self.gen)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 98, in _create_scoped_session
+    raise optuna.exceptions.StorageInternalError(message) from e
+optuna.exceptions.StorageInternalError: An exception is raised during the commit. This typically happens due to invalid data in the commit, e.g. exceeding max length. 
+[W 2024-12-04 14:57:10,177] Trial 242 failed with value None.
+[I 2024-12-04 14:57:10,389] Trial 232 finished with value: 0.24894198756967134 and parameters: {'n_estimators': 727, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 5.202295827919885e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 252 with value: 0.24319550060096112.
+[I 2024-12-04 14:57:10,667] Trial 252 finished with value: 0.24319550060096112 and parameters: {'n_estimators': 820, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 252 with value: 0.24319550060096112.
+[I 2024-12-04 14:57:11,831] Trial 239 finished with value: 0.24758898714270092 and parameters: {'n_estimators': 726, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 5.796074786744048e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 252 with value: 0.24319550060096112.
+[I 2024-12-04 14:57:11,834] Trial 257 finished with value: 0.2432255364155483 and parameters: {'n_estimators': 819, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 252 with value: 0.24319550060096112.
+[W 2024-12-04 14:57:13,119] Trial 251 failed with parameters: {'n_estimators': 845, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 1.0} because of the following error: StorageInternalError('An exception is raised during the commit. This typically happens due to invalid data in the commit, e.g. exceeding max length. ').
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 81, in _create_scoped_session
+    session.commit()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4352, in flush
+    self._flush(objects)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
+    flush_context.execute()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: INSERT INTO trial_params (trial_id, param_name, param_value, distribution_json) VALUES (?, ?, ?, ?)]
+[parameters: (252, 'min_child_weight', 1.0, '{"name": "IntDistribution", "attributes": {"log": false, "step": 1, "low": 1, "high": 5}}')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 197, in _run_trial
+    value_or_values = func(trial)
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 242, in objective
+    params = {
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 243, in <dictcomp>
+    name: suggest_fn(trial, name)
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 164, in <lambda>
+    return lambda trial, name: trial.suggest_int(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_convert_positional_args.py", line 83, in converter_wrapper
+    return func(**kwargs)  # type: ignore[call-arg]
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/trial/_trial.py", line 324, in suggest_int
+    suggested_value = int(self._suggest(name, distribution))
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/trial/_trial.py", line 637, in _suggest
+    storage.set_trial_param(trial_id, name, param_value_in_internal_repr, distribution)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_cached_storage.py", line 171, in set_trial_param
+    self._backend.set_trial_param(trial_id, param_name, param_value_internal, distribution)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 585, in set_trial_param
+    self._set_trial_param_without_commit(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/contextlib.py", line 126, in __exit__
+    next(self.gen)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 98, in _create_scoped_session
+    raise optuna.exceptions.StorageInternalError(message) from e
+optuna.exceptions.StorageInternalError: An exception is raised during the commit. This typically happens due to invalid data in the commit, e.g. exceeding max length. 
+[W 2024-12-04 14:57:13,129] Trial 251 failed with value None.
+[W 2024-12-04 14:57:13,199] Trial 224 failed with parameters: {'n_estimators': 710, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 8.221975477537121e-05, 'reg_alpha': 1e-05} because of the following error: StorageInternalError('An exception is raised during the commit. This typically happens due to invalid data in the commit, e.g. exceeding max length. ').
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 81, in _create_scoped_session
+    session.commit()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4352, in flush
+    self._flush(objects)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
+    flush_context.execute()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: INSERT INTO trial_params (trial_id, param_name, param_value, distribution_json) VALUES (?, ?, ?, ?)]
+[parameters: (225, 'reg_lambda', 2.1237465758700745e-05, '{"name": "FloatDistribution", "attributes": {"step": null, "low": 1e-05, "high": 0.5, "log": true}}')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 197, in _run_trial
+    value_or_values = func(trial)
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 242, in objective
+    params = {
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 243, in <dictcomp>
+    name: suggest_fn(trial, name)
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 157, in <lambda>
+    return lambda trial, name: trial.suggest_float(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/trial/_trial.py", line 161, in suggest_float
+    suggested_value = self._suggest(name, distribution)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/trial/_trial.py", line 637, in _suggest
+    storage.set_trial_param(trial_id, name, param_value_in_internal_repr, distribution)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_cached_storage.py", line 171, in set_trial_param
+    self._backend.set_trial_param(trial_id, param_name, param_value_internal, distribution)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 585, in set_trial_param
+    self._set_trial_param_without_commit(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/contextlib.py", line 126, in __exit__
+    next(self.gen)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 98, in _create_scoped_session
+    raise optuna.exceptions.StorageInternalError(message) from e
+optuna.exceptions.StorageInternalError: An exception is raised during the commit. This typically happens due to invalid data in the commit, e.g. exceeding max length. 
+[W 2024-12-04 14:57:13,206] Trial 224 failed with value None.
+[I 2024-12-04 14:57:13,242] Trial 244 finished with value: 0.24758898714270092 and parameters: {'n_estimators': 726, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 5.796357199233939e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 252 with value: 0.24319550060096112.
+[I 2024-12-04 14:57:13,312] Trial 243 finished with value: 0.24758898714270092 and parameters: {'n_estimators': 726, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 5.7960993785784866e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 252 with value: 0.24319550060096112.
+[I 2024-12-04 14:57:13,850] Trial 263 finished with value: 0.2931564807400411 and parameters: {'n_estimators': 1500, 'max_depth': 12, 'learning_rate': 0.010000000000000004, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 252 with value: 0.24319550060096112.
+[I 2024-12-04 14:57:13,851] Trial 262 finished with value: 0.3505323027363143 and parameters: {'n_estimators': 1500, 'max_depth': 12, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 1.0, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 252 with value: 0.24319550060096112.
+[I 2024-12-04 14:57:13,853] Trial 253 finished with value: 0.24319550060096112 and parameters: {'n_estimators': 820, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 252 with value: 0.24319550060096112.
+[I 2024-12-04 14:57:14,109] Trial 228 finished with value: 0.2952706013598701 and parameters: {'n_estimators': 734, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.8288983736204144, 'min_child_weight': 1, 'gamma': 4.041060910704227e-05, 'reg_alpha': 1e-05, 'reg_lambda': 2.3669519487977683e-05}. Best is trial 252 with value: 0.24319550060096112.
+[I 2024-12-04 14:57:14,174] Trial 258 finished with value: 0.2931564807400411 and parameters: {'n_estimators': 1500, 'max_depth': 12, 'learning_rate': 0.010000000000000004, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:14,414] Trial 255 finished with value: 0.2430312101440814 and parameters: {'n_estimators': 824, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:14,486] Trial 259 finished with value: 0.2886985535389725 and parameters: {'n_estimators': 1500, 'max_depth': 12, 'learning_rate': 0.012025815619458832, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:15,070] Trial 266 finished with value: 0.3602550729750421 and parameters: {'n_estimators': 100, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 1.0, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:15,072] Trial 254 finished with value: 0.2431688035366695 and parameters: {'n_estimators': 818, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:15,683] Trial 256 finished with value: 0.2432255364155483 and parameters: {'n_estimators': 819, 'max_depth': 5, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:16,735] Trial 260 finished with value: 0.2899531083305741 and parameters: {'n_estimators': 1500, 'max_depth': 12, 'learning_rate': 0.01191405781907022, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:16,737] Trial 261 finished with value: 0.2931564807400411 and parameters: {'n_estimators': 1500, 'max_depth': 12, 'learning_rate': 0.010000000000000004, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:16,970] Trial 264 finished with value: 0.2931564807400411 and parameters: {'n_estimators': 1500, 'max_depth': 12, 'learning_rate': 0.010000000000000004, 'subsample': 0.7, 'colsample_bytree': 0.5, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:18,192] Trial 272 finished with value: 0.2765989697135116 and parameters: {'n_estimators': 332, 'max_depth': 5, 'learning_rate': 0.07554544597123664, 'subsample': 0.7382763303744058, 'colsample_bytree': 0.5650326358117645, 'min_child_weight': 1, 'gamma': 0.00010924494160188731, 'reg_alpha': 3.0133803212490698e-05, 'reg_lambda': 5.409394213828363e-05}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:18,196] Trial 274 finished with value: 0.2575675003684534 and parameters: {'n_estimators': 652, 'max_depth': 6, 'learning_rate': 0.09635131775880691, 'subsample': 0.7026006415296153, 'colsample_bytree': 0.5598602922689855, 'min_child_weight': 1, 'gamma': 5.3669139687626995e-05, 'reg_alpha': 4.2946341533558825e-05, 'reg_lambda': 4.128341865474522e-05}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:18,210] Trial 275 finished with value: 0.3476974599390434 and parameters: {'n_estimators': 626, 'max_depth': 3, 'learning_rate': 0.08642282295019628, 'subsample': 0.72364200772857, 'colsample_bytree': 0.5631348487364465, 'min_child_weight': 2, 'gamma': 0.00035911712421619896, 'reg_alpha': 2.901660112931232e-05, 'reg_lambda': 0.00027308149137187754}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:18,240] Trial 273 finished with value: 0.25230570485202386 and parameters: {'n_estimators': 778, 'max_depth': 6, 'learning_rate': 0.08293467173562129, 'subsample': 0.714931556238289, 'colsample_bytree': 0.5229277218005816, 'min_child_weight': 1, 'gamma': 0.0015450360647118458, 'reg_alpha': 1.4549587705238483e-05, 'reg_lambda': 8.256580223379131e-05}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:18,267] Trial 270 finished with value: 0.26304805725406705 and parameters: {'n_estimators': 838, 'max_depth': 6, 'learning_rate': 0.07593337009804026, 'subsample': 0.738186432260924, 'colsample_bytree': 0.5636215897629562, 'min_child_weight': 1, 'gamma': 0.00024048661366547555, 'reg_alpha': 1.2077120235396785e-05, 'reg_lambda': 1.862045779223477e-05}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:19,350] Trial 271 finished with value: 0.40021498420260015 and parameters: {'n_estimators': 100, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 1.0, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:19,440] Trial 268 finished with value: 0.40021498420260015 and parameters: {'n_estimators': 100, 'max_depth': 3, 'learning_rate': 0.09999999999999998, 'subsample': 0.7, 'colsample_bytree': 1.0, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:19,567] Trial 265 finished with value: 0.3602550729750421 and parameters: {'n_estimators': 100, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 1.0, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:19,790] Trial 267 finished with value: 0.3602550729750421 and parameters: {'n_estimators': 100, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 1.0, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 1e-05}. Best is trial 255 with value: 0.2430312101440814.
+[I 2024-12-04 14:57:19,951] Trial 269 finished with value: 0.40021498420260015 and parameters: {'n_estimators': 100, 'max_depth': 3, 'learning_rate': 0.1, 'subsample': 0.7, 'colsample_bytree': 1.0, 'min_child_weight': 1, 'gamma': 1e-05, 'reg_alpha': 1e-05, 'reg_lambda': 0.5}. Best is trial 255 with value: 0.2430312101440814.
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 81, in _create_scoped_session
+    session.commit()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2028, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4352, in flush
+    self._flush(objects)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4488, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 4448, in _flush
+    flush_context.execute()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: INSERT INTO trial_params (trial_id, param_name, param_value, distribution_json) VALUES (?, ?, ?, ?)]
+[parameters: (243, 'n_estimators', 726.0, '{"name": "IntDistribution", "attributes": {"log": false, "step": 1, "low": 100, "high": 1500}}')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/Documents/fair_gc/gc_ml.py", line 79, in <module>
+    study, best_model = create_hyperparameter_optimizer(
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 275, in create_hyperparameter_optimizer
+    study.optimize(objective, n_trials=n_trials, n_jobs=n_jobs)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/study.py", line 475, in optimize
+    _optimize(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 100, in _optimize
+    f.result()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 160, in _optimize_sequential
+    frozen_trial = _run_trial(study, func, catch)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 248, in _run_trial
+    raise func_err
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 197, in _run_trial
+    value_or_values = func(trial)
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 242, in objective
+    params = {
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 243, in <dictcomp>
+    name: suggest_fn(trial, name)
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 164, in <lambda>
+    return lambda trial, name: trial.suggest_int(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/_convert_positional_args.py", line 83, in converter_wrapper
+    return func(**kwargs)  # type: ignore[call-arg]
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/trial/_trial.py", line 324, in suggest_int
+    suggested_value = int(self._suggest(name, distribution))
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/trial/_trial.py", line 637, in _suggest
+    storage.set_trial_param(trial_id, name, param_value_in_internal_repr, distribution)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_cached_storage.py", line 171, in set_trial_param
+    self._backend.set_trial_param(trial_id, param_name, param_value_internal, distribution)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 585, in set_trial_param
+    self._set_trial_param_without_commit(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/contextlib.py", line 126, in __exit__
+    next(self.gen)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 98, in _create_scoped_session
+    raise optuna.exceptions.StorageInternalError(message) from e
+optuna.exceptions.StorageInternalError: An exception is raised during the commit. This typically happens due to invalid data in the commit, e.g. exceeding max length. 

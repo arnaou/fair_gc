@@ -1,0 +1,112 @@
+[I 2024-12-04 12:15:23,436] A new study created in RDB with name: Omega_gb
+[I 2024-12-04 12:15:31,452] Trial 8 finished with value: 1.02962814040291 and parameters: {'n_estimators': 222, 'learning_rate': 0.01725801042099431, 'max_depth': 11, 'min_samples_split': 9, 'min_samples_leaf': 3, 'subsample': 0.83973508267866, 'max_features': 'log2'}. Best is trial 8 with value: 1.02962814040291.
+[I 2024-12-04 12:15:39,161] Trial 17 finished with value: 0.8483153317933563 and parameters: {'n_estimators': 260, 'learning_rate': 0.04872590576997382, 'max_depth': 7, 'min_samples_split': 15, 'min_samples_leaf': 10, 'subsample': 0.7113599389603974, 'max_features': 'sqrt'}. Best is trial 17 with value: 0.8483153317933563.
+[I 2024-12-04 12:15:43,561] Trial 28 finished with value: 0.6414614078364965 and parameters: {'n_estimators': 255, 'learning_rate': 0.08603513840467952, 'max_depth': 6, 'min_samples_split': 3, 'min_samples_leaf': 2, 'subsample': 0.7074005180255415, 'max_features': 'sqrt'}. Best is trial 28 with value: 0.6414614078364965.
+[I 2024-12-04 12:15:45,986] Trial 11 finished with value: 0.6053085513203023 and parameters: {'n_estimators': 323, 'learning_rate': 0.0347802855893203, 'max_depth': 10, 'min_samples_split': 16, 'min_samples_leaf': 6, 'subsample': 0.7812151092885595, 'max_features': None}. Best is trial 11 with value: 0.6053085513203023.
+[I 2024-12-04 12:15:48,605] Trial 24 finished with value: 0.8723813530257342 and parameters: {'n_estimators': 325, 'learning_rate': 0.010377405493819616, 'max_depth': 4, 'min_samples_split': 6, 'min_samples_leaf': 1, 'subsample': 0.7929814756965006, 'max_features': 'sqrt'}. Best is trial 11 with value: 0.6053085513203023.
+[I 2024-12-04 12:15:49,035] Trial 29 finished with value: 1.142904146990142 and parameters: {'n_estimators': 409, 'learning_rate': 0.010226000863828844, 'max_depth': 8, 'min_samples_split': 11, 'min_samples_leaf': 7, 'subsample': 0.667810019924432, 'max_features': 'log2'}. Best is trial 11 with value: 0.6053085513203023.
+[I 2024-12-04 12:15:49,423] Trial 27 finished with value: 0.641605685111561 and parameters: {'n_estimators': 406, 'learning_rate': 0.07451594407684482, 'max_depth': 4, 'min_samples_split': 14, 'min_samples_leaf': 3, 'subsample': 0.9038069625120222, 'max_features': 'sqrt'}. Best is trial 11 with value: 0.6053085513203023.
+[I 2024-12-04 12:15:51,378] Trial 30 finished with value: 0.6478073007835013 and parameters: {'n_estimators': 390, 'learning_rate': 0.01760917413272418, 'max_depth': 11, 'min_samples_split': 18, 'min_samples_leaf': 1, 'subsample': 0.8127931343385801, 'max_features': 'log2'}. Best is trial 11 with value: 0.6053085513203023.
+[I 2024-12-04 12:15:51,572] Trial 4 finished with value: 0.795389341809352 and parameters: {'n_estimators': 857, 'learning_rate': 0.043584640360003174, 'max_depth': 7, 'min_samples_split': 9, 'min_samples_leaf': 9, 'subsample': 0.9295638659978909, 'max_features': 'sqrt'}. Best is trial 11 with value: 0.6053085513203023.
+[I 2024-12-04 12:15:53,032] Trial 1 finished with value: 0.6644369182217854 and parameters: {'n_estimators': 1036, 'learning_rate': 0.036270374028576656, 'max_depth': 4, 'min_samples_split': 4, 'min_samples_leaf': 3, 'subsample': 0.9554094021163635, 'max_features': 'log2'}. Best is trial 11 with value: 0.6053085513203023.
+[I 2024-12-04 12:15:54,717] Trial 31 finished with value: 0.8148244867390539 and parameters: {'n_estimators': 491, 'learning_rate': 0.06418828959610827, 'max_depth': 11, 'min_samples_split': 15, 'min_samples_leaf': 9, 'subsample': 0.7194436747688805, 'max_features': 'log2'}. Best is trial 11 with value: 0.6053085513203023.
+[I 2024-12-04 12:15:55,547] Trial 10 finished with value: 0.6338777551808472 and parameters: {'n_estimators': 604, 'learning_rate': 0.08307079144305857, 'max_depth': 10, 'min_samples_split': 4, 'min_samples_leaf': 3, 'subsample': 0.6112108906275883, 'max_features': 'log2'}. Best is trial 11 with value: 0.6053085513203023.
+[I 2024-12-04 12:15:57,110] Trial 16 finished with value: 0.8747907911525237 and parameters: {'n_estimators': 879, 'learning_rate': 0.02428004647192474, 'max_depth': 11, 'min_samples_split': 4, 'min_samples_leaf': 8, 'subsample': 0.8231291282660976, 'max_features': 'log2'}. Best is trial 11 with value: 0.6053085513203023.
+[I 2024-12-04 12:15:58,741] Trial 0 finished with value: 1.0660079708990995 and parameters: {'n_estimators': 631, 'learning_rate': 0.020296930309951142, 'max_depth': 4, 'min_samples_split': 13, 'min_samples_leaf': 8, 'subsample': 0.6042437508491635, 'max_features': 'log2'}. Best is trial 11 with value: 0.6053085513203023.
+[I 2024-12-04 12:16:00,330] Trial 14 finished with value: 0.6840388241640517 and parameters: {'n_estimators': 663, 'learning_rate': 0.03769448247616426, 'max_depth': 4, 'min_samples_split': 7, 'min_samples_leaf': 2, 'subsample': 0.6032169206920284, 'max_features': 'log2'}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:00,396] Trial 25 finished with value: 0.5573266471673703 and parameters: {'n_estimators': 664, 'learning_rate': 0.015556393044646663, 'max_depth': 4, 'min_samples_split': 6, 'min_samples_leaf': 5, 'subsample': 0.9242878912005154, 'max_features': None}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:00,524] Trial 13 finished with value: 0.8314535330841111 and parameters: {'n_estimators': 859, 'learning_rate': 0.011391153865251052, 'max_depth': 8, 'min_samples_split': 10, 'min_samples_leaf': 3, 'subsample': 0.9551339121876004, 'max_features': 'log2'}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:01,135] Trial 12 finished with value: 0.6371630316791719 and parameters: {'n_estimators': 638, 'learning_rate': 0.02438145260525881, 'max_depth': 7, 'min_samples_split': 10, 'min_samples_leaf': 8, 'subsample': 0.9973304083251564, 'max_features': None}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:03,904] Trial 2 finished with value: 0.5599323479133383 and parameters: {'n_estimators': 788, 'learning_rate': 0.02051396160681982, 'max_depth': 11, 'min_samples_split': 17, 'min_samples_leaf': 5, 'subsample': 0.9606846568027468, 'max_features': None}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:04,302] Trial 26 finished with value: 0.7194273290558129 and parameters: {'n_estimators': 1020, 'learning_rate': 0.08153143181604236, 'max_depth': 4, 'min_samples_split': 6, 'min_samples_leaf': 6, 'subsample': 0.6301264477021075, 'max_features': 'sqrt'}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:04,379] Trial 6 finished with value: 0.6922641175165324 and parameters: {'n_estimators': 1111, 'learning_rate': 0.03481557042537078, 'max_depth': 5, 'min_samples_split': 7, 'min_samples_leaf': 7, 'subsample': 0.6295808122591234, 'max_features': None}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:04,574] Trial 15 finished with value: 0.6559587069929376 and parameters: {'n_estimators': 840, 'learning_rate': 0.0679046019825525, 'max_depth': 11, 'min_samples_split': 8, 'min_samples_leaf': 2, 'subsample': 0.9922687981712199, 'max_features': 'log2'}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:06,197] Trial 20 finished with value: 0.7452367343446189 and parameters: {'n_estimators': 836, 'learning_rate': 0.042785493620957245, 'max_depth': 6, 'min_samples_split': 13, 'min_samples_leaf': 9, 'subsample': 0.9467129389445452, 'max_features': None}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:06,225] Trial 7 finished with value: 0.5941151774081922 and parameters: {'n_estimators': 851, 'learning_rate': 0.014237974279495386, 'max_depth': 10, 'min_samples_split': 19, 'min_samples_leaf': 2, 'subsample': 0.630600708408372, 'max_features': None}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:06,479] Trial 9 finished with value: 0.8382690674494383 and parameters: {'n_estimators': 1254, 'learning_rate': 0.08614941681401159, 'max_depth': 12, 'min_samples_split': 16, 'min_samples_leaf': 9, 'subsample': 0.6994641977781576, 'max_features': 'log2'}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:06,967] Trial 3 finished with value: 0.8018356743460561 and parameters: {'n_estimators': 1114, 'learning_rate': 0.026983500102245088, 'max_depth': 12, 'min_samples_split': 13, 'min_samples_leaf': 10, 'subsample': 0.9912937726359694, 'max_features': 'sqrt'}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:07,660] Trial 23 finished with value: 0.8714794599720157 and parameters: {'n_estimators': 1244, 'learning_rate': 0.012380114117539018, 'max_depth': 12, 'min_samples_split': 2, 'min_samples_leaf': 5, 'subsample': 0.8568592830252523, 'max_features': 'log2'}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:07,835] Trial 21 finished with value: 0.6251608632097952 and parameters: {'n_estimators': 1223, 'learning_rate': 0.0769697096126601, 'max_depth': 8, 'min_samples_split': 12, 'min_samples_leaf': 5, 'subsample': 0.9361016136363445, 'max_features': 'sqrt'}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:08,795] Trial 5 finished with value: 0.8582886504105184 and parameters: {'n_estimators': 1239, 'learning_rate': 0.013412506437151913, 'max_depth': 8, 'min_samples_split': 5, 'min_samples_leaf': 6, 'subsample': 0.857521680049251, 'max_features': 'log2'}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:09,065] Trial 18 finished with value: 0.7965820519063661 and parameters: {'n_estimators': 1386, 'learning_rate': 0.02106300094019754, 'max_depth': 12, 'min_samples_split': 9, 'min_samples_leaf': 9, 'subsample': 0.7116667583946996, 'max_features': 'sqrt'}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:09,151] Trial 22 finished with value: 0.8508936577676637 and parameters: {'n_estimators': 1407, 'learning_rate': 0.028465883677422952, 'max_depth': 3, 'min_samples_split': 2, 'min_samples_leaf': 9, 'subsample': 0.669923933465171, 'max_features': 'log2'}. Best is trial 25 with value: 0.5573266471673703.
+[I 2024-12-04 12:16:09,209] Trial 32 finished with value: 0.5259856812697999 and parameters: {'n_estimators': 1295, 'learning_rate': 0.05158545455504303, 'max_depth': 7, 'min_samples_split': 11, 'min_samples_leaf': 1, 'subsample': 0.9749975236827816, 'max_features': 'sqrt'}. Best is trial 32 with value: 0.5259856812697999.
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 80, in _create_scoped_session
+    yield session
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 734, in set_trial_system_attr
+    self._set_trial_attr_without_commit(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 769, in _set_trial_attr_without_commit
+    session.execute(sqlite_upsert_stmt)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2362, in execute
+    return self._execute_internal(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2247, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/orm/bulk_persistence.py", line 1294, in orm_execute_statement
+    result = conn.execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: INSERT INTO trial_system_attributes (trial_id, "key", value_json) VALUES (?, ?, ?) ON CONFLICT (trial_id, "key") DO UPDATE SET value_json = excluded.value_json]
+[parameters: (20, 'auto:sampler', '"RandomSampler"')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/Documents/fair_gc/gc_ml.py", line 79, in <module>
+    study, best_model = create_hyperparameter_optimizer(
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/optims.py", line 275, in create_hyperparameter_optimizer
+    study.optimize(objective, n_trials=n_trials, n_jobs=n_jobs)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/study.py", line 475, in optimize
+    _optimize(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 100, in _optimize
+    f.result()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 160, in _optimize_sequential
+    frozen_trial = _run_trial(study, func, catch)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 188, in _run_trial
+    trial = study.ask()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/study.py", line 566, in ask
+    trial = optuna.Trial(self, trial_id)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/trial/_trial.py", line 59, in __init__
+    self.study.sampler.before_trial(study, self._cached_frozen_trial)
+  File "/zhome/b1/0/88900/.cache/optunahub/api.github.com/optuna/optunahub-registry/main/package/samplers/auto_sampler/_sampler.py", line 226, in before_trial
+    study._storage.set_trial_system_attr(trial._trial_id, _SAMPLER_KEY, sampler_name)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_cached_storage.py", line 198, in set_trial_system_attr
+    self._backend.set_trial_system_attr(trial_id, key=key, value=value)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 734, in set_trial_system_attr
+    self._set_trial_attr_without_commit(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/storages/_rdb/storage.py", line 98, in _create_scoped_session
+    raise optuna.exceptions.StorageInternalError(message) from e
+optuna.exceptions.StorageInternalError: An exception is raised during the commit. This typically happens due to invalid data in the commit, e.g. exceeding max length. 

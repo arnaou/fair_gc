@@ -1,0 +1,79 @@
+Seed set to 42
+Seed set to 42
+[I 2024-12-23 16:02:50,443] A new study created in RDB with name: groupgat_Omega_groupgat
+[W 2024-12-23 16:02:50,836] Trial 1 failed with parameters: {} because of the following error: ModuleNotFoundError("No module named 'src.grape.models.GroupGAT'; 'src.grape.models' is not a package").
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 197, in _run_trial
+    value_or_values = func(trial)
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/gnn_hyperopt.py", line 973, in objective
+    model_class = get_class_from_path(model_config['class'])
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/ml_hyperopt.py", line 72, in get_class_from_path
+    module = importlib.import_module(module_path)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 981, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'src.grape.models.GroupGAT'; 'src.grape.models' is not a package
+[W 2024-12-23 16:02:50,870] Trial 1 failed with value None.
+[W 2024-12-23 16:02:50,900] Trial 0 failed with parameters: {} because of the following error: ModuleNotFoundError("No module named 'src.grape.models.GroupGAT'; 'src.grape.models' is not a package").
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 197, in _run_trial
+    value_or_values = func(trial)
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/gnn_hyperopt.py", line 973, in objective
+    model_class = get_class_from_path(model_config['class'])
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/ml_hyperopt.py", line 72, in get_class_from_path
+    module = importlib.import_module(module_path)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 981, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'src.grape.models.GroupGAT'; 'src.grape.models' is not a package
+[W 2024-12-23 16:02:50,901] Trial 0 failed with value None.
+[W 2024-12-23 16:02:50,905] Trial 2 failed with parameters: {} because of the following error: ModuleNotFoundError("No module named 'src.grape.models.GroupGAT'; 'src.grape.models' is not a package").
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 197, in _run_trial
+    value_or_values = func(trial)
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/gnn_hyperopt.py", line 973, in objective
+    model_class = get_class_from_path(model_config['class'])
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/ml_hyperopt.py", line 72, in get_class_from_path
+    module = importlib.import_module(module_path)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 981, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'src.grape.models.GroupGAT'; 'src.grape.models' is not a package
+[W 2024-12-23 16:02:50,906] Trial 2 failed with value None.
+Traceback (most recent call last):
+  File "/zhome/b1/0/88900/Documents/fair_gc/groupgat_hyperopt.py", line 115, in <module>
+    study, best_model, train_params, model_config, best_model_params = groupgat_hyperparameter_optimizer(
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/gnn_hyperopt.py", line 1141, in groupgat_hyperparameter_optimizer
+    study.optimize(objective, n_trials=n_trials, n_jobs=n_jobs)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/study.py", line 475, in optimize
+    _optimize(
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 100, in _optimize
+    f.result()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 160, in _optimize_sequential
+    frozen_trial = _run_trial(study, func, catch)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 248, in _run_trial
+    raise func_err
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/site-packages/optuna/study/_optimize.py", line 197, in _run_trial
+    value_or_values = func(trial)
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/gnn_hyperopt.py", line 973, in objective
+    model_class = get_class_from_path(model_config['class'])
+  File "/zhome/b1/0/88900/Documents/fair_gc/src/ml_hyperopt.py", line 72, in get_class_from_path
+    module = importlib.import_module(module_path)
+  File "/zhome/b1/0/88900/miniconda3/envs/critprops/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 981, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'src.grape.models.GroupGAT'; 'src.grape.models' is not a package
