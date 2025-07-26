@@ -104,10 +104,10 @@ test_loader = DataLoader(test_dataset, batch_size=1000, shuffle=False)
 # extract folder name
 result_folder = None
 if args.model == 'afp':
-    result_folder = {'Omega': 'rmse_0.132_15122024_1739',
-                 'Tc': 'rmse_0.0108_15122024_1328',
-                 'Pc': 'rmse_0.081_16122024_0136',
-                 'Vc': 'rmse_0.00917_15122024_1525'}
+    result_folder = {'Omega': 'rmse_0.0531_26042025_1536',
+                 'Tc': 'rmse_0.0118_26042025_1732',
+                 'Pc': 'rmse_0.0258_26042025_1257',
+                 'Vc': 'rmse_0.00747_26042025_1240'}
 elif args.model == 'groupgat':
     result_folder = {'Omega': 'rmse_0.0461_26042025_0709',
                  'Tc': 'rmse_0.0115_27042025_0205',
@@ -288,13 +288,9 @@ df_predictions = pd.concat([df_predictions, df0], axis=1, ignore_index=False)
 
 
 # ##########################################################################################################
-# #%% Construct ensemble
+# #%% save the results
 # ##########################################################################################################
-#
-#
-#
-# Check if the directory exists, if not, create it
-#path_results = args.path_2_result+'/bootstrap_predictions.xlsx'
+
 # construct the path to the model
 path_results = args.path_2_result+args.property+'/gnn/'+args.model+'/'+result_folder[args.property]+'/bootstrap_predictions.xlsx'
 os.makedirs(os.path.dirname(path_results), exist_ok=True)

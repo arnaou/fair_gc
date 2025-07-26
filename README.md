@@ -42,6 +42,11 @@ Example: Run a trained MLP for a property (e.g., Omega) with a specific model:
 python evaluate_mlp.py --property Omega
 ```
 
+Example: run hyperparameter optimization for a specific property:
+```bash
+python scripts/optuna_mlp.py  --property Tc --config_file mlp_hyperopt_config.yaml --model mlp --n_trials 27 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3 --split_type fair_min
+```  
+
 See the `scripts/` and `src/` folders for more usage examples and available scripts.
 
 ## Contributing

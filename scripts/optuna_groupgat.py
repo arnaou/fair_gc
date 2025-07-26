@@ -149,8 +149,6 @@ else:
         df_result.to_excel(writer, sheet_name='prediction')
 
 # save the model and the trials and hyperparameters
-from typing import Dict, Any
-
 
 
 # Saving
@@ -174,4 +172,4 @@ save_model_package(
         'test_performance_metrics': test_metrics
     }
 )
-# python optuna_gnn.py --property Tc --config_file afp_hyperopt_config.yaml --model afp --n_trials 20 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
+# python optuna_groupgat.py --property Tc --config_file afp_hyperopt_config.yaml --model afp --n_trials 20 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3

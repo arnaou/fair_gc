@@ -35,7 +35,7 @@ source $HOME/miniconda3/bin/activate critprops
 # run application
 #python3 scripts/bootstrap_ml.py --n_bootstrap 100
 #python3 bootstrap_groupgat.py --property Pc --n_bootstrap 100 --n_epochs 500 --model groupgat
-#python3 scripts/bootstrap_gnn.py --property Vc --n_bootstrap 100 --n_epochs 500 --model afp
+#python3 scripts/bootstrap_afp.py --property Vc --n_bootstrap 100 --n_epochs 500 --model afp
 #python3 scripts/bootstrap_gcm.py --n_bootstrap 100 --property Tc
 #python3 bootstrap_groupgat.py --property Tc --n_bootstrap 100 --n_epochs 500 --model megnet
 python3 scripts/bootstrap_mlp.py --property Vc --n_bootstrap 100 --n_epochs 500 --model mlp

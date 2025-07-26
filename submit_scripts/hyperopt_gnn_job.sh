@@ -27,11 +27,11 @@
 source $HOME/miniconda3/bin/activate critprops
 
 #python3 HyPE/optimization_run_cluster.py --config_file config_tc.yaml --samples 5
-#python3 megnet_hyperopt.py --property Vc --config_file megnet_hyperopt_config.yaml --model megnet --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
+#python3 optuna_megnet.py --property Vc --config_file megnet_hyperopt_config.yaml --model megnet --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
 python3 groupgat_hyperopt.py --property Tc --config_file groupgat_hyperopt_config.yaml --model groupgat --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
-#python3 groupgat_hyperopt.py --property Vc --config_file groupgat_hyperopt_config.yaml --model groupgat --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
-#python3 groupgat_hyperopt.py --property Omega --config_file groupgat_hyperopt_config.yaml --model groupgat --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
-#python3 groupgat_hyperopt.py --property Vc --config_file groupgat_hyperopt_config.yaml --model groupgat --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
-#python3 groupgat_hyperopt.py --property Pc --config_file groupgat_hyperopt_config.yaml --model afp --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
+#python3 optuna_groupgat_v1.py --property Vc --config_file groupgat_hyperopt_config.yaml --model groupgat --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
+#python3 optuna_groupgat_v1.py --property Omega --config_file groupgat_hyperopt_config.yaml --model groupgat --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
+#python3 optuna_groupgat_v1.py --property Vc --config_file groupgat_hyperopt_config.yaml --model groupgat --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
+#python3 optuna_groupgat_v1.py --property Pc --config_file groupgat_hyperopt_config.yaml --model afp --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
 #python3 optuna_afp.py --property Omega --config_file afp_hyperopt_config.yaml --model afp --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
 

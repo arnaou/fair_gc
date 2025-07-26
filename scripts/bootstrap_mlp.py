@@ -112,29 +112,26 @@ test_loader = DataLoader(test_dataset, batch_size=600, shuffle=False)  # Create 
 #%% Fitting reference model
 ##########################################################################################################
 # extract folder name
-result_folder = None
-if args.model == 'mlp':
-    result_folder = {'Omega': 'rmse_0.067_26042025_0838',
+
+model_folder = {'Omega': 'rmse_0.067_26042025_0838',
                  'Tc': 'rmse_0.0315_26042025_0837',
                  'Pc': 'rmse_0.0573_26042025_0834',
                  'Vc': 'rmse_0.0273_26042025_0836'}
 
 
-
-model_path = args.path_2_model+'/'+args.property+'/'+args.model+'/'+result_folder[args.property]
+# define model path
+model_path = args.path_2_model+'/'+args.property+'/'+args.model+'/'+model_folder[args.property]
+# load the model
 loaded = load_mlp_model_package(model_path)
-
 best_model = loaded['model']
 config = loaded['config']
 y_scaler = loaded['scaler']
-
-
+# set the device
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-
+# set model in evaluation
 best_model.eval()
 # perform predictions
-
 train_pred, train_true, train_metrics = evaluate_mlp(best_model, train_loader, device, y_scaler)
 val_pred, val_true, val_metrics = evaluate_mlp(best_model, val_loader, device, y_scaler)
 test_pred, test_true, test_metrics = evaluate_mlp(best_model, test_loader, device, y_scaler)
@@ -301,7 +298,7 @@ for i in range(args.n_bootstrap):
     df_predictions = pd.concat([df_predictions, df0], axis=1, ignore_index=False)
 
 # Check if the directory exists, if not, create it
-path_2_result = 'results/'+args.property+'/'+args.model+'/'+result_folder[args.property]
+path_2_result = 'results/'+args.property+'/'+args.model+'/'+model_folder[args.property]
 
 path_results = path_2_result + '/bootstrap_predictions.xlsx'
 os.makedirs(os.path.dirname(path_results), exist_ok=True)

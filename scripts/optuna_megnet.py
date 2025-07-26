@@ -183,4 +183,4 @@ save_megnet_package(
     }
 )
 
-# # python megnet_hyperopt.py --property Tc --config_file megnet_hyperopt_config.yaml --model megnet --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
+# # python optuna_megnet.py --property Tc --config_file megnet_hyperopt_config.yaml --model megnet --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3

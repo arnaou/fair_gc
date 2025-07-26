@@ -33,5 +33,5 @@ source $HOME/miniconda3/bin/activate critprops
 
 
 # run application
-#python3 optuna_ml.py --property Tc --config_file ml_hyperopt_config.yaml --model svr --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --sampler auto --n_jobs 3
+#python3 optuna_ml_v1.py --property Tc --config_file ml_hyperopt_config.yaml --model svr --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --sampler auto --n_jobs 3
 python3 optuna_mlp.py --property Pc --config_file mlp_hyperopt_config.yaml --model mlp --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --sampler auto --n_jobs 3 --split_type butina_min

@@ -178,4 +178,4 @@ print(f"Results saved to: {os.path.dirname(results['results_path'])}")
 print(f"Trials saved to: {os.path.dirname(results['trials_path'])}")
 print(f"Prediction and metrics saved to: {os.path.dirname(prediction_path)}")
 
-# python optuna_ml.py --property Omega --config_file ml_hyperopt_config.yaml --model svr --n_trials 2000 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42
+# python optuna_ml_v1.py --property Omega --config_file ml_hyperopt_config.yaml --model svr --n_trials 2000 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42

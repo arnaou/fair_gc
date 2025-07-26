@@ -212,7 +212,7 @@ save_groupgat_package(
 
 
 #%%
-#python groupgat_hyperopt.py --property Omega --config_file groupgat_hyperopt_config.yaml --model groupgat --n_trials 20 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
+#python optuna_groupgat_v1.py --property Omega --config_file groupgat_hyperopt_config.yaml --model groupgat --n_trials 20 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3
 
 # loaded = load_model_package(model_dir=model_dir)
 #
