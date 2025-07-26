@@ -1,0 +1,37 @@
+{
+    "model_class": "GCGAT_v4pro",
+    "model_module": "src.grape.models.GroupGAT",
+    "model_hyperparameters": {
+        "node_in_dim": 36,
+        "edge_in_dim": 12,
+        "out_channels": 1,
+        "global_features": false,
+        "frag_dim": 219,
+        "L1_hidden_dim": 192,
+        "L1_layers_atom": 1,
+        "L1_layers_mol": 2,
+        "L1_out_dim": 32,
+        "L1_dropout": 0.010222038226352518,
+        "L2_hidden_dim": 224,
+        "L2_layers_atom": 4,
+        "L2_layers_mol": 1,
+        "L2_out_dim": 96,
+        "L2_dropout": 0.12723264971055565,
+        "L3_hidden_dim": 48,
+        "L3_layers_atom": 2,
+        "L3_layers_mol": 2,
+        "L3_out_dim": 48,
+        "L3_dropout": 0.2640784127874863,
+        "n_mlp_layers": 2,
+        "num_heads": 1,
+        "final_dropout": 0.2947211889081288,
+        "MLP_layers": [
+            360,
+            104
+        ]
+    },
+    "training_params": {
+        "learning_rate": 0.0003173378876088538,
+        "lr_reduce": 0.6
+    }
+}

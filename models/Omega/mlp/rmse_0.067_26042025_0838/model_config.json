@@ -1,0 +1,17 @@
+{
+    "model_class": "Sequential",
+    "model_module": "torch.nn.modules.container",
+    "model_hyperparameters": {
+        "n_in": 424,
+        "n_out": 1,
+        "n_hidden": [
+            368,
+            32
+        ],
+        "final_dropout": 0.09892575550692109
+    },
+    "training_params": {
+        "learning_rate": 0.005679128684804507,
+        "lr_reduce": 0.6
+    }
+}

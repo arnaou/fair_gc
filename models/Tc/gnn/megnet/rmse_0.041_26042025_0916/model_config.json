@@ -1,0 +1,21 @@
+{
+    "model_class": "MEGNet",
+    "model_module": "src.models.megnet",
+    "model_hyperparameters": {
+        "node_in_dim": 36,
+        "edge_in_dim": 12,
+        "out_channels": 1,
+        "mlp_out_hidden": [
+            493,
+            434
+        ],
+        "node_hidden_dim": 95,
+        "edge_hidden_dim": 48,
+        "depth": 1,
+        "rep_dropout": 0.11079733460670606
+    },
+    "training_params": {
+        "learning_rate": 0.005728072416508159,
+        "lr_reduce": 0.6
+    }
+}
