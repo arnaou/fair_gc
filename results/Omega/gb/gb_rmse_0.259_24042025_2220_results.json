@@ -1,0 +1,60 @@
+{
+    "timestamp": "24042025_2220",
+    "model_name": "gb",
+    "metric_name": "rmse",
+    "best_params": {
+        "n_estimators": 1232,
+        "learning_rate": 0.07349589206376055,
+        "max_depth": 9,
+        "min_samples_split": 11,
+        "min_samples_leaf": 1,
+        "subsample": 0.6113053925054044,
+        "max_features": null
+    },
+    "best_value": 0.2593691654006791,
+    "n_trials": 2500,
+    "parameter_ranges": {
+        "n_estimators": {
+            "min": 100,
+            "max": 1500,
+            "type": "int"
+        },
+        "learning_rate": {
+            "min": 0.010004837802174591,
+            "max": 0.09998713122373774,
+            "type": "float"
+        },
+        "max_depth": {
+            "min": 3,
+            "max": 12,
+            "type": "int"
+        },
+        "min_samples_split": {
+            "min": 2,
+            "max": 20,
+            "type": "int"
+        },
+        "min_samples_leaf": {
+            "min": 1,
+            "max": 10,
+            "type": "int"
+        },
+        "subsample": {
+            "min": 0.6000712322296544,
+            "max": 0.9994077179120018,
+            "type": "float"
+        },
+        "max_features": {
+            "values": [
+                "log2",
+                "sqrt"
+            ],
+            "type": "categorical"
+        }
+    },
+    "config_file": "ml_hyperopt_config.yaml",
+    "model_path": "models/Omega/gb/gb_rmse_0.259_24042025_2220_pipeline.joblib",
+    "results_path": "results/Omega/gb/gb_rmse_0.259_24042025_2220_results.json",
+    "trials_path": "results/Omega/gb/gb_rmse_24042025_2220_trials.csv",
+    "seed": 42
+}

@@ -1,0 +1,60 @@
+{
+    "model_hyperparameters": {
+        "in_channels": 36,
+        "edge_dim": 12,
+        "out_channels": 1,
+        "mlp_hidden_dims": [
+            256,
+            112
+        ],
+        "hidden_channels": 192,
+        "num_layers": 2,
+        "num_timesteps": 2,
+        "dropout": 0.010814624318906809
+    },
+    "training_params": {
+        "learning_rate": 0.009296764449972428,
+        "lr_reduce": 0.6
+    },
+    "model_class": "FlexibleMLPAttentiveFP",
+    "model_module": "src.models.afp",
+    "optimization": {
+        "study_best_params": {
+            "mlp_n_layers": 2,
+            "mlp_dim_00": 256,
+            "mlp_dim_01": 112,
+            "hidden_channels": 192,
+            "num_layers": 2,
+            "num_timesteps": 2,
+            "dropout": 0.010814624318906809,
+            "train_learning_rate": 0.009296764449972428,
+            "train_lr_reduce": 0.6
+        },
+        "study_best_value": 0.007465819828212261,
+        "n_trials": 2500,
+        "direction": "MINIMIZE"
+    },
+    "training_date": "26042025_1241",
+    "dataset_info": "your_dataset_details",
+    "train_performance_metrics": {
+        "r2": 0.9939802289009094,
+        "rmse": 0.015572168864309788,
+        "mse": 0.00024249244597740471,
+        "mare": 2.8599462509155273,
+        "mae": 0.010763742960989475
+    },
+    "val_performance_metrics": {
+        "r2": 0.9958138465881348,
+        "rmse": 0.01734192669391632,
+        "mse": 0.00030074245296418667,
+        "mare": 2.7517142295837402,
+        "mae": 0.011597496457397938
+    },
+    "test_performance_metrics": {
+        "r2": 0.993245005607605,
+        "rmse": 0.02647221088409424,
+        "mse": 0.0007007779204286635,
+        "mare": 3.213286876678467,
+        "mae": 0.015025313012301922
+    }
+}

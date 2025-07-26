@@ -1,0 +1,62 @@
+{
+    "timestamp": "25042025_0158",
+    "model_name": "rf",
+    "metric_name": "rmse",
+    "best_params": {
+        "n_estimators": 380,
+        "max_depth": 49,
+        "min_samples_split": 4,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt",
+        "bootstrap": false,
+        "criterion": "absolute_error"
+    },
+    "best_value": 0.32384577948571097,
+    "n_trials": 4940,
+    "parameter_ranges": {
+        "n_estimators": {
+            "min": 101,
+            "max": 1000,
+            "type": "int"
+        },
+        "max_depth": {
+            "min": 5,
+            "max": 50,
+            "type": "int"
+        },
+        "min_samples_split": {
+            "min": 2,
+            "max": 50,
+            "type": "int"
+        },
+        "min_samples_leaf": {
+            "min": 1,
+            "max": 15,
+            "type": "int"
+        },
+        "max_features": {
+            "values": [
+                "log2",
+                "sqrt"
+            ],
+            "type": "categorical"
+        },
+        "bootstrap": {
+            "min": false,
+            "max": true,
+            "type": "int"
+        },
+        "criterion": {
+            "values": [
+                "absolute_error",
+                "squared_error"
+            ],
+            "type": "categorical"
+        }
+    },
+    "config_file": "ml_hyperopt_config.yaml",
+    "model_path": "models/Tc/rf/rf_rmse_0.324_25042025_0158_pipeline.joblib",
+    "results_path": "results/Tc/rf/rf_rmse_0.324_25042025_0158_results.json",
+    "trials_path": "results/Tc/rf/rf_rmse_25042025_0158_trials.csv",
+    "seed": 42
+}

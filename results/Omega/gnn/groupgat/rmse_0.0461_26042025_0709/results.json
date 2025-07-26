@@ -1,0 +1,89 @@
+{
+    "model_hyperparameters": {
+        "node_in_dim": 36,
+        "edge_in_dim": 12,
+        "out_channels": 1,
+        "global_features": false,
+        "frag_dim": 219,
+        "L1_hidden_dim": 192,
+        "L1_layers_atom": 1,
+        "L1_layers_mol": 2,
+        "L1_out_dim": 32,
+        "L1_dropout": 0.010222038226352518,
+        "L2_hidden_dim": 224,
+        "L2_layers_atom": 4,
+        "L2_layers_mol": 1,
+        "L2_out_dim": 96,
+        "L2_dropout": 0.12723264971055565,
+        "L3_hidden_dim": 48,
+        "L3_layers_atom": 2,
+        "L3_layers_mol": 2,
+        "L3_out_dim": 48,
+        "L3_dropout": 0.2640784127874863,
+        "n_mlp_layers": 2,
+        "num_heads": 1,
+        "final_dropout": 0.2947211889081288,
+        "MLP_layers": [
+            360,
+            104
+        ]
+    },
+    "training_params": {
+        "learning_rate": 0.0003173378876088538,
+        "lr_reduce": 0.6
+    },
+    "model_class": "GCGAT_v4pro",
+    "model_module": "src.grape.models.GroupGAT",
+    "optimization": {
+        "study_best_params": {
+            "L1_hidden_dim": 192,
+            "L1_layers_atom": 1,
+            "L1_layers_mol": 2,
+            "L1_dropout": 0.010222038226352518,
+            "L1_out_dim": 32,
+            "L2_hidden_dim": 224,
+            "L2_layers_atom": 4,
+            "L2_layers_mol": 1,
+            "L2_out_dim": 96,
+            "L2_dropout": 0.12723264971055565,
+            "L3_hidden_dim": 48,
+            "L3_layers_atom": 2,
+            "L3_layers_mol": 2,
+            "L3_out_dim": 48,
+            "L3_dropout": 0.2640784127874863,
+            "n_mlp_layers": 2,
+            "mlp_dim_0": 360,
+            "mlp_dim_1": 104,
+            "num_heads": 1,
+            "final_dropout": 0.2947211889081288,
+            "train_learning_rate": 0.0003173378876088538,
+            "train_lr_reduce": 0.6
+        },
+        "study_best_value": 0.04611542448401451,
+        "n_trials": 2500,
+        "direction": "MINIMIZE"
+    },
+    "training_date": "26042025_0709",
+    "dataset_info": "your_dataset_details",
+    "train_performance_metrics": {
+        "r2": 0.963588297367096,
+        "rmse": 0.03163514286279678,
+        "mse": 0.0010007822420448065,
+        "mare": 5.736838340759277,
+        "mae": 0.02051960490643978
+    },
+    "val_performance_metrics": {
+        "r2": 0.9480984807014465,
+        "rmse": 0.03560182452201843,
+        "mse": 0.001267489860765636,
+        "mare": 8.569134712219238,
+        "mae": 0.026521163061261177
+    },
+    "test_performance_metrics": {
+        "r2": 0.9277023077011108,
+        "rmse": 0.04569267854094505,
+        "mse": 0.0020878207869827747,
+        "mare": 9.796825408935547,
+        "mae": 0.030191997066140175
+    }
+}

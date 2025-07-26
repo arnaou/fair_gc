@@ -1,0 +1,44 @@
+{
+    "timestamp": "25042025_0248",
+    "model_name": "svr",
+    "metric_name": "rmse",
+    "best_params": {
+        "kernel": "linear",
+        "C": 98.00456491514765,
+        "gamma": 0.00026139829364015313,
+        "epsilon": 0.033165505220199405
+    },
+    "best_value": 0.14795026295030395,
+    "n_trials": 2500,
+    "parameter_ranges": {
+        "kernel": {
+            "values": [
+                "linear",
+                "poly",
+                "rbf",
+                "sigmoid"
+            ],
+            "type": "categorical"
+        },
+        "C": {
+            "min": 0.0010334589531127607,
+            "max": 99.98011716555823,
+            "type": "float"
+        },
+        "gamma": {
+            "min": 0.00010011632750937005,
+            "max": 0.9996044760381548,
+            "type": "float"
+        },
+        "epsilon": {
+            "min": 0.001008434254051422,
+            "max": 0.983624783247944,
+            "type": "float"
+        }
+    },
+    "config_file": "ml_hyperopt_config.yaml",
+    "model_path": "models/Vc/svr/svr_rmse_0.148_25042025_0248_pipeline.joblib",
+    "results_path": "results/Vc/svr/svr_rmse_0.148_25042025_0248_results.json",
+    "trials_path": "results/Vc/svr/svr_rmse_25042025_0248_trials.csv",
+    "seed": 42
+}

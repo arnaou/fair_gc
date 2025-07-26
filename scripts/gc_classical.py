@@ -221,19 +221,4 @@ np.save(path_2_model+'_sim_coefs',coefs_lms, allow_pickle=False)
 
 
 # --property 'Vc' --path_2_data 'data/' --path_2_result 'results/' --path_2_model 'models/'
-#%%
 
-# calculate the errors
-err_train = y_train['true'] - y_train['step_pred']
-err_val = y_val['true'] - y_val['step_pred']
-# calculate the ecdf
-ecdf_train = ECDF(err_train)
-ecdf_val = ECDF(err_val)
-condition_train = (np.isfinite(ecdf_train.x)) & (np.isfinite(ecdf_train.y))
-condition_val = (np.isfinite(ecdf_val.x)) & (np.isfinite(ecdf_val.y))
-ecdf_train.x, ecdf_train.y = ecdf_train.x[condition_train], ecdf_train.y[condition_train]
-ecdf_val.x, ecdf_val.y = ecdf_val.x[condition_val], ecdf_val.y[condition_val]
-# print(err_train.shape)
-# print(condition_train.shape)
-df_val[condition_val[condition_val]]
-#

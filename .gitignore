@@ -164,8 +164,10 @@ cython_debug/
 #data/
 .github/
 trash
-results
+#results
 models
-optuna_dbs
+optuna_dbs/*
+!optuna_dbs/.gitkeep
 temp_model*
-checkpoints
+trash/checkpoints
+*_frags.pth

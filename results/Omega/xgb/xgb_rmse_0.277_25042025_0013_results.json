@@ -1,0 +1,70 @@
+{
+    "timestamp": "25042025_0013",
+    "model_name": "xgb",
+    "metric_name": "rmse",
+    "best_params": {
+        "n_estimators": 1169,
+        "max_depth": 7,
+        "learning_rate": 0.05534540687868761,
+        "subsample": 0.8690241949411622,
+        "colsample_bytree": 0.8663021926131232,
+        "min_child_weight": 1,
+        "gamma": 0.0006191457880306414,
+        "reg_alpha": 0.14426778691719522,
+        "reg_lambda": 0.021966153890754958
+    },
+    "best_value": 0.2766704953737184,
+    "n_trials": 2500,
+    "parameter_ranges": {
+        "n_estimators": {
+            "min": 100,
+            "max": 1500,
+            "type": "int"
+        },
+        "max_depth": {
+            "min": 3,
+            "max": 12,
+            "type": "int"
+        },
+        "learning_rate": {
+            "min": 0.010000000000000004,
+            "max": 0.1,
+            "type": "float"
+        },
+        "subsample": {
+            "min": 0.7,
+            "max": 1.0,
+            "type": "float"
+        },
+        "colsample_bytree": {
+            "min": 0.5,
+            "max": 1.0,
+            "type": "float"
+        },
+        "min_child_weight": {
+            "min": 1,
+            "max": 5,
+            "type": "int"
+        },
+        "gamma": {
+            "min": 1e-05,
+            "max": 0.5,
+            "type": "float"
+        },
+        "reg_alpha": {
+            "min": 1e-05,
+            "max": 0.5,
+            "type": "float"
+        },
+        "reg_lambda": {
+            "min": 1e-05,
+            "max": 0.5,
+            "type": "float"
+        }
+    },
+    "config_file": "ml_hyperopt_config.yaml",
+    "model_path": "models/Omega/xgb/xgb_rmse_0.277_25042025_0013_pipeline.joblib",
+    "results_path": "results/Omega/xgb/xgb_rmse_0.277_25042025_0013_results.json",
+    "trials_path": "results/Omega/xgb/xgb_rmse_25042025_0013_trials.csv",
+    "seed": 42
+}

@@ -1,0 +1,60 @@
+{
+    "timestamp": "24042025_2247",
+    "model_name": "gb",
+    "metric_name": "rmse",
+    "best_params": {
+        "n_estimators": 1470,
+        "learning_rate": 0.08210159183240204,
+        "max_depth": 9,
+        "min_samples_split": 14,
+        "min_samples_leaf": 1,
+        "subsample": 0.7946461586573427,
+        "max_features": "sqrt"
+    },
+    "best_value": 0.21973388201901706,
+    "n_trials": 2500,
+    "parameter_ranges": {
+        "n_estimators": {
+            "min": 100,
+            "max": 1500,
+            "type": "int"
+        },
+        "learning_rate": {
+            "min": 0.010044186225636789,
+            "max": 0.0999994689465867,
+            "type": "float"
+        },
+        "max_depth": {
+            "min": 3,
+            "max": 12,
+            "type": "int"
+        },
+        "min_samples_split": {
+            "min": 2,
+            "max": 20,
+            "type": "int"
+        },
+        "min_samples_leaf": {
+            "min": 1,
+            "max": 10,
+            "type": "int"
+        },
+        "subsample": {
+            "min": 0.6001185600030043,
+            "max": 0.9999976019734759,
+            "type": "float"
+        },
+        "max_features": {
+            "values": [
+                "log2",
+                "sqrt"
+            ],
+            "type": "categorical"
+        }
+    },
+    "config_file": "ml_hyperopt_config.yaml",
+    "model_path": "models/Tc/gb/gb_rmse_0.22_24042025_2247_pipeline.joblib",
+    "results_path": "results/Tc/gb/gb_rmse_0.22_24042025_2247_results.json",
+    "trials_path": "results/Tc/gb/gb_rmse_24042025_2247_trials.csv",
+    "seed": 42
+}

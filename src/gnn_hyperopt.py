@@ -250,7 +250,7 @@ def afp_hyperparameter_optimizer(
                 best_val_loss = val_loss
                 # Convert state dict tensors to lists for serialization
                 # Save state dict to a separate file using trial number
-                save_path = os.path.join('checkpoints', f'{property_name}_trial_{trial.number}_best_state.pt')
+                save_path = os.path.join('/work3/arnaou/checkpoints', f'{property_name}_trial_{trial.number}_best_state.pt')
                 torch.save({
                     'state_dict': model.state_dict(),
                     'val_loss': val_loss,
@@ -497,7 +497,7 @@ def load_model_package(
     model_class = getattr(module, model_name)
 
     # Create model instance
-    model = model_class(config['model_hyperparameters'])
+    model = model_class(**config['model_hyperparameters'])
 
     # Load model state
     model_path = os.path.join(model_dir, "model.pt")
@@ -694,7 +694,7 @@ def megnet_hyperparameter_optimizer(
             # Early stopping
             if val_loss < best_val_loss:
                 best_val_loss = val_loss
-                save_path = os.path.join('checkpoints', f'megnet_{property_name}_trial_{trial.number}_best_state.pt')
+                save_path = os.path.join('/work3/arnaou/checkpoints', f'megnet_{property_name}_trial_{trial.number}_best_state.pt')
                 torch.save({
                     'state_dict': model.state_dict(),
                     'val_loss': val_loss,
@@ -1092,7 +1092,7 @@ def groupgat_hyperparameter_optimizer(
             # Early stopping logic
             if val_loss < best_val_loss:
                 best_val_loss = val_loss
-                save_path = os.path.join('checkpoints', f'groupgat_{property_name}_trial_{trial.number}_best_state.pt')
+                save_path = os.path.join('/work3/arnaou/checkpoints', f'groupgat_{property_name}_trial_{trial.number}_best_state.pt')
                 torch.save({
                     'state_dict': model.state_dict(),
                     'val_loss': val_loss,

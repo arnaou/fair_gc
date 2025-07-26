@@ -1,0 +1,64 @@
+{
+    "model_hyperparameters": {
+        "node_in_dim": 36,
+        "edge_in_dim": 12,
+        "out_channels": 1,
+        "mlp_out_hidden": [
+            294,
+            313,
+            211,
+            163
+        ],
+        "node_hidden_dim": 90,
+        "edge_hidden_dim": 68,
+        "depth": 1,
+        "rep_dropout": 0.021869853949989918
+    },
+    "training_params": {
+        "learning_rate": 0.00790994206136265,
+        "lr_reduce": 0.6
+    },
+    "model_class": "MEGNet",
+    "model_module": "src.models.megnet",
+    "optimization": {
+        "study_best_params": {
+            "mlp_n_layers": 4,
+            "mlp_dim_00": 294,
+            "mlp_dim_01": 313,
+            "mlp_dim_02": 211,
+            "mlp_dim_03": 163,
+            "node_hidden_dim": 90,
+            "edge_hidden_dim": 68,
+            "depth": 1,
+            "rep_dropout": 0.021869853949989918,
+            "train_learning_rate": 0.00790994206136265,
+            "train_lr_reduce": 0.6
+        },
+        "study_best_value": 0.06694476306438446,
+        "n_trials": 2500,
+        "direction": "MINIMIZE"
+    },
+    "training_date": "26042025_1229",
+    "dataset_info": "your_dataset_details",
+    "train_performance_metrics": {
+        "r2": 0.9382836818695068,
+        "rmse": 3.124450206756592,
+        "mse": 9.762188911437988,
+        "mare": 7.149230480194092,
+        "mae": 2.169292449951172
+    },
+    "val_performance_metrics": {
+        "r2": 0.9245297908782959,
+        "rmse": 3.2541072368621826,
+        "mse": 10.589214324951172,
+        "mare": 7.448923587799072,
+        "mae": 2.298645496368408
+    },
+    "test_performance_metrics": {
+        "r2": 0.8488038778305054,
+        "rmse": 5.004436016082764,
+        "mse": 25.044382095336914,
+        "mare": 8.353652954101562,
+        "mae": 2.5580313205718994
+    }
+}

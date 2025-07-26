@@ -1,0 +1,75 @@
+# metrics
+metric:
+  mae:
+    function: sklearn.metrics.mean_absolute_error
+  mse:
+    function: sklearn.metrics.mean_squared_error
+  rmse:
+    function: sklearn.metrics.root_mean_squared_error
+  r2:
+    function: sklearn.metrics.r2_score
+    direction: maximize  # override default direction
+# samplers for optuna
+sampler:
+  auto:
+    class: "auto"
+    params: {}
+  tpe:
+    class: optuna.samplers.TPESampler
+    params:
+      seed: 42
+  random:
+    class: optuna.samplers.RandomSampler
+    params:
+      seed: null
+  cmaes:
+    class: optuna.samplers.CmaEsSampler
+    params:
+      seed: null
+# Training parameters (separate from model init)
+training_params:
+    learning_rate:
+      type: 'float'
+      low: 1.0e-4
+      high: 1.0e-2
+      log: true
+    lr_reduce:
+      type: 'float'
+      low: 0.6
+      high: 0.6
+      log: false
+
+# parameters for the models
+models:
+  mlp:
+    class: 'src.models.mlp.build_mlp'
+
+    # Fixed parameters
+    fixed_params:
+      n_in: 424
+      n_out: 1
+
+    # Parameters to optimize
+    param_ranges:
+      mlp_config:
+        n_layers:
+          type: 'int'
+          low: 2
+          high: 4
+        dim_per_layer:
+          type: 'int'
+          low: 32
+          high: 512
+          step: 16
+      final_dropout:
+        type: 'float'
+        low: 0.0
+        high: 0.3
+
+# set of default parameters
+default_settings:
+  direction: minimize
+  n_trials: 5
+  sampler: auto
+  metric: rmse
+  max_epochs: 500

@@ -139,3 +139,45 @@ def evaluate_gnn(model, loader, device, y_scaler=None, tag='afp'):
     metrics = calculate_metrics(true_values, predictions)
 
     return predictions, true_values, metrics
+
+
+def evaluate_mlp(model, loader, device, y_scaler=None):
+    """
+    function for using a GNN for prediction
+    :param model: rained PyG GNN model
+    :param loader: Dataloader
+    :param device: cpu or cuda
+    :param y_scaler: the scaler for the target value
+    :return:
+    """
+    # set the model in evaluation mode
+    model.eval()
+    # initialize the prediction and true values
+    predictions = []
+    true_values = []
+
+    # unpack loaders and perform predictions
+    with torch.no_grad():
+        for batch in loader:
+            x = batch[0].to(device)
+            y = batch[1].to(device)
+            pred = model(x)
+            true = y.view(-1, 1)
+
+            # Store predictions and true values
+            predictions.extend(pred.cpu().numpy())
+            true_values.extend(true.cpu().numpy())
+
+    # convert to numpy
+    predictions = np.array(predictions).reshape(-1, 1)
+    true_values = np.array(true_values).reshape(-1, 1)
+
+    # Inverse transform if scaler was used
+    if y_scaler is not None:
+        predictions = y_scaler.inverse_transform(predictions)
+        true_values = y_scaler.inverse_transform(true_values)
+
+    # Calculate metrics
+    metrics = calculate_metrics(true_values, predictions)
+
+    return predictions, true_values, metrics

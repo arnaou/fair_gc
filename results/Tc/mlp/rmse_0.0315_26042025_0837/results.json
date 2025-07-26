@@ -1,0 +1,53 @@
+{
+    "model_hyperparameters": {
+        "n_in": 424,
+        "n_out": 1,
+        "n_hidden": [
+            96,
+            80
+        ],
+        "final_dropout": 0.06719661073961959
+    },
+    "training_params": {
+        "learning_rate": 0.007406014340440719,
+        "lr_reduce": 0.6
+    },
+    "model_class": "Sequential",
+    "model_module": "torch.nn.modules.container",
+    "optimization": {
+        "study_best_params": {
+            "mlp_n_layers": 2,
+            "mlp_dim_00": 96,
+            "mlp_dim_01": 80,
+            "final_dropout": 0.06719661073961959,
+            "train_learning_rate": 0.007406014340440719,
+            "train_lr_reduce": 0.6
+        },
+        "study_best_value": 0.031466830521821976,
+        "n_trials": 2500,
+        "direction": "MINIMIZE"
+    },
+    "training_date": "26042025_0837",
+    "dataset_info": "your_dataset_details",
+    "train_performance_metrics": {
+        "r2": 0.9935041666030884,
+        "rmse": 9.791634559631348,
+        "mse": 95.8760986328125,
+        "mare": 0.9424599409103394,
+        "mae": 5.204715251922607
+    },
+    "val_performance_metrics": {
+        "r2": 0.9610310792922974,
+        "rmse": 21.55088233947754,
+        "mse": 464.44049072265625,
+        "mare": 2.2572526931762695,
+        "mae": 13.479876518249512
+    },
+    "test_performance_metrics": {
+        "r2": 0.9525251388549805,
+        "rmse": 24.034276962280273,
+        "mse": 577.6464233398438,
+        "mare": 2.63791823387146,
+        "mae": 14.390501022338867
+    }
+}
