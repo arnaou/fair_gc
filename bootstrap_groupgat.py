@@ -49,7 +49,7 @@ parser.add_argument('--path_2_data', type=str, default='data/', help='path to th
 parser.add_argument('--path_2_result', type=str, default='results/', help='path for storing the results')
 parser.add_argument('--path_2_model', type=str, default='models/', help='path for storing the model')
 parser.add_argument('--seed', type=int, default=42, help='seed for training')
-parser.add_argument('--n_epochs', type=int, default=200, help='seed for training')
+parser.add_argument('--n_epochs', type=int, default=500, help='seed for training')
 
 args = parser.parse_args()
 seed_everything(args.seed)
@@ -65,7 +65,7 @@ seed_everything(args.seed)
 #%% Data Loading and preparation
 ##########################################################################################################
 # construct the path to the data
-path_2_data = args.path_2_data+'/processed/'+args.property+'/'+args.property+'_processed.xlsx'
+path_2_data = args.path_2_data+'/processed/'+args.property+'/'+args.property+'_butina_min_processed.xlsx'
 # reda the data
 df = pd.read_excel(path_2_data)
 # split the data
@@ -109,10 +109,16 @@ if args.model == 'afp':
                  'Pc': 'rmse_0.081_16122024_0136',
                  'Vc': 'rmse_0.00917_15122024_1525'}
 elif args.model == 'groupgat':
-    result_folder = {'Omega': 'rmse_0.127_24122024_1222',
-                 'Tc': 'rmse_0.00931_26122024_2312',
-                 'Pc': 'rmse_0.0394_26122024_1102',
-                 'Vc': 'rmse_0.0095_26122024_0404'}
+    result_folder = {'Omega': 'rmse_0.0461_26042025_0709',
+                 'Tc': 'rmse_0.0115_27042025_0205',
+                 'Pc': 'rmse_0.0325_25042025_1922',
+                 'Vc': 'rmse_0.00761_26042025_0827'}
+elif args.model == 'megnet':
+    result_folder = {'Omega': 'rmse_0.0778_26042025_0827',
+                 'Tc': 'rmse_0.041_26042025_0916',
+                 'Pc': 'rmse_0.0669_26042025_1229',
+                 'Vc': 'rmse_0.0956_26042025_1719'}
+
 
 # construct the path to the model
 path_2_model = 'models/'+args.property+'/gnn/'+args.model+'/'+result_folder[args.property]
@@ -187,7 +193,7 @@ for i in range(args.n_bootstrap):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     # construct the model
     model_class = get_class_from_path(config['model_module']+'.'+config['model_class'])
-    model = model_class(config['model_hyperparameters']).to(device)
+    model = model_class(**config['model_hyperparameters']).to(device)
     config = loaded['config']
     optimizer = torch.optim.Adam(model.parameters(), lr=config['training_params']['learning_rate'])
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min',
@@ -196,7 +202,7 @@ for i in range(args.n_bootstrap):
 
     best_val_loss = float('inf')
     best_state_dict = None
-    patience = 30
+    patience = 25
     patience_counter = 0
 
     for epoch in range(args.n_epochs):

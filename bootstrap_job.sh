@@ -33,7 +33,9 @@ source $HOME/miniconda3/bin/activate critprops
 
 
 # run application
-#python3 gc_ml.py --property Tc --config_file model_config.yaml --model gpr --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --sampler auto --n_jobs 3
-#python3 optuna_gnn.py --property Pc --config_file gnn_hyperopt_config.yaml --model afp --n_trials 2500 --path_2_data data/ --path_2_result results/ --path_2_model models/ --seed 42 --n_jobs 3 --sampler auto
-#python3 bootstrap_ml.py
-python3 bootstrap_groupgat.py --property Omega --n_bootstrap 100 --n_epochs 500
+#python3 scripts/bootstrap_ml.py --n_bootstrap 100
+#python3 bootstrap_groupgat.py --property Pc --n_bootstrap 100 --n_epochs 500 --model groupgat
+#python3 scripts/bootstrap_gnn.py --property Vc --n_bootstrap 100 --n_epochs 500 --model afp
+#python3 scripts/bootstrap_gcm.py --n_bootstrap 100 --property Tc
+#python3 bootstrap_groupgat.py --property Tc --n_bootstrap 100 --n_epochs 500 --model megnet
+python3 scripts/bootstrap_mlp.py --property Vc --n_bootstrap 100 --n_epochs 500 --model mlp

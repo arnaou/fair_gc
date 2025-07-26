@@ -19,14 +19,34 @@ warnings.filterwarnings('ignore', category=ExperimentalWarning)
 
 
 # parse arguments
-args = gnn_hypopt_parse_arguments()
+parser = argparse.ArgumentParser(description='Hyperparameter optimization for GNN models')
+parser.add_argument('--property', type=str, default='Omega', required=False, help='Tag for the property')
+parser.add_argument('--config_file', type=str, required=False, default='megnet_hyperopt_config.yaml', help='Path to the YAML configuration file')
+parser.add_argument('--model', type=str, required=False, default='megnet', help='Model type to optimize (must be defined in config file)')
+parser.add_argument('--metric', type=str, required=False, default='rmse', help='Scoring metric to use (must be defined in config file)')
+parser.add_argument('--n_trials', type=int, default=15, help='Number of optimization trials (uses config default if not specified)')
+parser.add_argument('--n_jobs', type=int, default=2, help='Number of cores used (uses max if not configured)')
+parser.add_argument('--sampler', type=str, default='auto', help='Sampler to use (uses config default if not specified)')
+parser.add_argument('--path_2_data', type=str, default='data/', required=False, help='Path to the data file')
+parser.add_argument('--path_2_result', type=str, default='results/', required=False, help='Path to save the results (metrics and predictions)')
+parser.add_argument('--path_2_model', type=str, required=False, default='models/', help='Path to save the model and eventual check points')
+parser.add_argument('--study_name', type=str, default=None, help='Name of the study for persistence')
+parser.add_argument('--storage', type=str, default=None, help='Database URL for study storage (e.g., sqlite:///optuna.db)')
+parser.add_argument('--no_load_if_exists', action='store_false', dest='load_if_exists', help='Do not load existing study if it exists')
+parser.add_argument('--seed', type=int, default=42, help='Random state for reproducibility')
+
+
+
+args = parser.parse_args()
+
 ##########################################################################################################
 # Load the data & Preprocessing
 ##########################################################################################################
 
 # import the data
-path_to_data = args.path_2_data+'processed/'+args.property+'/'+args.property+'_processed.xlsx'
-df = pd.read_excel(path_to_data)
+path_2_data = args.path_2_data+'processed/'+args.property+'/'+args.property+'_butina_min_processed.xlsx'
+
+df = pd.read_excel(path_2_data)
 # split the data
 df_train = df[df['label']=='train']
 df_val = df[df['label']=='val']

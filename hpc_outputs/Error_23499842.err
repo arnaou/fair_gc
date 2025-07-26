@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "/zhome/b1/0/88900/Documents/fair_gc/bootstrap_groupgat.py", line 121, in <module>
-    loaded = load_model_package(path_2_model)
-  File "/zhome/b1/0/88900/Documents/fair_gc/src/gnn_hyperopt.py", line 490, in load_model_package
-    with open(config_path, 'r') as f:
-FileNotFoundError: [Errno 2] No such file or directory: 'models/Pc/gnn/groupgat/rmse_0.00931_26122024_2312/model_config.json'

@@ -13,12 +13,18 @@
 ##########################################################################################################
 # import packages & load arguments
 ##########################################################################################################
+import os
+import sys
+
+gc_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(gc_dir)
+
 import pandas as pd
 import argparse
 import numpy as np
 from lightning import seed_everything
 import os
-from src.ml_utils import  create_model
+from src.ml_utils import create_model
 from src.ml_hyperopt import model_selector
 from sklearn.preprocessing import StandardScaler
 import json
@@ -26,6 +32,7 @@ from src.evaluation import calculate_metrics
 import warnings
 from optuna.exceptions import ExperimentalWarning
 from sklearn.exceptions import ConvergenceWarning
+import glob
 
 
 # Suppress experimental warnings from Optuna
@@ -37,7 +44,7 @@ warnings.filterwarnings('ignore', category=ConvergenceWarning)
 parser = argparse.ArgumentParser()
 parser.add_argument('--property', type=str, default='Pc', help='tag of the property of interest')
 parser.add_argument('--model', type=str, default='gpr', help='name of ml model')
-parser.add_argument('--n_bootstrap', type=int, default=3, help='number of bootstrap samples')
+parser.add_argument('--n_bootstrap', type=int, default=100, help='number of bootstrap samples')
 parser.add_argument('--path_2_data', type=str, default='data/', help='path to the data')
 parser.add_argument('--path_2_result', type=str, default='results/', help='path for storing the results')
 parser.add_argument('--path_2_model', type=str, default='models/', help='path for storing the model')
@@ -57,7 +64,7 @@ for mod in list_of_model:
         #%% Data Loading and preparation
         ##########################################################################################################
         # construct the path to the data
-        path_2_data = args.path_2_data+'/processed/'+args.property+'/'+args.property+'_processed.xlsx'
+        path_2_data = args.path_2_data+'/processed/'+args.property+'/'+args.property+'_butina_min_processed.xlsx'
         # reda the data
         df = pd.read_excel(path_2_data)
         # split the data
@@ -84,14 +91,22 @@ for mod in list_of_model:
         y_val['scaled'] = scaler.transform(y_val['true'])
         y_test['scaled'] = scaler.transform(y_test['true'])
 
+
+
         ##########################################################################################################
         #%% Fitting reference model
         ##########################################################################################################
         # construct the path to the model
-        path_2_model= args.path_2_result+'/'+args.property+'/'+args.model+'/results.json'
+        dir_pattern = os.path.join(args.path_2_result, args.property, args.model)
+
+        # Find all files ending with "result.json" in that directory
+        model_file = glob.glob(os.path.join(dir_pattern, "*results.json"))
+        model_file = model_file[0]
+
+        #path_2_model= args.path_2_result+'/'+args.property+'/'+args.model+'/results.json'
 
         # Read the hyperparameters of the ML model
-        with open(path_2_model, "r") as file:
+        with open(model_file, "r") as file:
             data = json.load(file)
 
         # construct the model
@@ -142,10 +157,13 @@ for mod in list_of_model:
 
         # Initialize tensor
         err_matrix = np.zeros((len(err), args.n_bootstrap))
+        # set bootstrap seed
+        rng = np.random.RandomState(args.seed)
+
 
         # Populate matrix with random samples from the residual with replacements
         for i in range(args.n_bootstrap):
-            seed_everything(args.seed+i)
+
             err_matrix[:, i] = np.random.choice(err.ravel(), size=len(err), replace=True)
 
         # Build synthetic data matrix: prediction + column of res_matrix

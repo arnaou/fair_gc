@@ -13,6 +13,11 @@
 ##########################################################################################################
 # import packages & load arguments
 ##########################################################################################################
+import os
+import sys
+# append the src folder
+gc_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(gc_dir)
 import pandas as pd
 import argparse
 import numpy as np
@@ -43,7 +48,7 @@ warnings.filterwarnings('ignore', category=ConvergenceWarning)
 parser = argparse.ArgumentParser()
 parser.add_argument('--property', type=str, default='Omega', help='tag of the property of interest')
 parser.add_argument('--model', type=str, default='afp', help='name of ml model')
-parser.add_argument('--n_bootstrap', type=int, default=100, help='number of bootstrap samples')
+parser.add_argument('--n_bootstrap', type=int, default=5, help='number of bootstrap samples')
 parser.add_argument('--path_2_data', type=str, default='data/', help='path to the data')
 parser.add_argument('--path_2_result', type=str, default='results/', help='path for storing the results')
 parser.add_argument('--path_2_model', type=str, default='models/', help='path for storing the model')
@@ -64,7 +69,7 @@ args = parser.parse_args()
 #%% Data Loading and preparation
 ##########################################################################################################
 # construct the path to the data
-path_2_data = args.path_2_data+'/processed/'+args.property+'/'+args.property+'_processed.xlsx'
+path_2_data = args.path_2_data+'/processed/'+args.property+'/'+args.property+'_butina_min_processed.xlsx'
 # reda the data
 df = pd.read_excel(path_2_data)
 # split the data
@@ -96,13 +101,16 @@ test_loader = DataLoader(test_dataset, batch_size=600, shuffle=False)
 #%% Fitting reference model
 ##########################################################################################################
 # extract folder name
-result_folder = {'Omega': 'rmse_0.132_15122024_1739',
-                 'Tc': 'rmse_0.0108_15122024_1328',
-                 'Pc': 'rmse_0.081_16122024_0136',
-                 'Vc': 'rmse_0.00917_15122024_1525'}
+result_folder = None
+if args.model == 'afp':
+    result_folder = {'Omega': 'rmse_0.0531_26042025_1536',
+                 'Tc': 'rmse_0.0118_26042025_1732',
+                 'Pc': 'rmse_0.0258_26042025_1257',
+                 'Vc': 'rmse_0.00747_26042025_1240'}
+
 
 # construct the path to the model
-path_2_result = 'models/'+args.property+'/gnn/afp/'+result_folder[args.property]
+path_2_result = 'models/'+args.property+'/gnn/'+args.model+'/'+result_folder[args.property]
 
 # load the configs
 loaded = load_model_package(path_2_result)
@@ -111,71 +119,13 @@ loaded = load_model_package(path_2_result)
 model = loaded['model']
 config = loaded['config']
 
-# # fit the mode
-# optimizer = torch.optim.Adam(model.parameters(), lr=config['training_params']['learning_rate'])
-# scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min',
-#                                                        factor=0.5, patience=5,
-#                                                        min_lr=1e-6)
-# best_val_loss = float('inf')
-# best_state_dict = None
-# patience = 25
-# patience_counter = 0
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-# for epoch in range(args.n_epochs):
-#     # training
-#     model.train()
-#     total_loss = 0
-#     for batch in train_loader:
-#         batch = batch.to(device)
-#         optimizer.zero_grad()
-#         pred = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
-#         loss = F.mse_loss(pred, batch.y.view(-1, 1))
-#         loss.backward()
-#         optimizer.step()
-#         total_loss += loss.item()
-#
-#     # Validation
-#     model.eval()
-#     val_loss = 0
-#     with torch.no_grad():
-#         for batch in val_loader:
-#             batch = batch.to(device)
-#             pred = model(batch.x, batch.edge_index, batch.edge_attr, batch.batch)
-#             loss = F.mse_loss(pred, batch.y.view(-1, 1))
-#             val_loss += loss.item()
-#
-#     val_loss = val_loss / len(val_loader)
-#     scheduler.step(val_loss)
-#
-#     # Early stopping
-#     if val_loss < best_val_loss:
-#         best_val_loss = val_loss
-#         # Convert state dict tensors to lists for serialization
-#         # Save state dict to a separate file using trial number
-#         save_path = os.path.join('checkpoints', f'{args.property}_bootstrap_best_state.pt')
-#         torch.save(model.state_dict(), save_path)
-#         patience_counter = 0
-#
-#
-#     else:
-#         patience_counter += 1
-#
-#     if patience_counter >= patience:
-#         print("Early stopping triggered")
-#         break
-#
-#     # Print progress
-#     print(f'Epoch {epoch + 1:03d}, Train Loss: {total_loss / len(train_loader):.4f}, '
-#           f'Val Loss: {val_loss / len(val_loader):.4f}')
 
-# load the best model
-# model.load_state_dict(torch.load(save_path, weights_only=True))
-# set the model in evaluation model
 model.eval()
 # perform predictions
-train_pred, train_true, train_metrics = evaluate_gnn(model, train_loader, device, y_scaler)
-val_pred, val_true, val_metrics = evaluate_gnn(model, val_loader, device, y_scaler)
-test_pred, test_true, test_metrics = evaluate_gnn(model, test_loader, device, y_scaler)
+train_pred, train_true, train_metrics = evaluate_gnn(model, train_loader, device, y_scaler, tag=args.model)
+val_pred, val_true, val_metrics = evaluate_gnn(model, val_loader, device, y_scaler, tag=args.model)
+test_pred, test_true, test_metrics = evaluate_gnn(model, test_loader, device, y_scaler, tag=args.model)
 
 # calculate metrics
 # calculate the performance metric
@@ -279,7 +229,7 @@ for i in range(args.n_bootstrap):
             best_val_loss = val_loss
             # Convert state dict tensors to lists for serialization
             # Save state dict to a separate file using trial number
-            save_path = os.path.join('../checkpoints', f'{args.property}_succ_tr_best_state.pt')
+            save_path = os.path.join('checkpoints', f'{args.property}_succ_tr_best_state.pt')
             torch.save(model.state_dict(), save_path)
             patience_counter = 0
 
@@ -337,7 +287,7 @@ df_predictions = pd.concat([df_predictions, df0], axis=1, ignore_index=False)
 #
 #
 # Check if the directory exists, if not, create it
-path_results = path_2_result+'bootstrap_predictions.xlsx'
+path_results = args.path_2_result+args.property+'/gnn/'+args.model+'/'+result_folder[args.property]+'/bootstrap_predictions.xlsx'
 os.makedirs(os.path.dirname(path_results), exist_ok=True)
 
 # Check if the file exists, if not, create it with 'metrics' and 'prediction' sheets

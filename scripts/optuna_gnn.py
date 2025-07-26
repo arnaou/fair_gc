@@ -39,7 +39,7 @@ args = gnn_hypopt_parse_arguments()
 ##########################################################################################################
 
 # import the data
-path_to_data = args.path_2_data+'processed/'+args.property+'/'+args.property+'_processed.xlsx'
+path_to_data = args.path_2_data+'processed/'+args.property+'/'+args.property+'_butina_min_processed.xlsx'
 df = pd.read_excel(path_to_data)
 # split the data
 df_train = df[df['label']=='train']

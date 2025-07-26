@@ -60,7 +60,7 @@ args = parser.parse_args()
 
 
 
-path_2_data = args.path_2_data+'processed/'+args.property+'/'+args.property+'_processed.xlsx'
+path_2_data = args.path_2_data+'processed/'+args.property+'/'+args.property+'_butina_min_processed.xlsx'
 seed_everything(args.seed)
 ##########################################################################################################
 #%% Data Loading & Preprocessing
