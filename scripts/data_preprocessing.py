@@ -74,29 +74,20 @@ ratio_train = df_train.shape[0]/df_mg.shape[0]
 # step 3: fill up randomly until a quota is reached
 target_ratio = 0.70
 
-# add to the train set and devide into validation and test set
+# add to the train set and divide into validation and test set
 n_train_to_add = int(target_ratio*df_mg.shape[0])
 
 # perform the splitting
 split_type = 'butina'
 df_train, df_val, df_test = expand_subset(df_mg, df_train, n_train_to_add, method=split_type, butina_cutoff=0.6, random_seed=42)
 
-
-#%%
-
+# saving the data
 df_final = pd.concat([df_train, df_val, df_test], ignore_index=True)
-
 df_final = move_column(df_final, 'label', 3)
 df_final['required'] = [False for i in range(df_final.shape[0])]
 df_final.loc[df_final['SMILES'].isin(df_train_min['SMILES']),'required'] = True
-
 df_final = move_column(df_final, 'required', 4)
-
-
 df_final.to_excel('data/processed/'+prop_tag+'/'+prop_tag+'_processed.xlsx', index=False)
 
-# # retrieve indices of available groups
-# idx_avail = find_nonzero_columns(df_train, ['SMILES', 'Const_Value', 'label', 'No'])
-# idx_mg1, idx_mg2, idx_mg3 = split_indices(idx_avail)
 
 

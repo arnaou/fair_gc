@@ -212,32 +212,7 @@ save_mlp_model_package(
 )
 
 #%%
-# loaded = load_mlp_model_package(model_dir)
-#
-# best_model = loaded['model']
-# config = loaded['config']
-# y_scaler = loaded['scaler']
-#
-#
-# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-# from src.evaluation import evaluate_gnn
-# train_pred, train_true, train_metrics = evaluate_mlp(best_model, train_loader, device, y_scaler)
-# val_pred, val_true, val_metrics = evaluate_mlp(best_model, val_loader, device, y_scaler)
-# test_pred, test_true, test_metrics = evaluate_mlp(best_model, test_loader, device, y_scaler)
-#
-#
-# # Print metrics
-# print("\nTraining Set Metrics:")
-# for metric, value in train_metrics.items():
-#     print(f"{metric.upper()}: {value:.4f}")
-#
-# print("\nValidation Set Metrics:")
-# for metric, value in val_metrics.items():
-#     print(f"{metric.upper()}: {value:.4f}")
-#
-# print("\nTest Set Metrics:")
-# for metric, value in test_metrics.items():
-#     print(f"{metric.upper()}: {value:.4f}")
+
 
 
 

@@ -149,8 +149,6 @@ else:
         df_result.to_excel(writer, sheet_name='prediction')
 
 # save the model and the trials and hyperparameters
-from typing import Dict, Any
-
 
 
 # Saving
