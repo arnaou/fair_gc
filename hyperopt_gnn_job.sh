@@ -1,6 +1,5 @@
-#!/bin/sh
 ### General options
-### –- specify queue --
+### ï¿½- specify queue --
 #BSUB -q gpuv100
 ### -- set the job Name --
 #BSUB -J hyp_rhoc

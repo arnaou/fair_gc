@@ -166,6 +166,7 @@ cython_debug/
 trash
 results
 models
-optuna_dbs
+optuna_dbs/
 temp_model*
-checkpoints
+trash/checkpoints
+*_frags.pth

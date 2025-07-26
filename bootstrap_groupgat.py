@@ -236,7 +236,7 @@ for i in range(args.n_bootstrap):
             best_val_loss = val_loss
             # Convert state dict tensors to lists for serialization
             # Save state dict to a separate file using trial number
-            save_path = os.path.join('checkpoints', f'{args.property}_boot_best_state.pt')
+            save_path = os.path.join('trash/checkpoints', f'{args.property}_boot_best_state.pt')
             torch.save(model.state_dict(), save_path)
             patience_counter = 0
 

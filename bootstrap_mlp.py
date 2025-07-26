@@ -175,7 +175,7 @@ synth_data = train_pred + err_matrix
 # prepare list for dataframes
 y_pred_list = []
 # prepare save path for checkpoints:
-save_path = os.path.join('checkpoints', f'{args.property}_succ_tr_best_state.pt')
+save_path = os.path.join('trash/checkpoints', f'{args.property}_succ_tr_best_state.pt')
 
 # loop over the bootstrap samples
 for i in range(args.n_bootstrap):
