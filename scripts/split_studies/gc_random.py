@@ -63,6 +63,7 @@ list_test_mae = []
 list_test_r2 = []
 idx = 0
 from operator import itemgetter
+# this was done since in some cases the model would be initialized with values that are way too far from the optimal
 if args.property == 'Pc':
     sheets = list(itemgetter(0, 2, 3)(sheet_nams))
 elif args.property == 'Vc':

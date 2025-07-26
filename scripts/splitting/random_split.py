@@ -25,8 +25,7 @@ path_to_data = None
 # select path based on property
 if prop_tag in ['Tc','Pc', 'Vc', 'Omega']:
     path_to_data = '../data/external/critptops_mit.xlsx'
-elif prop_tag == 'HCOM':
-    pass
+
 
 # read the data
 df0 = pd.read_excel(path_to_data)
