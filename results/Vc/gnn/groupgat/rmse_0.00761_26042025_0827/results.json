@@ -1,0 +1,91 @@
+{
+    "model_hyperparameters": {
+        "node_in_dim": 36,
+        "edge_in_dim": 12,
+        "out_channels": 1,
+        "global_features": false,
+        "frag_dim": 219,
+        "L1_hidden_dim": 192,
+        "L1_layers_atom": 1,
+        "L1_layers_mol": 2,
+        "L1_out_dim": 32,
+        "L1_dropout": 0.09837687621990793,
+        "L2_hidden_dim": 96,
+        "L2_layers_atom": 4,
+        "L2_layers_mol": 4,
+        "L2_out_dim": 80,
+        "L2_dropout": 0.146201492615392,
+        "L3_hidden_dim": 64,
+        "L3_layers_atom": 1,
+        "L3_layers_mol": 2,
+        "L3_out_dim": 64,
+        "L3_dropout": 0.2166311908608676,
+        "n_mlp_layers": 3,
+        "num_heads": 1,
+        "final_dropout": 0.14110562013278088,
+        "MLP_layers": [
+            272,
+            56,
+            192
+        ]
+    },
+    "training_params": {
+        "learning_rate": 0.004202335690719088,
+        "lr_reduce": 0.6
+    },
+    "model_class": "GCGAT_v4pro",
+    "model_module": "src.grape.models.GroupGAT",
+    "optimization": {
+        "study_best_params": {
+            "L1_hidden_dim": 192,
+            "L1_layers_atom": 1,
+            "L1_layers_mol": 2,
+            "L1_dropout": 0.09837687621990793,
+            "L1_out_dim": 32,
+            "L2_hidden_dim": 96,
+            "L2_layers_atom": 4,
+            "L2_layers_mol": 4,
+            "L2_out_dim": 80,
+            "L2_dropout": 0.146201492615392,
+            "L3_hidden_dim": 64,
+            "L3_layers_atom": 1,
+            "L3_layers_mol": 2,
+            "L3_out_dim": 64,
+            "L3_dropout": 0.2166311908608676,
+            "n_mlp_layers": 3,
+            "mlp_dim_0": 272,
+            "mlp_dim_1": 56,
+            "mlp_dim_2": 192,
+            "num_heads": 1,
+            "final_dropout": 0.14110562013278088,
+            "train_learning_rate": 0.004202335690719088,
+            "train_lr_reduce": 0.6
+        },
+        "study_best_value": 0.007607398554682732,
+        "n_trials": 2500,
+        "direction": "MINIMIZE"
+    },
+    "training_date": "26042025_0827",
+    "dataset_info": "your_dataset_details",
+    "train_performance_metrics": {
+        "r2": 0.9940088391304016,
+        "rmse": 0.015535103157162666,
+        "mse": 0.00024133942497428507,
+        "mare": 2.7392752170562744,
+        "mae": 0.01041753962635994
+    },
+    "val_performance_metrics": {
+        "r2": 0.995734453201294,
+        "rmse": 0.01750558242201805,
+        "mse": 0.000306445435853675,
+        "mare": 2.5162529945373535,
+        "mae": 0.01088613923639059
+    },
+    "test_performance_metrics": {
+        "r2": 0.9933465123176575,
+        "rmse": 0.026272596791386604,
+        "mse": 0.0006902493187226355,
+        "mare": 2.861414909362793,
+        "mae": 0.014545213431119919
+    }
+}

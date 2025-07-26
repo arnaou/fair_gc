@@ -1,0 +1,48 @@
+{
+    "timestamp": "24042025_2203",
+    "model_name": "gpr",
+    "metric_name": "rmse",
+    "best_params": {
+        "kernel_type": "Matern",
+        "length_scale": 283.0847494108842,
+        "noise_level": 0.7658748518362478,
+        "constant_value": 564.9446031917769,
+        "nu": 1.5
+    },
+    "best_value": 0.17261535385144314,
+    "n_trials": 2500,
+    "parameter_ranges": {
+        "kernel_type": {
+            "values": [
+                "Matern",
+                "RBF"
+            ],
+            "type": "categorical"
+        },
+        "length_scale": {
+            "min": 1.0532674686893138e-05,
+            "max": 99519.63585744846,
+            "type": "float"
+        },
+        "noise_level": {
+            "min": 1.0397485666648026e-10,
+            "max": 0.9995578115670072,
+            "type": "float"
+        },
+        "constant_value": {
+            "min": 1.0117396217131646e-07,
+            "max": 99354.8565068448,
+            "type": "float"
+        },
+        "nu": {
+            "min": 0.5,
+            "max": 2.5,
+            "type": "float"
+        }
+    },
+    "config_file": "ml_hyperopt_config.yaml",
+    "model_path": "models/Vc/gpr/gpr_rmse_0.173_24042025_2203_pipeline.joblib",
+    "results_path": "results/Vc/gpr/gpr_rmse_0.173_24042025_2203_results.json",
+    "trials_path": "results/Vc/gpr/gpr_rmse_24042025_2203_trials.csv",
+    "seed": 42
+}

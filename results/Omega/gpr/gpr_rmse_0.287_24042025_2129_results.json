@@ -1,0 +1,48 @@
+{
+    "timestamp": "24042025_2129",
+    "model_name": "gpr",
+    "metric_name": "rmse",
+    "best_params": {
+        "kernel_type": "Matern",
+        "length_scale": 3.15240095877842,
+        "noise_level": 0.02317049983435737,
+        "constant_value": 5.372641745720855,
+        "nu": 1.5
+    },
+    "best_value": 0.2867944096117616,
+    "n_trials": 2500,
+    "parameter_ranges": {
+        "kernel_type": {
+            "values": [
+                "Matern",
+                "RBF"
+            ],
+            "type": "categorical"
+        },
+        "length_scale": {
+            "min": 1.0643270464235075e-05,
+            "max": 99999.34165899761,
+            "type": "float"
+        },
+        "noise_level": {
+            "min": 1.0194227856458266e-10,
+            "max": 0.9972970305879841,
+            "type": "float"
+        },
+        "constant_value": {
+            "min": 1.0078271583382029e-07,
+            "max": 99722.47799566307,
+            "type": "float"
+        },
+        "nu": {
+            "min": 0.5,
+            "max": 2.5,
+            "type": "float"
+        }
+    },
+    "config_file": "ml_hyperopt_config.yaml",
+    "model_path": "models/Omega/gpr/gpr_rmse_0.287_24042025_2129_pipeline.joblib",
+    "results_path": "results/Omega/gpr/gpr_rmse_0.287_24042025_2129_results.json",
+    "trials_path": "results/Omega/gpr/gpr_rmse_24042025_2129_trials.csv",
+    "seed": 42
+}

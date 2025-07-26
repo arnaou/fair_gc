@@ -164,7 +164,7 @@ cython_debug/
 #data/
 .github/
 trash
-results
+#results
 models
 optuna_dbs/
 temp_model*
