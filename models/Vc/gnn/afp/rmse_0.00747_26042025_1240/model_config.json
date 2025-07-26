@@ -1,0 +1,21 @@
+{
+    "model_class": "FlexibleMLPAttentiveFP",
+    "model_module": "src.models.afp",
+    "model_hyperparameters": {
+        "in_channels": 36,
+        "edge_dim": 12,
+        "out_channels": 1,
+        "mlp_hidden_dims": [
+            256,
+            112
+        ],
+        "hidden_channels": 192,
+        "num_layers": 2,
+        "num_timesteps": 2,
+        "dropout": 0.010814624318906809
+    },
+    "training_params": {
+        "learning_rate": 0.009296764449972428,
+        "lr_reduce": 0.6
+    }
+}
