@@ -4,6 +4,8 @@
 
 This project provides a fair and reproducible framework for benchmarking classical group-contribution (GC) models and modern machine learning (ML) approaches for property prediction. It addresses the common criticism of GC models by ensuring proper validation and comparison with ML models across a wide range of properties.
 
+The main innovation here is the construction of a hybrid-data splitting strategy that accounts for the presence of groups. the strategy first identify the smallest subset of data for which all available groups are present. Then it fills up untill a specific given split ratio using data samples either: randomly or using Butina splitting given a pecific cut-off. This way, one avoids loosing out on groups when developping models. that uses groups as features. 
+
 ---
 
 ## Table of Contents
